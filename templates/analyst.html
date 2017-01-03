@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/footers/footer-v7.css") }}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+    <nav class="one-page-header navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="menu-container page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="{{ url_for("index") }}">
+                    <img class = "one" style = "height: 100%" src ="{{ url_for('static', filename="cib_logo_white.png" ) }}" alt="">
+                    <img class = "two" style = "display: none; height: 100%" src ="{{ url_for('static', filename="cib_logo.png" ) }}" alt="">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <div class="menu-container">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{ url_for("about") }}">About Us</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for("teams") }}">Our Divisions</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for("analyst") }}">Analyst Program</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a style = "padding: 6px;margin-top: 10px" class = "btn btn-u btn-brd btn-brd-hover" href="{{ url_for("login") }}">Investors</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!--=== End Header ===-->
+
+
+<div class="service-block-v5">
+        <div class="container">
+
+            <div style = "margin-top: 45px"  class="row equal-height-columns">
+              <br>
+              <h1 style = "margin-top: 50px; text-align:center">ANALYST PROGRAM</h1>
+              <p> At CIB, we aim to explore all dimensions of the financial world. We have chosen Portfolio Management, Equity Research and Software Development to be the three pillars of our organization, and naturally assigned teams with research projects falling into one of these three divisions. </p>
+                <div class="col-md-4 service-inner equal-height-column">
+                    <i class="fa fa-2x fa-desktop" aria-hidden="true"></i>
+                    <span>Software Development</span>
+                    <p> The Software Development team explores various machine learning techniques to find insights within financial markets. More importantly, our goal is to provide analysts with experience in a field that lies at the intersection between data science and finance.
+        Past projects include sentiment analysis for financial articles and the application of modern techniques such as deep learning and tree boosting to forecast volatility.</p>
+                </div>
+                <div class="col-md-4 service-inner equal-height-column service-border">
+
+                    <i class="fa fa-2x fa-line-chart" aria-hidden="true"></i>
+                    <span>Equity Research</span>
+                    <p>The Equity Research team is responsible for the write up of a bi-weekly journal delivered to sponsors and investors containing micro and macro market analysis. We take a top-down approach as we start off by analyzing a specific industry and the different trends and then narrow our search down to a few public companies.
+
+        The goal of the Equity Research Team is to give analysts the tools to successfully start off their career in finance.</p>
+                </div>
+                <div class="col-md-4 service-inner equal-height-column">
+                    <i class="fa fa-2x fa-briefcase" aria-hidden="true"></i>
+                    <span>Portfolio Management</span>
+                    <p>The Portfolio Management team is a smaller team composed of the most advanced analysts responsible for evaluating multi-asset diversification strategies and risk management of portfolio analytics. Portfolio Managers will be in charge of leading the market discussions for the club and advising the Executive Team on the management of the prospective portfolio.</p>
+                </div>
+            </div><!--/end row-->
+        </div><!--/end container-->
+    </div>
+    <!-- End Icon Boxes 30 -->
+
+<div style = "margin-top: 30px" class="container">
+  <div class="row gap">
+    <div class="col-md-12">
+      <h1 style = "text-align:center"><i style = "margin-bottom:5px" class = "fa fa-fw fa-2x fa-diamond"></i> <br>We invest in our members</h1>
+        <p style = "text-align:center">Analysts follow a specially designed, semester-long syllabus. Over the course of our education program analysts have the opportunity to learn about diverse investment strategies, fundamental analysis, and financial modeling, enabling them to explore various career paths. In addition to the analyst education program, analysts are also assigned to a client based project each semester, providing them practical experience in professional presentations, portfolio management, and investment research. By the end of the semester analysts will be well equipped to participate in the financial markets in both a professional and personal setting.
+        Each analyst will be expected to meet with their team once a week in addition to the assigned meeting time. The time commitment is around 10-15h/week.
+      </p>
+      <hr>
+            <h2 style = "text-align:center">Meetings</h2>
+            <p style = "text-align:center">
+                Club members will meet weekly for one and a half hour on Thursday evenings (6:30-8:00PM) to discuss up-to-date market events and learn about different finance related topics including but not limited to: equity, fixed income, derivatives, portfolio theory, FinTech, etc. We will also be hosting multiple guest speakers throughout the course of the semester.
+
+                We will also be hosting educational workshops on weekends to educate analysts on complementary subjects and career workshops to ensure all members are ready for the upcoming recruitment season.
+
+                CIB also hosts multiple campus events. In Spring 2016, we have hosted the Farallon Third Annual Undergraduate Investment Case Competition. We have also partnered with the Career Fair to host the Internship & Summer Job Fair.
+              </p>
+              <br>
+              <br>
+    </div>
+</div>
+    <div class = "row">
+    <div class="col-md-6">
+      <img class="img-responsive" src="{{ url_for('static', filename="analyst1.jpg" ) }}">
+    </div>
+    <div class="col-md-6">
+      <img class="img-responsive" src="{{ url_for('static', filename="analyst2.JPG" ) }}">
+    </div>
+  </div><hr>
+</div>
+
+
+  <div class="gray service-info no-padding">
+        <div class="container">
+            <div class="row">
+              <h2 style = "text-align:center">Lectures</h2>
+              <p style = "text-align:center">Weekly lectures provide our members with the strongest background in finance. This is where programmers discover portfolio management strategies and stock pickers get to learn about machine learning. This syllabus was designed by our experienced leadership and will be taught over interactive presentations. Analysts will find here the lecture slides whenever they feel the need to review a concept.</p>
+              <br>
+                <div class="col-sm-6 content-boxes-v3 content-boxes-v3-right sm-margin-bottom-30">
+                    <div class="clearfix margin-bottom-30">
+                        <i class="icon-custom icon-md rounded-x icon-color-dark fa fa-cogs"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">The economy machine</h2>
+                            <li dir="rtl">Presentation of the different players</li>
+                              <li dir="rtl">Diverse investment philosophies</li>
+                              <li dir="rtl">Intro to credit</li>
+                              <li dir="rtl">The Template : productivity, long term and short term debt cycles</li>
+                        </div>
+                    </div>
+                    <div class="clearfix margin-bottom-30">
+                        <i class="icon-custom icon-md rounded-x icon-color-dark fa fa-institution"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Bonds</h2>
+                            <li dir="rtl">Bonds mechanics : prices and yields</li>
+                            <li dir="rtl">Bond arbitrage and case study : LTCM</li>
+                            <li dir="rtl">Corporate vs government</li>
+                            <li dir="rtl">Asset-backed securities</li>
+                        </div>
+                    </div>
+                    <div class="clearfix margin-bottom-30">
+                        <i class="icon-custom icon-md rounded-x icon-color-dark icon-line icon-directions"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Derivatives</h2>
+                            <li dir="rtl">Futures and Forward contracts</li>
+                            <li dir="rtl">Options mechanics and valuation</li>
+                            <li dir="rtl">Forecasting Volatility</li>
+                            <li dir="rtl">Arbitrage, hedging and speculation</li>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <i class="icon-custom icon-md rounded-x icon-color-dark fa fa-desktop"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">The crazy world of FinTech</h2>
+                            <li dir="rtl">Algorithmic Trading, low latency systems</li>
+                            <li dir="rtl">What is the blockchain?<span dir = "ltr"></span> </li>
+                            <li dir="rtl">Applications of Machine Learning in Finance</li>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 content-boxes-v3">
+                    <div class="clearfix margin-bottom-30">
+                        <i class="icon-custom icon-md rounded-x icon-color-dark icon-line icon-bar-chart"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Risk and Return</h2>
+                            <li>Portfolio mechanics</li>
+                            <li>Probability distributions</li>
+                            <li>Backtesting and Forecasting risk</li>
+                            <li>Diversification</li>
+                        </div>
+                    </div>
+                    <div class="clearfix margin-bottom-30">
+                        <i class="icon-custom icon-md rounded-x icon-color-dark fa fa-line-chart"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Equity</h2>
+                             <li>The Dividend Discount Model</li>
+                              <li>Long/short selling</li>
+                              <li>Valuation techniques</li>
+                              <li>Financial Crisis</li>
+                        </div>
+                    </div>
+                    <div class="clearfix margin-bottom-30">
+                        <i class="icon-custom icon-md rounded-x icon-color-dark fa fa-dollar"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Special Topics</h2>
+                            <li>Initial Public Offerings</li>
+                            <li>Mergers and Acquisitions</li>
+                            <li>Private Equity</li>
+                            <li>Venture Capitalism</li>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <i class="icon-custom icon-md rounded-x icon-color-dark fa fa-home"></i>
+                        <div class="content-boxes-in-v3">
+                            <h2 class="heading-sm">Alternative Investments</h2>
+                            <li>Real Estate</li>
+                            <li>Commodities</li>
+                            <li>ETFs, Funds of funds</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/container-->
+    </div>
+    <!-- End Icon Boxes 26 -->
+  <!-- Icon Boxes 35 -->
+    <div style = "margin-bottom: 20px; list-style-type: none;" class="container">
+        <div class="row" style = "margin-bottom: 20px;">
+        <hr>
+          <h2 style = "text-align:center">Workshops</h2>
+          <p style = "text-align:center"> Workshops cover inevitable topics in finance. Held over the weekend, they will not be mandatory as we expect our recurring analysts to be familiar with the subjects presented. It is still the best way to learn about the fundamentals in a friendly, slow-paced environment! Finally, we will be hosting a professional workshop with speakers from our industry network to accompany our members in their career decisions.
+        </p>
+          <br>
+          <br>
+            <div class="col-md-6">
+                <div class="service-block-v1 md-margin-bottom-50">
+                    <i class="fa fa-2x fa-briefcase" aria-hidden="true"></i>
+                    <h3 class="title-v3-bg text-uppercase">Portfolio Management</h3>
+                    <li>Capital Asset Pricing Model</li>
+                    <li>The Efficieny Frontier</li>
+                    <li>Portfolio Construction</li>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-block-v1 md-margin-bottom-50">
+                    <i class="fa fa-2x fa-globe" aria-hidden="true"></i>
+                    <h3 class="title-v3-bg text-uppercase">Politics & Finance</h3>
+                     <li>Interest Rates | Monetary Policies</li>
+                      <li>Sovereign Debt</li>
+                      <li>Forex Markets</li>
+                </div>
+            </div>
+          </div>
+          <br>
+          <br>
+
+          <div class = "row" style = "margin-bottom: 50px">
+            <div class="col-md-6">
+                <div class="service-block-v1 md-margin-bottom-50">
+                    <i class="fa fa-2x fa-users" aria-hidden="true"></i>
+                    <h3 class="title-v3-bg text-uppercase">Careers | Internships</h3>
+                    <li>Finance Career Speaker Series</li>
+                    <li>Resume Builder</li>
+                    <li>Interview Preparation</li>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-block-v1 md-margin-bottom-50">
+                    <i class="fa fa-2x fa-line-chart" aria-hidden="true"></i>
+                    <h3 class="title-v3-bg text-uppercase">Financial Statement Analysis</h3>
+                    <li>Balance Sheet</li>
+                    <li>Income Statement</li>
+                    <li>Cash Flows</li>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- End Icon Boxes 35 -->
+
+    <!-- JS Global Compulsory -->
+
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/one.app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            LoginForm.initLoginForm();
+            ContactForm.initContactForm();
+            OwlCarousel.initOwlCarousel();
+            RevolutionSlider.initRSfullScreen();
+        });
+    </script>
+</body>
+</html>

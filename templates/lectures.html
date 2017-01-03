@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/footers/footer-v7.css") }}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+    <nav class="one-page-header navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="menu-container page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="{{ url_for("index") }}">
+                    <img class = "one" style = "height: 100%" src ="{{ url_for('static', filename="cib_logo_white.png" ) }}" alt="">
+                    <img class = "two" style = "display: none; height: 100%" src ="{{ url_for('static', filename="cib_logo.png" ) }}" alt="">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <div class="menu-container">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{ url_for("portal") }}">Home</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for("research") }}">Research</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for("lectures") }}">Lectures</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for("blog") }}">Blog</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a style = "padding: 6px;margin-top: 10px" class = "btn btn-u btn-brd btn-brd-hover" href="{{ url_for("login") }}">Investors</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!--=== End Header ===-->
+    
+
+     <!--=== Profile ===-->
+    <div class="container content profile" style = "margin-top: 75px" >
+        <div class="row">
+            <!--Left Sidebar-->
+            <div class="col-md-3 md-margin-bottom-40">
+                <hr style = "margin-top: 0px">
+                <h3 style = "text-align:center"><strong>Welcome to the <br>CIB Investor Portal</strong></h3>
+                <p style = "text-align:center">We are currently seeking sponsors for our studen-run fund. Please contact <a href="mailto:ajayshimoga@berkeley.edu">Ajay Shimoga</a> for more information.</p>
+                <br>
+                <div class="tag-box tag-box-v1">
+                    <div class="panel-heading-v2 overflow-h">
+                        <h2 style = "margin-bottom: 15px; text-align:center" class="heading-xs">Portfolio Management</h2>
+                    </div>
+                    <ul style="text-decoration:underline; text-align:center; padding-left: 0px; list-style-type: none;">
+                        <li><!-- Modal -->
+                        <button class="btn btn-u btn-brd btn-brd-hover" data-toggle="modal" data-target="#myModal">Asset Allocation</button>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                        <h4 id="myModalLabel1" class="modal-title">Asset Allocation</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4>Text in a modal</h4>
+                                        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+                                        <h4>Popover in a modal</h4>
+                                        <p>This <a data-content="And here's some amazing content. It's very engaging. right?" title="" class="btn-u btn-u-default popover-test" role="button" href="#" data-original-title="A Title">button</a> should trigger a popover on click.</p>
+
+                                        <h4>Tooltips in a modal</h4>
+                                        <p><a title="" class="tooltip-test" href="#" data-original-title="Tooltip">This link</a> and <a title="" class="tooltip-test" href="#" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
+
+                                        <hr>
+
+                                        <h4>Overflowing text to show scroll behavior</h4>
+                                        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn-u btn-u-default" type="button">Close</button>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <!-- End Modal --></li><br>
+                        <li><a class = "btn btn-u btn-brd btn-brd-hover" href = "">Asset Correlation</a></li><br>
+                        <li><a class = "btn btn-u btn-brd btn-brd-hover" href = "">Fama French Factor</a></li><br>
+                        <li><a class = "btn btn-u btn-brd btn-brd-hover" href = "">Efficiency Frontier</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="tag-box tag-box-v1">
+                    <div class="panel-heading-v2 overflow-h">
+                        <h2 style = "text-align:center" class="heading-xs">Recent Lectures</h2>
+                    </div>
+                    <ul style="text-decoration:underline; text-align:center; padding-left: 0px; list-style-type: none;">
+                        <li style = "padding: 5px"><a href = "">THE ECONOMY MACHINE</a><br></li>
+                        <li style = "padding: 5px"><a href = "">BONDS AND EQUITY MARKET</a><br></li>
+                        <li style = "padding: 5px"><a href = "">THE CRAZY WORLD OF FINTECH</a><br></li>
+                        <li style = "padding: 5px"><a href = "">ALTERNATIVE INVESTMENTS</a><br></li>
+                    </ul>
+                </div>
+                
+            </div>
+            <!--End Left Sidebar-->
+            <!-- Profile Content -->
+            <div class="col-md-9">
+                <div class="profile-body">
+                    <!--Service Block v3-->
+                    <div class="row margin-bottom-10">
+                        <h3 style = "text-align:center">CIB Fund Performance</h3>
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <img style = "padding: 0px" class="img-responsive" src="{{ url_for('static', filename="plot.png" ) }}">
+
+                        </div>
+                    </div><!--/end row-->
+                    <!--End Service Block v3-->
+
+                    <hr>
+
+                    <!--Table Search v1-->
+                    <div class="table-search-v1 margin-bottom-20">
+                        <div class="table-responsive">
+                            <h3 style = "text-align:center">Recent Equity Research</h3>
+                            <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Company</th>
+                                        <th class="hidden-sm">Description</th>
+                                        <th style="width: 100px;">Position</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="#">Samsung Electronics</a>
+                                        </td>
+                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor arcu.</td>
+                                        <td><button style = "height:100%; margin-top: 2px" class="btn-u btn-block btn-u-xs"><i class="fa fa-level-up margin-right-5"></i> Long</button></td>
+                                         <td><button class="btn-u btn-u-dark btn-block btn-u-xs"><i class="fa fa-eye margin-right-5"></i>View</button>
+                                            <button class="btn-u btn-u-yellow btn-block btn-u-xs"><i class="fa fa-level-down margin-right-5"></i>Download</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">LG</a>
+                                        </td>
+                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor arcu.</td>
+                                        <td><button style = "height:100%; margin-top: 2px" class="btn-u btn-block btn-u-red btn-u-xs"><i class="fa fa-level-down margin-right-5"></i> Short</button></td>
+                                         <td><button class="btn-u btn-u-dark btn-block btn-u-xs"><i class="fa fa-eye margin-right-5"></i>View</button>
+                                            <button class="btn-u btn-u-yellow btn-block btn-u-xs"><i class="fa fa-level-down margin-right-5"></i>Download</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">Sony Corporation</a>
+                                        </td>
+                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor arcu.</td>
+                                        <td><button style = "height:100%; margin-top: 2px" class="btn-u btn-block btn-u-blue btn-u-xs"><i class="fa fa-arrows-v margin-right-5"></i> Hold</button></td>
+                                         <td><button class="btn-u btn-u-dark btn-block btn-u-xs"><i class="fa fa-eye margin-right-5"></i>View</button>
+                                            <button class="btn-u btn-u-yellow btn-block btn-u-xs"><i class="fa fa-level-down margin-right-5"></i>Download</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">Lenovo Group</a>
+                                        </td>
+                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor arcu.</td>
+                                        <td><button style = "height:100%; margin-top: 2px" class="btn-u btn-block btn-u-xs"><i class="fa fa-level-up margin-right-5"></i> Long</button></td>
+                                         <td><button class="btn-u btn-u-dark btn-block btn-u-xs"><i class="fa fa-eye margin-right-5"></i>View</button>
+                                            <button class="btn-u btn-u-yellow btn-block btn-u-xs"><i class="fa fa-level-down margin-right-5"></i>Download</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">Acer</a>
+                                        </td>
+                                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor arcu.</td>
+                                        <td><button style = "height:100%; margin-top: 2px" class="btn-u btn-block btn-u-red btn-u-xs"><i class="fa fa-level-down margin-right-5"></i> Short</button></td>
+                                         <td><button class="btn-u btn-u-dark btn-block btn-u-xs"><i class="fa fa-eye margin-right-5"></i>View</button>
+                                            <button class="btn-u btn-u-yellow btn-block btn-u-xs"><i class="fa fa-level-down margin-right-5"></i>Download</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--End Table Search v1-->
+
+                </div>
+            </div>
+            <!-- End Profile Content -->
+        </div>
+    </div><!--/container-->
+    <!--=== End Profile ===-->
+
+    <!-- JS Global Compulsory -->
+
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/one.app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+        });
+    </script>
+</body>
+</html>
+
+    

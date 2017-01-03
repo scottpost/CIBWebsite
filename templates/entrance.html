@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+
+    <!-- CSS Footer --    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <script>
+        function load() {
+            setTimeout(function() {
+                document.getElementById('title1In').setAttribute("style", "font-size:2em; font-family:Open Sans; margin-top:25%; text-align:center;");
+
+            }, (1000));
+            setTimeout(function() {
+                document.getElementById('title1In').setAttribute("style", "display:none;");
+                document.getElementById('title1Out').setAttribute("style", "font-size:2em; font-family:Open Sans; margin-top:25%; text-align:center;");
+            }, (2250));
+            setTimeout(function() {
+                document.getElementById('title1Out').setAttribute("style", "display:none;");
+                document.getElementById('title2In').setAttribute("style", "font-size:2em; font-family:Open Sans; margin-top:25%; text-align:center;");
+            }, (3500));
+            setTimeout(function() {
+                document.getElementById('title2In').setAttribute("style", "display:none;");
+                document.getElementById('title2Out').setAttribute("style", "font-size:2em; font-family:Open Sans; margin-top:25%; text-align:center;");
+            }, (4750));
+            setTimeout(function() {
+                document.getElementById('title2Out').setAttribute("style", "display:none;");
+                document.getElementById('title3In').setAttribute("style", "font-size:2em; font-family:Open Sans; margin-top:25%; text-align:center;");
+            }, (6000));
+            setTimeout(function() {
+                document.getElementById('title3In').setAttribute("style", "display:none;");
+                document.getElementById('title3Out').setAttribute("style", "font-size:2em; font-family:Open Sans; margin-top:25%; text-align:center;");
+
+            }, (7250));
+            setTimeout(function() {
+                document.getElementById('title3Out').setAttribute("style", "display:none;");
+                document.getElementById('main1').setAttribute("style", "font-size:6.5em; font-family:Open Sans; margin-top:15%; text-align:center;");
+                document.getElementById('main2').setAttribute("style", "font-size:2em; font-family:Open Sans; margin-top:20px; text-align:center;");
+                document.getElementById('button1').setAttribute("style", "margin-top: 5px; font-family: Open Sans;");
+                document.getElementById('username').setAttribute("style", "margin-top: 35px; font-family: Open Sans;");
+                document.getElementById('password').setAttribute("style", "margin-top: 5px; font-family: Open Sans;");
+                document.getElementById('button2').setAttribute("style", "margin-top: 5px; font-family: Open Sans;");
+            }, (8500));
+        }
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/fusioncharts.js") }}"></script>
+</head>
+<body id="body" style = "padding:0px; font-family: Open Sans" onload="load();" class="demo-lightbox-gallery">
+    <h1 id = "main1" style="display:none" class = "animated fadeInDown">DUTCH</h1>
+    <h4 id = "main2" style="display:none" class = "animated fadeInDown">Portfolio Management</h4>
+    <h1 id = "title1In" style="display:none" class = "animated fadeInUp">Gain key insights into your investments.</h1>
+    <h1 id = "title1Out" style="display:none" class = "animated fadeOutUp">Gain key insights into your investments.</h1>
+    <h1 id = "title2In" style="display:none" class = "animated fadeInUp">Access to Wall Street portfolio analysis tools.</h1>
+    <h1 id = "title2Out" style="display:none" class = "animated fadeOutUp">Access to Wall Street portfolio analysis tools.</h1>
+    <h1 id = "title3In" style="display:none" class = "animated fadeInUp">Research, analyze, and trade all in one location.</h1>
+    <h1 id = "title3Out" style="display:none" class = "animated fadeOutUp">Research, analyze, and trade all in one location.</h1>
+    <div style ="margin-left: 40%; margin-right:40%">
+        <div id = "username" style = "display:none" class="input-group animated fadeInUp">
+            <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+            <input type="text" name="text" placeholder="Username" class="form-control">
+        </div>
+        <div id = "password" style = "display:none" class="input-group animated fadeInUp">
+            <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
+            <input type="password" name="password" placeholder="Password" class="form-control">
+        </div>
+        <a id="button1" href="{{ url_for('profile')}}" style = "display:none;" class="animated fadeInUp btn-u btn-brd btn-brd-hover btn-block btn-u-md">LOG IN</a>
+        <a id="button2" href="{{ url_for('profile')}}" style = "display:none;" class="animated fadeInUp btn-u btn-brd btn-brd-hover btn-block btn-u-md">SIGN UP</a>
+    </div>
+</body>
+</html>
+

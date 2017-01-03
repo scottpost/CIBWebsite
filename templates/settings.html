@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/headers/header-v7.css") }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css") }}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css") }}">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/fusioncharts.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/themes/fusioncharts.theme.fint.js") }}"></script>
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+<div class="wrapper">
+    <!--=== Header v7 Left ===-->
+    {% from 'macros.html' import header %}
+    {{ header("") }}
+    <!--=== End Header v7 Left ===-->
+
+    <!--=== MODALS =====-->
+    {% from 'macros.html' import modals %}
+    {{ modals() }}
+
+    <div class="modal" id="myModal5" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myModalLabel1" class="modal-title">ENTER THE NEW CREDENTIALS</h4>
+                </div>
+                <div class="modal-body">
+                    <!--Reg Block-->
+                    <div class="reg-block">
+                        <h4></h4>
+                        <form action="{{ url_for('settings') }}" method="post">
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+                                <input type="text" name="text" placeholder="Username" class="form-control">
+                            </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon"><i class="fa fa-fw fa-slack"></i></span>
+                                <input type="password" name="password" placeholder="Password" class="form-control">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-6">
+                                    <input style = "float:right" class="btn-u btn btn-brd btn-brd-hover" value ="Submit" type="submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--End Reg Block-->
+                </div><!--/container-->
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+    <div class="modal" id="myModal6" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myModalLabel1" class="modal-title">ENTER NEW POSITION</h4>
+                </div>
+                <div class="modal-body">
+                    <!--Reg Block-->
+                    <div class="reg-block">
+                        <h4></h4>
+                        <form action="{{ url_for('settings') }}" method="post">
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon"><i class="fa fa-fw fa-list"></i></span>
+                                <input type="text" name="ticker" placeholder="Ticker" class="form-control">
+                            </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon"><i class="fa fa-fw fa-slack"></i></span>
+                                <input type="text" name="number" placeholder="Number Bought" class="form-control">
+                            </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon"><i class="fa fa-fw fa-usd"></i></span>
+                                <input type="text" name = "value" placeholder="Average Cost" class="form-control">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-6">
+                                    <input style = "float:right" class="btn-u btn btn-brd btn-brd-hover" value ="Submit" type="submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--End Reg Block-->
+                </div><!--/container-->
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+    <div class="modal" id="myModal7" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myModalLabel1" class="modal-title">EDIT POSITION</h4>
+                </div>
+                <div class="modal-body">
+                    <!--Reg Block-->
+                    <div class="reg-block">
+                        <h4></h4>
+                        <form action="{{ url_for('settings') }}" method="post">
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon"><i class="fa fa-fw fa-slack"></i></span>
+                                <input type="text" name="number" placeholder="Number Bought or Sold [use - for Sold]" class="form-control">
+                            </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon"><i class="fa fa-fw fa-usd"></i></span>
+                                <input type="text" name = "value" placeholder="Average Cost" class="form-control">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-6">
+                                    <input style = "float:right" class="btn-u btn btn-brd btn-brd-hover" value ="Submit" type="submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--End Reg Block-->
+                </div><!--/container-->
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+
+
+     <!--=== Profile ===-->
+    <div class="container">
+        <!-- Profile Content -->
+            <div class="col-md-9 col-md-offset-3">
+                <div style = "margin-top:60px" class="profile-body margin-bottom-20">
+                    <div class="tab-v1">
+                        <ul class="nav nav-justified nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#portfolio">PORTFOLIO MANAGER</a></li>
+                            <li><a data-toggle="tab" href="#credentials">CREDENTIALS MANAGER</a></li>
+                            <li><a data-toggle="tab" href="#content">CONTENT MANAGER</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="portfolio" class="profile-edit tab-pane fade in active">
+                                <h2 class="heading-md">View and update the portfolio.</h2>
+                                <br>
+                                <table border="0" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style = "text-align: center">Ticker</th>
+                                            <th style = "text-align: center">Avg. Cost</th>
+                                            <th style = "text-align: center">Amount</th>
+                                            <th style = "text-align: center">Value</th>
+                                            <th style = "text-align: center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for ticker, row in portfolioInfo.iteritems() %}
+                                            <tr>
+                                                <td>
+                                                    <h4 style = "text-align:center">{{ ticker }}</h4>
+                                                </td>
+                                                <td>
+                                                    <h4 style = "text-align:center">${{ row[0] }}</h4>
+                                                </td>
+                                                <td>
+                                                    <h4 style = "text-align:center">{{ row[1] }}</h4>
+                                                </td>
+                                                <td>
+                                                    <h4 style = "text-align:center">${{ row[2] }}</h4>
+                                                </td>
+                                                <td>
+                                                    <button data-toggle="modal" data-target="#myModal7" style = "float:right" class = "btn btn-u btn-brd btn-brd-hover">EDIT</button>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        <tr>
+                                            <td>
+                                                <h4 style = "text-align:center">Cash</h4>
+                                            </td>
+                                            <td>
+                                                <h4 style = "text-align:center"></h4>
+                                            </td>
+                                            <td>
+                                                <h4 style = "text-align:center"></h4>
+                                            </td>
+                                            <td>
+                                                <h4 style = "text-align:center">${{ cash }}</h4>
+                                            </td>
+                                            <td>
+                                                <button style = "float:right" class = "btn btn-u btn-brd btn-brd-hover">EDIT</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button action="{{ url_for('settings') }}" style = "float:right; margin-right: 8px;" class = "btn btn-u btn-brd btn-brd-hover" data-toggle="modal" data-target="#myModal6"><i class = "fa fa-plus"></i></button>
+                            </div>
+
+                            <div id="credentials" class="profile-edit tab-pane fade">
+                                <h2 class="heading-md">View and update website credentials.</h2>
+                                <br>
+                                <table border="0" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style = "text-align: center">Username</th>
+                                            <th style = "text-align: center">Password</th>
+                                            <th style = "text-align: center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for username, password in credentials.iteritems() %}
+                                        <tr>
+                                             <td>
+                                                <h4 style = "text-align:center">{{ username }}</h4>
+                                            </td>
+                                            <td>
+                                                <h4 style = "text-align:center">{{ password }}</h4>
+                                            </td>
+                                            <td>
+                                                <form action="{{ url_for('settings') }}" method="post">
+                                                    <button value="{{ username }}" type="submit" name="remove" style = "float:right" class = "btn btn-u btn-brd btn-brd-hover">REMOVE</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                            </table>
+                            <button style = "float:right; margin-right: 8px;" class = "btn btn-u btn-brd btn-brd-hover" data-toggle="modal" data-target="#myModal5"><i class = "fa fa-plus"></i></a>
+                            </div>
+
+                            <div id="content" class="profile-edit tab-pane fade">
+                                <h2 class="heading-md">View and update website content.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Profile Content -->
+        </div><!--/end row-->
+    </div>
+    <!--=== End Profile ===-->
+    </div><!--/container-->
+</div>
+    <!--=== End Profile ===-->
+
+    <!-- JS Global Compulsory -->
+
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/one.app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/fancy-box.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/progress-bar.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js") }}"></script>
+
+
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            App.initScrollBar();
+            App.initSidebarMenuDropdown();
+        });
+    </script>
+</body>
+</html>
+

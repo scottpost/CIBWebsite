@@ -1,0 +1,24 @@
+::-webkit-input-placeholder {
+    color:    white;
+}
+:-moz-placeholder {
+    color:    white;
+}
+::-moz-placeholder {
+    color:    white;
+}
+:-ms-input-placeholder {
+    color:    white;
+}
+
+#parent #popup {
+  display: none;
+}
+
+#parent:hover #popup {
+  display: block;
+}
+
+.link, .explanation {display:inline}
+  .link {float: left}
+  .explanation {float: right}

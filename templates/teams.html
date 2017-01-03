@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/footers/footer-v7.css") }}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+    <nav class="one-page-header navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="menu-container page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="{{ url_for("index") }}">
+                    <img class = "one" style = "height: 100%" src ="{{ url_for('static', filename="cib_logo_white.png" ) }}" alt="">
+                    <img class = "two" style = "display: none; height: 100%" src ="{{ url_for('static', filename="cib_logo.png" ) }}" alt="">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <div class="menu-container">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{ url_for("about") }}">About Us</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for("teams") }}">Our Divisions</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for("analyst") }}">Analyst Program</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a style = "padding: 6px;margin-top: 10px" class = "btn btn-u btn-brd btn-brd-hover" href="{{ url_for("login") }}">Investors</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!--=== End Header ===-->
+
+    <script>
+function openTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].style.color = "#72c02c";
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.tabName += " active";
+} </script>
+
+<br>
+<br>
+<h1 style = "margin-top: 75px; text-align:center">MEET THE TEAMS</h1>
+<div style = "margin-bottom: 0px" class="cbp-l-filters-text">
+        <div onclick="openTab(event, 'Executive')" class="cbp-filter-item"> <i class="fa fa-fw fa-institution" aria-hidden="true"></i> Executive Board</div> |
+        <div onclick="openTab(event, 'Software')" class="cbp-filter-item"> <i class="fa fa-fw fa-desktop" aria-hidden="true"></i> Software Development </div> |
+        <div onclick="openTab(event, 'Equity')" class="cbp-filter-item"><i class="fa fa-dollar" aria-hidden="true"></i> Equity Research </div> |
+        <div onclick="openTab(event, 'Affairs')" class="cbp-filter-item"> <i class="fa fa-fw fa-users" aria-hidden="true"></i> Internal/External Affairs </div> |
+        <div onclick="openTab(event, 'Portfolio')" class="cbp-filter-item"> <i class="fa fa-fw fa-briefcase" aria-hidden="true"></i> Portfolio Management </div>
+
+</div>
+
+<div class ="container">
+    <hr>
+    <div id="Executive" class="tabcontent">
+      <!--=== Team v1 ===-->
+        <div class="container team-v1">
+            <ul class="list-unstyled row">
+                <div class = "col-sm-1"> </div>
+                <div class = "col-sm-10">
+                    <h3 style ="text-align:center">Executive Board</h3>
+                    <p>The executive board doesn’t only make decisions for the club’s portfolio. It shapes the team’s projects hand-in-hand with the sponsors, overviews their development until completion, and follows the maturation of each analyst individually.</p><br>
+                    <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
+                        <div class="team-img">
+                            <img class = "img-responsive" src ="{{ url_for('static', filename="portraits/anais.jpg" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/anaisaddad"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: anaisaddad@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Anais Addad</h3>
+                        <h4>/ President</h4>
+                        <p>Anaïs Addad is a senior majoring in Economics originally from Paris, France. Anaïs has interned at Western Digital as a financial analyst and is currently working as a Team Lead Research Analyst at the Haas School of Business on a global financial data using statistical procedures to estimate the financial health of millions of private companies. She is also studying for the CFA exam and is particularly interested in quantitative analysis, strategy and risk management.</p>
+                    </li>
+                    <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
+                        <div class="team-img">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/nathan.jpg" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/nathan-topolanski-694a9aa5/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: nathan2707@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Nathan Topolanski</h3>
+                        <h4>/ Vice President</h4>
+                        <p>Nate is a third year engineer with a passion for data science. He joined the club his freshman year, knowing close to little about finance, and progressively undertook higher responsibilities in the club. He started programming as an iOS developer before researching predictive models for volatility at a quantitative hedge fund. Outside of the Berkeley environment, he would take any opportunity to go skiing or surfing.</p>
+                    </li>
+                    <li class="col-sm-4 col-xs-6">
+                        <div class="team-img">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/frank.jpg" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/qixuan-frank-zhang-244a4998"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: frankzhang95@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Frank Zhang</h3>
+                        <h4>/ Vice President</h4>
+                        <p>Frank is currently a 4th year Economics student interested in financial statement analysis and ways to use fundamental analysis to project earnings for the firm. He had previously worked with hedge funds in the Bay Area that specialized in short-selling, and worked as an intern with Bank of America Merrill Lynch’s Middle Market Commercial Banking, in addition to working as a Research Analyst at the Haas School of Business.</p>
+                    </li>
+
+                </div>
+                <div class = "col-sm-1"> </div>
+            </ul>
+
+        </div>
+        <hr>
+
+    </div>
+    <div id="Software" class="tabcontent" style = "display: none">
+      <!--=== Team v1 ===-->
+        <div class="container team-v1">
+            <ul class="list-unstyled row">
+                <div class = "col-sm-1"> </div>
+                <div class = "col-sm-10">
+                    <h3 style ="text-align:center">Software Development</h3>
+                    <p>Latest addition to the club, the Software Development teams implement tools designed by the portfolio management group, backtest trading strategies and forecast metrics to facilitate investment decisions. The prediction process involves the exploration of various machine learning techniques while development of backtesting software requires members to investigate how computer aided trading systems function. Particularly, this semester, a team has been assigned with the implementation of a low latency, algorithmic trading platform.</p><br>
+                    <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
+                        <div class="team-img">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/scott.jpg" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/scottdpost/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: spost@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Scott Post</h3>
+                        <h4>/ Director</h4>
+                        <p>Scott is a third year majoring in Computer Science and Physics. He has previously interned as a Software Developer at Dixons Carphone, Europe's largest electronic retailer. He has a keen interest in the stock market and the increasing application of computing power as a tool for trading.</p>
+                    </li>
+                    <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
+                        <div class="team-img">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/joshua.jpg" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/joshua-howland-60650688/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: joshuahowland11@gmail.com"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Joshua Howland</h3>
+                        <h4>/ Director</h4>
+                        <p>Joshua is a Senior EECS major with a minor in Nuclear Engineering.  He has worked at UC Berkeley doing computational neutronics, spent summers at Google on the Photos iOS team and Google Shopping Express backend, and enjoys taking up personal machine learning projects.</p>
+                    </li>
+                    <li class="col-sm-4 col-xs-6">
+                        <div class="team-img">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/ally.jpg" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/allyson-o-malley-1a9050116/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: aomalley@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Allyson O'Malley</h3>
+                        <h4>/ Director</h4>
+                        <p>Allyson is a third year Computer Science major primarily interested in algorithmic trading and technical analysis. She attended a short Sales & Trading program at UBS in New York over the summer and then held a production engineering internship at Salesforce.</p>
+                    </li>
+                </div>
+                <div class = "col-sm-1"> </div>
+            </ul>
+        </div>
+        <hr>
+
+    </div>
+
+    <div id="Equity" class="tabcontent" style = "display: none">
+      <!--=== Team v1 ===-->
+        <div class="container team-v1">
+            <ul class="list-unstyled row">
+                <div class = "col-sm-1"> </div>
+                <div class = "col-sm-10">
+                    <h3 style ="text-align:center">Equity Research</h3>
+                    <p> The Equity Research teams will be in charge of producing an Equity Research Journal which will be presented to sponsors and investors. The reports will include thorough micro and macro market analysis. The team takes on a top-down approach starting off by extensively researching specific industries before delving into company valuation and stock pitches.</p><br>
+                </div>
+            </ul>
+            <ul class="list-unstyled row">
+                <li class="col-sm-3 col-xs-6 md-margin-bottom-30">
+                    <div class="team-img">
+                        <img class="img-responsive" src ="{{ url_for('static', filename="portraits/kevin.jpg" ) }}" alt="">
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/kevinjshao"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                            <li><a href="mailto: kevin.shao@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                        </ul>
+                    </div>
+                    <h3>Kevin Shao</h3>
+                    <h4>/ Lead Director</h4>
+                    <p>Kevin Shao is a senior at UC Berkeley majoring in business administration and economics. He recently worked as a research analyst intern at Parnassus Investments, a $17B mutual fund in San Francisco. Previously, he held a summer internship at a private equity search fund. In his free time, Kevin enjoys cooking and riding his motorcycle.</p>
+                </li>
+                <li class="col-sm-3 col-xs-6 md-margin-bottom-30">
+                    <div class="team-img">
+                        <img class="img-responsive" src ="{{ url_for('static', filename="portraits/aaron.jpg" ) }}" alt="">
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/alpreiss/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                            <li><a href="mailto: apreiss@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                        </ul>
+                    </div>
+                    <h3>Aaron Preiss</h3>
+                    <h4>/ Director</h4>
+                    <p>Aaron is a senior at UC Berkeley studying Political Science. With a strong self-taught background in finance, Aaron started out at a boutique wealth management firm in San Francisco before spending the summer in Singapore working for the international investment fund Temasek Holdings as a summer financial associate. At Temasek, Aaron studied the various ways to value early, mid and late stage companies and how best to evaluate entire industries within the TMT space. Currently, Aaron is planning to work in a sales-trader role in order to merge his passion for finance with his strong experiences in sales. </p>
+                </li>
+                <li class="col-sm-3 col-xs-6">
+                    <div class="team-img">
+                        <img class="img-responsive" src ="{{ url_for('static', filename="portraits/krishna.jpg" ) }}" alt="">
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/krishna-reddy-696323106"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                            <li><a href="mailto: kreddy716@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                        </ul>
+                    </div>
+                    <h3>Krishna Reddy</h3>
+                    <h4>/ Director</h4>
+                    <p>Krishna Reddy is a second year, intended business major from Irvine, California. He joined Capital Investments at Berkeley as an Analyst in his first semester here at UC Berkeley. Krishna has mainly worked with the Equity Research teams in his tenure with CIB, and has held positions ranging from analyst to director. He is most interested in portfolio management and venture capitalism in regards to finance and entrepreneurship in regards to business as a whole.</p>
+                </li>
+                <li class="col-sm-3 col-xs-6">
+                    <div class="team-img">
+                        <img class="img-responsive" src ="{{ url_for('static', filename="portraits/max.jpg" ) }}" alt="">
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/maxrewell/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                            <li><a href="mailto: mrewell@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                        </ul>
+                    </div>
+                    <h3>Max Rewell</h3>
+                    <h4>/ Director</h4>
+                    <p>Max is a third year Business Administration major in the Haas School of Business. He is mainly interested in the hedge fund industry and wants to run his own shop in the future. This past summer he launched the trading divison of his family company together with his younger brother. He has previously held jobs in banking and real estate finance.</p>
+                </li>
+            </ul>
+        </div>
+        <hr>
+    </div>
+
+    <div id="Affairs" class="tabcontent" style = "display: none">
+      <!--=== Team v1 ===-->
+        <div class="container team-v1">
+            <ul class="list-unstyled row">
+                <div class = "col-sm-1"> </div>
+                <div class = "col-sm-10">
+                    <h3 style ="text-align:center">Internal/External Affairs</h3>
+                    <p>In charge of tasks varying from recruitment, event planning or communications, the Public Relations directors have the major responsibility of bringing the different teams of the club together. The Investor Relations director is the club link to the industry. In addition to persistently pitching the club’s fund to both private and institutional investors, he officially communicates its performance and connects teams with their respective sponsors.</p><br>
+                    <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
+                        <div class="team-img">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/ajay.JPG" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/ajayshimoga"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: ashimoga@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Ajay Shimoga</h3>
+                        <h4>/ Director of Investor Relations</h4>
+                        <p>As a double-major in business administration and bioengineering, Ajay joined the club in January 2015 and have since held positions in equity research and portfolio management divisions. In the past, he's had the opportunity to work at several investment banks, including Mergertech Advisors, Legend Merchant Group, and Deutsche Bank, all within healthcare industry focuses. Outside of finance and investing, he's passionate about competitive running, car culture, and college basketball.</p>
+                    </li>
+                    <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
+                        <div class="team-img">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/grace.jpg" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/grace-zilli-168840107/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: gzilli@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Grace Zilli</h3>
+                        <h4>/ Director of Public Relations</h4>
+                        <p>Grace is a second year intended Business Administration and English double major interested in data analysis within corporate finance. She discovered her love for finance from her two summer internships at SAGE publications and Lionsgate entertainment.</p>
+                    </li>
+                    <li class="col-sm-4 col-xs-6">
+                        <div class="team-img">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/emily.jpg" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/emily-chang-57819a112/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: echang7@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Emily Chang</h3>
+                        <h4>/ Director of Public Relations</h4>
+                        <p>Emily Chang is a sophomore majoring in Computer Science and Economics. She has interned as a quantitative analyst and medical imaging researcher. Emily is particularly interested in corporate finance. </p>
+                    </li>
+
+                </div>
+                <div class = "col-sm-1"> </div>
+            </ul>
+
+        </div>
+        <hr>
+
+    </div>
+    <div id="Portfolio" class="tabcontent" style = "display: none">
+       <div class="container team-v1">
+            <ul class="list-unstyled row">
+                <div class = "col-sm-1"> </div>
+                <div class = "col-sm-10">
+                    <h3 style ="text-align:center">Portfolio Management</h3>
+                    <p>The portfolio management team sets the club’s diversification strategies and makes use of the equity research to help the executive board with the trading decisions. It also sustains the investment journal and facilitate market discussions over the course of club meetings. Additional projects may also be assigned, from portfolio optimization to risk visualization and investigation of alternative investments.</p><br>
+                    <li class="col-sm-4 col-sm-offset-4 col-xs-6 md-margin-bottom-30">
+                        <div class="team-img">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/jared.jpg" ) }}" alt="">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/jaredarat"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: jaredarat@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                        <h3>Jared Arat</h3>
+                        <h4>/ Director</h4>
+                        <p>Jared Arat is a third year intended Statistics major. He is particularly interested in Quantitative Trading, Hedging Strategy, and Risk Analytics as well as their respective applications in Portfolio Management. As the Director of the Portfolio Management team, he is responsible for our projects involving risk visualization, asset allocation, and optimization, as well as for the design and curriculum of the analyst education lecture series and weekly market discussions. When the markets are closed, he spends his time on the water as an oarsman with the Cal Men’s Crew Team.</p>
+                    </li>
+
+                </div>
+                <div class = "col-sm-1"> </div>
+            </ul>
+
+        </div>
+        <hr>
+
+    </div>
+
+</div>
+
+    <!-- JS Global Compulsory -->
+
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/one.app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            LoginForm.initLoginForm();
+            ContactForm.initContactForm();
+            OwlCarousel.initOwlCarousel();
+            RevolutionSlider.initRSfullScreen();
+        });
+    </script>
+</body>
+</html>
+

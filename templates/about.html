@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/footers/footer-v7.css") }}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+    <nav class="one-page-header navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="menu-container page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="{{ url_for("index") }}">
+                    <img class = "one" style = "height: 100%" src ="{{ url_for('static', filename="cib_logo_white.png" ) }}" alt="">
+                    <img class = "two" style = "display: none; height: 100%" src ="{{ url_for('static', filename="cib_logo.png" ) }}" alt="">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <div class="menu-container">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{ url_for("about") }}">About Us</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for("teams") }}">Our Divisions</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ url_for("analyst") }}">Analyst Program</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a style = "padding: 6px;margin-top: 10px" class = "btn btn-u btn-brd btn-brd-hover" href="{{ url_for("login") }}">Investors</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!--=== End Header ===-->
+    <!--=== Service Block v4 ===-->
+    <div class="service-block-v4">
+        <div class="container">
+            <div class="row" style = "margin-bottom:50px" >
+              <h1 style = "margin-top:115px; text-align:center">ABOUT CIB</h1>
+              <hr>
+                <div class="wow rollIn col-md-4 service-desc">
+                    <i class="fa fa-bank" aria-hidden="true"></i>
+                    <h3>History</h3>
+                    <p class="no-margin-bottom">Founded in 2012 and reincorporated in 2014, Capital Investments at Berkeley was created by and for students striving to obtain real trading experience and provide investors superior risk-adjusted returns. In a perpetually changing market environment, CIB prides itself in our creative approach to trading and research, implementing a wide variety of data using a large selection of financial instruments.</p>
+                </div>
+                <div class="col-md-4 service-desc">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <h3>Culture</h3>
+                    <p class="no-margin-bottom">Our members are our greatest asset. They are drawn from a multitude of academic and cultural backgrounds. This gives CIB diversified perspectives and insights on global markets, also providing the group with a worldwide alumni resource. CIB fosters a fast paced learning environment, where collaboration is key. That connection extends far beyond the classroom, cultivating life-long friendships.</p>
+                </div>
+                <div class="col-md-4 service-desc">
+                    <i class="fa fa-question" aria-hidden="true"></i>
+                    <h3>Philosophy</h3>
+                    <p class="no-margin-bottom">Every decision answers a question. At CIB we focus on the questions we ask just as much as the decisions we make. At the crux of our philosophy is a multimensional approach to problem solving. When we evaluate risk, we think about more than volatility. We evaluate investment externalities, time value, and emotional bias. This allows us to make sound investment decisions, leading to truly risk-adjusted returns.</p>
+                </div>
+            </div><!--/end row-->
+        </div><!--/end container-->
+    </div>
+    <!--=== End Service Block v4 ===-->
+
+<div style = "margin-top: 50px; margin-bottom: 25px" class = "container">
+    <div class="row lg-gap gap-top">
+        <div class="col-md-6">
+          <img class="img-responsive" src="{{ url_for('static', filename="directors.jpg" ) }}">
+        </div>
+        <div class="col-md-6">
+          <img class="img-responsive" src="{{ url_for('static', filename="people.jpg" ) }}">
+        </div>
+    </div>
+  </div>
+</div>
+  <div class="container">
+    <div class="row">
+      <hr>
+      <div class="col-md-12">
+        <h1 style = "text-align:center"> CIB ALUMNI</h1>
+        <p style = "text-align:center" class="sm-gap">
+          CIB benefits from a tight-knit network of alumni, holding experience in a variety of industries. </p>
+          <br>
+        <div class="row jobs-row">
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/charles_schwab.jpg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/jp_morgan.jpg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px"  class = "img-responsive" src ="{{ url_for('static', filename="network/fed_reserve.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/ubs.jpg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/yahoo.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/pwc.jpg" ) }}" alt="">
+          </div>
+        </div>
+
+        <div class="row jobs-row">
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/prudential.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/morgan_stanley.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/google.jpeg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/apple.jpg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/blackrock.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/citi.jpg" ) }}" alt="">
+          </div>
+        </div>
+
+        <div class="row jobs-row">
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/boa.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/brandes.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/deutsche-bank.jpg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/fb.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/lazard.jpeg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/palantir.jpg" ) }}" alt="">
+          </div>
+        </div>
+
+        <div class="row jobs-row" style = "margin-bottom: 25px">
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/wf.jpg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/parnassus.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/piper.png" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/goldman.jpeg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/salesforce.jpg" ) }}" alt="">
+          </div>
+          <div class="col-md-2 col-xs-6 gap-on-sm">
+            <img style = "padding: 5px" class = "img-responsive" src ="{{ url_for('static', filename="network/wd.jpg" ) }}" alt="">
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+    <!-- JS Global Compulsory -->
+
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/one.app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/wow-animations/js/wow.min.js") }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            new WOW().init();
+            App.initCounter();
+            App.initParallaxBg();
+            LoginForm.initLoginForm();
+            ContactForm.initContactForm();
+            OwlCarousel.initOwlCarousel();
+            RevolutionSlider.initRSfullScreen();
+        });
+    </script>
+</body>
+</html>
+

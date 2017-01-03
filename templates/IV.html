@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/headers/header-v7.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/pages/shortcode_timeline1.css") }}">
+
+        <link rel="stylesheet" href="assets/css/pages/shortcode_timeline1.css">
+
+
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css") }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css") }}">
+
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/fusioncharts.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/themes/fusioncharts.theme.fint.js") }}"></script>
+    <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script>
+        FusionCharts.ready(function () {
+            var visitChart = new FusionCharts({
+                type: 'msline',
+                renderAt: 'chart-container',
+                width: '95%',
+                height: '350',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "caption" : "Volatility Graph",
+                        "paletteColors": "#72c02c,#559021,#1c300b,#dbefca,#9fcf60",
+                        "bgcolor": "#ffffff",
+                        "showBorder": "0",
+                        "labelStep" : "25",
+                        "numberSuffix" : "%",
+                        "showShadow": "0",
+                        "showAnchors" : "0",
+                        "showCanvasBorder": "0",
+                        "formatNumberScale" : "0",
+                        "forceDecimals" : "0",
+                        "setAdaptiveYMin": "1",
+                        "usePlotGradientColor": "0",
+                        "legendBorderAlpha": "0",
+                        "legendShadow": "0",
+                        "showAxisLines": "0",
+                        "showAlternateHGridColor": "0",
+                        "divlineThickness": "1",
+                        "divLineIsDashed": "1",
+                        "divLineDashLen": "1",
+                        "divLineGapLen": "1",
+                        "yAxisName": "Risk Percent",
+                        "showValues": "0"
+                    },
+                    "categories": [
+                        {
+                            "category": [
+                                {% for key in chartData.iterkeys() %}
+                                    {{ "{" }}
+                                        "label": "{{ key }}",
+                                    {{ "}," }}
+                                {% endfor  %}
+                            ]
+                        }
+                    ],
+                    "dataset": [
+                        {
+                            "seriesname": "{{ labels[0][0] }} - {{ labels[0][1] }}",
+                            "data": [
+                                {% for key, value in chartData.iteritems() %}
+                                    {{ "{" }}
+                                        "value": "{{ value[0] }}",
+                                    {{ "}," }}
+                                {% endfor  %}
+                            ]
+                        },
+                        {
+                            "seriesname": "{{ labels[1][0] }} - {{ labels[1][1] }}",
+                            "data": [
+                                {% for key, value in chartData.iteritems() %}
+                                    {{ "{" }}
+                                        "value": "{{ value[1] }}",
+                                    {{ "}," }}
+                                {% endfor  %}
+                            ]
+                        },
+                    ],
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "startvalue": "16000",
+                                    "color": "#72c02c",
+                                    "valueOnRight": "1",
+                                    "displayvalue": "$16000"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }).render();
+        });
+    </script>
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+<div class="wrapper">
+    <!--=== Header v7 Left ===-->
+    {% from 'macros.html' import header %}
+    {{ header("Software Development") }}
+    <!--=== End Header v7 Left ===-->
+
+    <!--=== MODALS =====-->
+    {% from 'macros.html' import modals %}
+    {{ modals() }}
+
+    <!--=== Profile ===-->
+    <div class="content-side-right">
+        <div style = "padding-top: 0px;" class="container content-sm">
+            <div class ="row">
+                <div class="col-md-12">
+                    <div style = "text-align:center" class="profile-body">
+                        <div style = "margin-top: 40px" class="headline"><h2>Implied Volatility Modelling</h2></div>
+                            <div style = "margin-top: 50px; margin-bottom: 50px" class="row tag-box tag-box-v5">
+                                <div class="col-md-8">
+                                    <h4>Applying modern machine learning techniques including deep learning and tree boosting to forecast volatility</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <h4><a href="#" data-toggle="modal" data-target="#IVModel" style = "margin-top:12px;height:100%" class="btn-u btn-brd btn-block btn-brd-hover btn-u-xs">
+                                        <i class="fa fa-fw fa-play-circle"></i>RUN MODEL
+                                    </a></h4>
+                                </div>
+                            </div>
+                            <div class="row tag-box tag-box-v3 margin-bottom-40">
+                                <h4 style = "margin-bottom:15px"><strong>Math Introduction</strong></h4>
+                                <div class="col-md-6">
+                                    <h5 style = "text-decoration: underline; margin-top:0px">Historical Volatility</h5>
+                                    <p>
+                                        Historical volatility refers to the standard deviation (square root of variance) of daily returns over a time period of n days.
+                                    </p>
+                                    <p>$$HV_{\text{daily}} = \sqrt{\frac{1}{n - 1} \sum_{i=1}^n (x_i - \mu_x)^2}$$</p>
+                                    <p>$$x_i\text{: return on day i}$$</p>
+                                    <p>$$\mu_x\text{: mean return}$$</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 style = "text-decoration: underline; margin-top: 0px">Option Pricing and Implied Volatility</h5>
+                                    <p>
+                                        Option pricing can be estimated using the Black-Scholes-Merton model:
+                                    </p>
+                                    <p>
+                                        $$\begin{align*}
+                                            C(S_t, t) &= N(d_1)S_t - N(d_2)Ke^{-r(T-t)}\\
+                                            d_1 &= \frac{1}{\sigma \sqrt{T-t}} [ln(\frac{S_t}{K}) + (r + \frac{\sigma^2}{2})(T-t)]\\
+                                            d_2 &= d_1 - \sigma \sqrt{T-t}\\
+                                        \end{align*}$$
+                                    </p>
+                                    <p>All of these variables are assumed to be known, except for &sigma; (implied volatility), making it crucial for pricing of options. </p>
+                                </div>
+                            </div>
+                            <div class="row tag-box tag-box-v3 margin-bottom-40">
+                                <h4 style = "margin-bottom:15px"><strong>Volatility Mechanics</strong></h4>
+                                <p>Implied volatility is the combination of the expected variance of the underlying asset (over the lifetime of the option) and the volatility risk premium as determined by the seller.</p>
+                                        $$ \sigma_{iv} = E[\sigma_{realized}] + \sigma_{premium}$$
+                                </p>
+                                <br>
+                                <p>
+                                    \(E[\sigma_{realized}]\) is the expected value of the volatility during the time period of the option.
+                                    With future information, we can model it as the realized volatility (\(\sigma_{rv}\)) over the time period of the option.
+                                    $$\sigma_{iv} = \sigma_{rv} + \sigma_{premium}$$
+                                </p>
+                                <br>
+                                <p>
+                                    \(~68 \% \) of returns should fall within \(\pm \sigma_{rv}\). The  \(\sigma_{premium}\) is included to make the buyer pay for a distribution with larger variance than reality, as a means of ensuring profit for the seller.
+                                    Accordingly, \(\sigma_{iv}\) is always noticeably larger then \(\sigma_{rv}\).
+                                </p>
+                                <div class="col-md-10">
+                                    <div style = "margin-top: 30px" id="chart-container"></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row tag-box tag-box-v3" style = "margin-top:50px;">
+                                        <h5 style = "margin-bottom:0px; text-align:center"><i class="fa fa-fw fa-cogs"></i><strong>SETTINGS</strong></h5>
+                                        <hr style ="margin:7px">
+                                        <form method = "POST" action="{{ url_for('IV') }}">
+                                            <h5 style = "margin-bottom:0px">Ticker A</h5>
+                                            <select name="tickerA" style = "background-color: #f5f5f5; margin-top:0px">
+                                                <option value="" disabled selected>Select Ticker</option>
+                                                <option value="AAPL">AAPL</option>
+                                                <option value="AMZN">AMZN</option>
+                                                <option value="MSFT">MSFT</option>
+                                                <option value="FB">FB</option>
+                                                <option value="BAC">BAC</option>
+                                                <option value="JPM">JPM</option>
+                                                <option value="IBM">IBM</option>
+                                            </select>
+                                            <h5 style = "margin-bottom:0px">Ticker B</h5>
+                                            <select name="tickerB" style = "background-color: #f5f5f5; margin-bottom:20px">
+                                                <option value="" disabled selected>Select Ticker</option>
+                                                <option value="AAPL">AAPL</option>
+                                                <option value="AMZN">AMZN</option>
+                                                <option value="MSFT">MSFT</option>
+                                                <option value="FB">FB</option>
+                                                <option value="BAC">BAC</option>
+                                                <option value="JPM">JPM</option>
+                                                <option value="IBM">IBM</option>
+                                            </select>
+                                            <h5 style = "margin-bottom:0px">Ticker A Data</h5>
+                                            <select name="tickerAData" style = "margin-top:0px">
+                                                <option value="" disabled selected>Select Data</option>
+                                                <option value="iv30d">IV 30D</option>
+                                                <option value="iv60d">IV 60D</option>
+                                                <option value="iv90d">IV 90D</option>
+                                                <option value="cls10dHv">HV 10D</option>
+                                                <option value="cls20dHv">HV 20D</option>
+                                                <option value="cls60dHv">HV 60D</option>
+                                                <option value="cls120dHv">HV 120D</option>
+                                            </select>
+                                            <h5 style = "margin-bottom:0px">Ticker B Data</h5>
+                                            <select name="tickerBData" style = "margin-bottom:20px">
+                                                <option value="" disabled selected>Select Data</option>
+                                                <option value="iv30d">IV 30D</option>
+                                                <option value="iv60d">IV 60D</option>
+                                                <option value="iv90d">IV 90D</option>
+                                                <option value="cls10dHv">HV 10D</option>
+                                                <option value="cls20dHv">HV 20D</option>
+                                                <option value="cls60dHv">HV 60D</option>
+                                                <option value="cls120dHv">HV 120D</option>
+                                            </select>
+                                            <button type="submit" style = "margin-top:5px" href="" class="btn-u btn-brd btn-brd-hover btn-block btn-u-xs">PLOT GRAPH</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row tag-box tag-box-v3 margin-bottom-40">
+                                <h4 style = "margin-bottom:15px"><strong>Machine Learning</strong></h4>
+                                <div class = "col-md-12">
+                                    <h5>Neural Nets and Boosted Trees</h5>
+                                    <p>Whats the point of ML?</p>
+                                    <p>Quick description of both techniques.</p>
+                                    <p>Example of input features.</p>
+                                </div>
+                            </div>
+                            <div class="row tag-box tag-box-v3 margin-bottom-40">
+                                <h4 style = "margin-bottom:15px"><strong>Project Specifications</strong></h4>
+                                <div class = "col-md-4">
+                                    <h5>DESCRIPTION</h5>
+                                </div>
+                                <div class = "col-md-4">
+                                    <h5>LIBRARIES</h5>
+                                </div>
+                                <div class = "col-md-4">
+                                    <h5>LINKS</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/container-->
+</div>
+    <!--=== End Profile ===-->
+
+    <!-- JS Global Compulsory -->
+
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/fancy-box.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/progress-bar.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/form-sliders.js") }}"></script>
+    <script type="text/javascript" src="assets/js/plugins/form-sliders.js"></script>
+
+
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            App.initScrollBar();
+            App.initSidebarMenuDropdown();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/headers/header-v7.css") }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css") }}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css") }}">
+
+
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/fusioncharts.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/themes/fusioncharts.theme.fint.js") }}"></script>
+    <script>
+        function toggleCheckbox(element){
+            if (document.getElementById('tester').style.display == "none") {
+                var elements = document.getElementsByClassName("temp1");
+                for(var i=0; i < elements.length; i++) {
+                    elements[i].setAttribute("style", "");
+                }
+            } else {
+                var elements = document.getElementsByClassName("temp1");
+                for(var i=0; i < elements.length; i++) {
+                    elements[i].setAttribute("style", "display:none");
+                }
+            }
+         }
+    </script>
+    <script>
+        FusionCharts.ready(function () {
+            var visitChart = new FusionCharts({
+                type: 'msline',
+                renderAt: 'chart-container',
+                width: '100%',
+                height: '275',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "paletteColors": "#72c02c,#559021,#1c300b,#dbefca,#9fcf60",
+                        "bgcolor": "#ffffff",
+                        "baseFont" : "Open Sans",
+                        "showBorder": "0",
+                        "showShadow": "0",
+                        "showCanvasBorder": "0",
+                        "formatNumberScale" : "0",
+                        "numberPrefix": "$",
+                        "forceDecimals" : "1",
+                        "legendPosition" : "RIGHT",
+                        "setAdaptiveYMin": "1",
+                        "usePlotGradientColor": "0",
+                        "labelStep" : "58",
+                        "legendBorderAlpha": "0",
+                        "legendShadow": "0",
+                        "showAxisLines": "0",
+                        "showAnchors" : "0",
+                        "showAlternateHGridColor": "0",
+                        "divlineThickness": "1",
+                        "divLineIsDashed": "1",
+                        "divLineDashLen": "1",
+                        "divLineGapLen": "1",
+                        "xAxisName": "Month",
+                        "yAxisName": "Fund Value",
+                        "showValues": "0"
+                    },
+                    "categories": [
+                        {
+                            "category": [
+                                {% for date in dates %}
+                                    {{ "{" }}
+                                        "label": "{{ date }}",
+                                    {{ "}," }}
+                                {% endfor  %}
+                            ]
+                        }
+                    ],
+                    "dataset": [
+                        {
+                            "seriesname": "25th Percentile",
+                            "data": [
+                                {% for value in low %}
+                                    {{ "{" }}
+                                        "value": "{{ value }}",
+                                    {{ "}," }}
+                                {% endfor  %}
+                            ]
+                        },
+                        {
+                            "seriesname": "50th Percentile",
+                            "data": [
+                                {% for value in mid %}
+                                    {{ "{" }}
+                                        "value": "{{ value }}",
+                                    {{ "}," }}
+                                {% endfor  %}
+                            ]
+                        },
+                        {
+                            "seriesname": "75th Percentile",
+                            "data": [
+                                {% for value in high %}
+                                    {{ "{" }}
+                                        "value": "{{ value }}",
+                                    {{ "}," }}
+                                {% endfor  %}
+                            ]
+                        }
+                    ],
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    //"startvalue": "16000",
+                                    //"color": "#72c02c",
+                                    //"valueOnRight": "1",
+                                    //"displayvalue": "$16000"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }).render();
+        });
+    </script>
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+<div class="wrapper">
+    <!--=== Header v7 Left ===-->
+    {% from 'macros.html' import header %}
+    {{ header("Fund Management") }}
+    <!--=== End Header v7 Left ===-->
+
+    <!--=== MODALS =====-->
+    {% from 'macros.html' import modals %}
+    {{ modals() }}
+
+    <!--=== Profile ===-->
+    <div class="content-side-right">
+        <div style = "padding-top: 0px;" class="container content-sm">
+            <!--Service Block v3-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div style = "text-align:center; margin-top: 40px" class="headline"><h2>Fund Simulations</h2></div>
+                    <div style = "margin-bottom:10px; padding-bottom:20px" id="chart-container"></div>
+                </div>
+            </div>
+            <div class="row margin-bottom-10">
+                <div class="col-md-6">
+                    <div class="row tag-box tag-box-v3 margin-bottom-40" style = "padding-top:2px; margin-left: 40px; margin-right: 40px">
+                        <h4 style = "margin-bottom:0px; text-align:center"><i class="fa fa-fw fa-cogs"></i>INPUTS</h4>
+                        <hr style ="margin:7px">
+                        <form method="POST" action=" {{ url_for('simulations') }}">
+                            <h5>Simulation horizon (months): <input style = "float:right" type="number" value="6" name="quantity" min="6" max="48" step="6"></h5>
+                            <h5>Use historical average for returns? <label style = "float:right;margin-right: 8px;" class="checkbox"><input type="checkbox" onchange="toggleCheckbox(this)" name="historical" checked></label></h5>
+                            {% for ticker in tickers %}
+                                <div class="form-group text-right temp1" id="tester" style="float:right; display:none">
+                                    <label style="margin-right: 5px; margin-bottom:0px"><h5 style = "margin:0px">{{ ticker }}:</h5></label>
+                                    <span style ="border: 1px #ccc;"><input style = "border: 0;text-align:right; width:50px" type="text" name="{{ ticker }}"> %</span>
+                                </div>
+                            {% endfor %}
+                            <button type="submit" style = "margin-top:5px" class="btn-u btn-brd btn-brd-hover btn-block btn-u-xs">RUN SIMULATION</a>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row tag-box tag-box-v3 margin-bottom-40" style = "padding-top:2px; margin-left: 40px; margin-right: 40px">
+                        <h4 style = "margin-bottom:0px; text-align:center"><i class="fa fa-fw fa-list"></i>RESULTS</h4>
+                        <hr style ="margin:7px">
+                        <div style = "text-align:center" class = "col-md-6">
+                            <h5 style = "margin-top:0px; margin-bottom:0px"><strong>Fund Stats</strong></h5>
+                            <div class = "row">
+                                <div class = "col-md-6">
+                                    <h5 style = "margin-bottom:0px">&mu;:<br>&sigma;:</h5>
+                                </div>
+                                <div class = "col-md-6">
+                                    <h5 style = "margin-bottom:0px">1.14<br>0.26</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div style = "text-align:center" class = "col-md-6">
+                            <h5 style = "margin-top:0px; margin-bottom:0px"><strong>Fund Values</strong></h5>
+                            <div class = "row">
+                                <div class = "col-md-6">
+                                    <h5 style = "margin-bottom:0px">Min:<br>25%:<br>50%:<br>75%:<br>Max:</h5>
+                                </div>
+                                <div class = "col-md-6">
+                                    <h5 style = "margin-bottom:0px">$5900<br>$9700<br>$11008<br>$12093<br>$21347</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Profile Content -->
+        </div>
+    </div><!--/container-->
+</div>
+    <!--=== End Profile ===-->
+
+    <!-- JS Global Compulsory -->
+
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/fancy-box.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/progress-bar.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js") }}"></script>
+
+
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            App.initScrollBar();
+            App.initSidebarMenuDropdown();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,237 @@
+{% macro modals() %}
+    <div class="modal" id="myModal1" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myModalLabel1" class="modal-title">October 16th 2016</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Modern Portfolio Theory</h4>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="myModal2" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myModalLabel1" class="modal-title">October 6th 2016</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Options Pricing</h4>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="myModal3" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myModalLabel1" class="modal-title">September 24th 2016</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Market Analysis</h4>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+    <div class="modal" id="myModal4" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myModalLabel1" class="modal-title">APPLICATION SETTINGS</h4>
+                </div>
+                <div class="modal-body">
+                    <!--Reg Block-->
+                    <div class="reg-block">
+                        <form action="{{ url_for('portal') }}" method="post">
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon"><i class="fa fa-fw fa-user"></i></span>
+                                <input type="text" name="text" placeholder="Username" class="form-control">
+                            </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
+                                <input type="password" name="password" placeholder="Password" class="form-control">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-6">
+                                    <input style = "float:right" class="btn-u btn btn-brd btn-brd-hover" value ="Log In" type="submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--End Reg Block-->
+                </div><!--/container-->
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="IVModel" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div style = "text-align:center" class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myModalLabel1" class="modal-title">Implied Volatility Model</h4>
+                </div>
+                <div class="modal-body">
+                    <h4><strong>COMING SOON</strong></h4>
+                    <p>The model is not yet linked to our portal. Please check back soon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="SentimentModel" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div style = "text-align:center" class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 style = "text-align:center" id="myModalLabel1" class="modal-title">Sentiment Analysis Model</h4>
+                </div>
+                <div class="modal-body">
+                    <h4 style= "margin-bottom: 10px" id = "articleTitle">The model is running. Please wait.</h4>
+                    <h5 id = "TITLESUMMARY"></h5>
+                    <p id = "articleSummary"></p>
+                    <h5 id = "TITLEKEYWORDS"></h5>
+                    <p id = "articleKeywords"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro header(highlighted) %}
+<div class="header-v7 header-left-v7">
+    <nav style = "background-color:#FEFEFE" class="navbar navbar-default mCustomScrollbar" role="navigation" data-mcs-theme="minimal-dark">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="menu-container">
+            <!-- Toggle get grouped for better mobile display -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- End Toggle -->
+
+            <!-- Logo -->
+            <div class="logo">
+                <a href="{{ url_for("portal") }}">
+                    <img id="logo-header" src ="{{ url_for('static', filename="cib_logo_crop.png" ) }}" alt="Logo" onmouseover="this.src='{{ url_for('static', filename="cib_logo_cropwhite.png" ) }}';" onmouseout="this.src='{{ url_for('static', filename="cib_logo_crop.png" ) }}';">
+                </a>
+            </div>
+            <!-- End Logo -->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-responsive-collapse">
+            <div class="menu-container">
+                <ul class="nav navbar-nav">
+
+                    <!-- Fund Management -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle">
+                            {% if highlighted == "Fund Management" %}
+                                <strong>Fund Management</strong>
+                            {% else %}
+                                Fund Management
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for("performance") }}">Live performance</a></li>
+                            <li><a href="{{ url_for("risk") }}">Risk assessment</a></li>
+                            <li><a href="{{ url_for("simulations") }}">Fund simulations</a></li>
+                        </ul>
+                    </li>
+                    <!-- End Fund Management -->
+
+                    <!-- Software Tools -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle">
+                            {% if highlighted == "Software Development" %}
+                                <strong>Software Tools</strong>
+                            {% else %}
+                                Software Tools
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for("terminal") }}">Financial data terminal</a></li>
+                            <li><a href="{{ url_for("IV") }}">Implied volatility modelling</a></li>
+                            <li><a href="{{ url_for("sentiment") }}">Market news sentiment</a></li>
+                        </ul>
+                    </li>
+                    <!-- End Software Tools -->
+
+                    <!-- Research -->
+                    <li class="">
+                        <a href="{{ url_for("research") }}">
+                            {% if highlighted == "Research" %}
+                                <strong>Research</strong>
+                            {% else %}
+                                Research
+                            {% endif %}
+                        </a>
+                    </li>
+                    <!-- End Research -->
+
+                    <!-- Blog -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle">
+                            {% if highlighted == "Blog" %}
+                                <strong>Blog</strong>
+                            {% else %}
+                                Blog
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><!-- Modal -->
+                                <a href="#" data-toggle="modal" data-target="#myModal1">October 16th 2016</a>
+                            </li>
+                            <li><!-- Modal -->
+                                <a href="#" data-toggle="modal" data-target="#myModal2">October 6th 2016</a>
+                            </li>
+                            <li><!-- Modal -->
+                                <a href="#" data-toggle="modal" data-target="#myModal3">September 24th 2016</a>
+                            </li>
+                            <li><a href="{{ url_for("blog") }}">SEE MORE</a></li>
+                        </ul>
+                    </li>
+                    <!-- End Blog -->
+
+                    <!-- Sponsorship -->
+                    <li>
+                        <a href="{{ url_for("sponsorship") }}">
+                            {% if highlighted == "Sponsorship" %}
+                                <strong>Sponsorship</strong>
+                            {% else %}
+                                Sponsorship
+                            {% endif %}
+                        </a>
+                    </li>
+                    <!-- End Sponsorship -->
+
+                </ul>
+                <a style = "margin-bottom:20px" href="{{ url_for("about") }}" class = "btn btn-u btn-brd btn-block btn-brd-hover">SIGN OUT</a>
+
+                <div style="position: static">
+                    </ul><ul class="list-inline header-socials">
+                        <li><a href="https://www.facebook.com/ciberkeley" target="_blank"><i style = "font-size:1.3em"class="fa fa-2x fa-facebook"></i></a></li>
+                        <li><a href="https://www.linkedin.com/company/capital-investments-at-berkeley" target="_blank"><i style = "font-size:1.3em" class="fa fa-2x fa-linkedin"></i></a></li>
+                        <li style = "position: relative; top:4px;"><a href="#" data-toggle="modal" data-target="#myModal4"><i style = "font-size:2em" class="fa fa-2x fa-cogs"></i></a></li>
+                        <li style = "position: relative; top:4px;"><a href="{{ url_for("portal") }}"><i style = "font-size:2em" class="fa fa-2x fa-home"></i></a></li>
+                    </ul>
+                    <p class="copyright-text">&copy; 2016. Capital Investments at Berkeley.</p>
+                </div>
+            </div>
+        </div>
+        <!-- End Navbar Collapse -->
+    </nav>
+</div>
+{% endmacro %}

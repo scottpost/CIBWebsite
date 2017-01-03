@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/headers/header-v7.css") }}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css") }}">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+
+    <!-- JS Global Compulsory -->
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/fusioncharts.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/fusioncharts-jquery-plugin.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/themes/fusioncharts.theme.fint.js") }}"></script>
+    <script>
+        function openTab(evt, tabName, tabButton) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].style.fontWeight = 'bold';
+                tablinks[i].style.color = '#72c02c';
+            }
+
+            // Show the current tab, and add an "active" class to the link that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById('btn1').setAttribute("style", "");
+            document.getElementById('btn2').setAttribute("style", "");
+            document.getElementById('btn3').setAttribute("style", "");
+            document.getElementById(tabButton).setAttribute("style", "background-color: #72c02c; color: white;");
+
+
+            evt.currentTarget.tabName += " active";
+        }
+    </script>
+    <script>
+        function changeGraph(evt, tabName, tabButton) {
+            if (tabName == 'monthChart') {
+                document.getElementById('monthChart').setAttribute("style", "flex-grow: 1;");
+                document.getElementById('weekChart').setAttribute("style", "flex-grow: 1;display:none;");
+                document.getElementById('3MonthChart').setAttribute("style", "flex-grow: 1;display:none;");
+                document.getElementById('yearChart').setAttribute("style", "flex-grow: 1;display:none;");
+            }
+
+            if (tabName == 'weekChart') {
+                document.getElementById('weekChart').setAttribute("style", "flex-grow: 1;");
+                document.getElementById('monthChart').setAttribute("style", "flex-grow: 1;display:none;");
+                document.getElementById('3MonthChart').setAttribute("style", "flex-grow: 1;display:none;");
+                document.getElementById('yearChart').setAttribute("style", "flex-grow: 1;display:none;");
+            }
+
+            if (tabName == '3MonthChart') {
+                document.getElementById('3MonthChart').setAttribute("style", "flex-grow: 1;");
+                document.getElementById('monthChart').setAttribute("style", "flex-grow: 1;display:none;");
+                document.getElementById('weekChart').setAttribute("style", "flex-grow: 1;display:none;");
+                document.getElementById('yearChart').setAttribute("style", "flex-grow: 1;display:none;");
+            }
+            if (tabName == 'yearChart') {
+                document.getElementById('yearChart').setAttribute("style", "flex-grow: 1;");
+                document.getElementById('monthChart').setAttribute("style", "flex-grow: 1;display:none;");
+                document.getElementById('3MonthChart').setAttribute("style", "flex-grow: 1;display:none;");
+                document.getElementById('weekChart').setAttribute("style", "flex-grow: 1;display:none;");
+            }
+
+            document.getElementById('btnA').setAttribute("style", "");
+            document.getElementById('btnB').setAttribute("style", "");
+            document.getElementById('btnC').setAttribute("style", "");
+            document.getElementById('btnD').setAttribute("style", "");
+            document.getElementById(tabButton).setAttribute("style", "background-color: #72c02c; color: white;");
+        }
+    </script>
+    <script type="text/javascript">
+        FusionCharts.ready(function () {
+            var visitChart = new FusionCharts({
+                type: 'line',
+                renderAt: 'chart-container1a',
+                width: '97%',
+                height: '325',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "xAxisName": "",
+                        "yAxisName": "Portfolio Value",
+                        "forceDecimals" : "1",
+                        //Cosmetics
+                        "setAdaptiveYMin": "1",
+                        "formatNumberScale" : "0",
+                        "lineThickness" : "3",
+                        "labelStep" : "4",
+                        "paletteColors" : "#72c02c",
+                        "baseFontColor" : "#454545",
+                        "numberPrefix": "$",
+                        "labelDisplay" : "none",
+                        "baseFont" : "Open Sans",
+                        "captionFontSize" : "20",
+                        "showBorder" : "0",
+                        "bgColor" : "#ffffff",
+                        "showShadow" : "0",
+                        "showvalues": "0",
+                        "drawAnchors" : "0",
+                        "canvasBgColor" : "#ffffff",
+                        "canvasBorderAlpha" : "0",
+                        "divlineAlpha" : "100",
+                        "divlineColor" : "#999999",
+                        "divlineThickness" : "1",
+                        "divLineIsDashed" : "1",
+                        "divLineDashLen" : "1",
+                        "divLineGapLen" : "1",
+                        "showXAxisLine" : "1",
+                        "xAxisLineThickness" : "1",
+                        "xAxisLineColor" : "#999999",
+                        "showAlternateHGridColor" : "0",
+                    },
+                    "data": [
+
+                    {% for day,value in dailyValuesMonth.iteritems() %}
+                        {{ "{" }}
+                            "label": "{{ day }}",
+                            "value": "{{ value }}",
+                        {{ "}," }}
+                    {% endfor  %}
+                    ],
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "color": "#454545",
+                                    "thickness" : "1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+            visitChart.render();
+        });
+    </script>
+    <script type="text/javascript">
+        FusionCharts.ready(function () {
+            var visitChart = new FusionCharts({
+                type: 'line',
+                renderAt: 'chart-container1b',
+                width: '97%',
+                height: '325',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "xAxisName": "",
+                        "yAxisName": "Portfolio Value",
+                        "forceDecimals" : "1",
+                        //Cosmetics
+                        "setAdaptiveYMin": "1",
+                        "numberPrefix": "$",
+                        "formatNumberScale" : "0",
+                        "lineThickness" : "3",
+                        "paletteColors" : "#72c02c",
+                        "baseFontColor" : "#454545",
+                        "baseFont" : "Open Sans",
+                        "captionFontSize" : "20",
+                        "showBorder" : "0",
+                        "bgColor" : "#ffffff",
+                        "showShadow" : "0",
+                        "drawAnchors" : "0",
+                        "showvalues": "0",
+                        "canvasBgColor" : "#ffffff",
+                        "canvasBorderAlpha" : "0",
+                        "divlineAlpha" : "100",
+                        "divlineColor" : "#999999",
+                        "divlineThickness" : "1",
+                        "divLineIsDashed" : "1",
+                        "divLineDashLen" : "1",
+                        "divLineGapLen" : "1",
+                        "showXAxisLine" : "1",
+                        "xAxisLineThickness" : "1",
+                        "xAxisLineColor" : "#999999",
+                        "showAlternateHGridColor" : "0",
+
+                    },
+                    "data": [
+                    {% for day,value in dailyValuesWeek.iteritems() %}
+                        {{ "{" }}
+                            "label": "{{ day }}",
+                            "value": "{{ value }}",
+                        {{ "}," }}
+                    {% endfor  %}
+                    ],
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "color": "#454545",
+                                    "thickness" : "1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+            visitChart.render();
+        });
+    </script>
+    <script type="text/javascript">
+        FusionCharts.ready(function () {
+            var visitChart = new FusionCharts({
+                type: 'line',
+                renderAt: 'chart-container1c',
+                width: '97%',
+                height: '325',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "xAxisName": "",
+                        "yAxisName": "Portfolio Value",
+                        "forceDecimals" : "1",
+                        //Cosmetics
+                        "setAdaptiveYMin": "1",
+                        "formatNumberScale" : "0",
+                        "lineThickness" : "3",
+                        "numberPrefix": "$",
+                        "labelStep" : "12",
+                        "paletteColors" : "#72c02c",
+                        "baseFontColor" : "#454545",
+                        "baseFont" : "Open Sans",
+                        "captionFontSize" : "20",
+                        "showBorder" : "0",
+                        "bgColor" : "#ffffff",
+                        "showShadow" : "0",
+                        "showvalues": "0",
+                        "canvasBgColor" : "#ffffff",
+                        "canvasBorderAlpha" : "0",
+                        "divlineAlpha" : "100",
+                        "drawAnchors" : "0",
+                        "divlineColor" : "#999999",
+                        "divlineThickness" : "1",
+                        "divLineIsDashed" : "1",
+                        "divLineDashLen" : "1",
+                        "divLineGapLen" : "1",
+                        "showXAxisLine" : "1",
+                        "xAxisLineThickness" : "1",
+                        "xAxisLineColor" : "#999999",
+                        "showAlternateHGridColor" : "0",
+
+                    },
+                    "data": [
+                    {% for day,value in dailyValues3Month.iteritems() %}
+                        {{ "{" }}
+                            "label": "{{ day }}",
+                            "value": "{{ value }}",
+                        {{ "}," }}
+                    {% endfor  %}
+                    ],
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "color": "#454545",
+                                    "thickness" : "1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+            visitChart.render();
+        });
+    </script>
+    <script type="text/javascript">
+        FusionCharts.ready(function () {
+            var visitChart = new FusionCharts({
+                type: 'line',
+                renderAt: 'chart-container1d',
+                width: '97%',
+                height: '325',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "xAxisName": "",
+                        "yAxisName": "Portfolio Value",
+                        "forceDecimals" : "1",
+                        //Cosmetics
+                        "setAdaptiveYMin": "1",
+                        "formatNumberScale" : "0",
+                        "lineThickness" : "3",
+                        "numberPrefix": "$",
+                        "labelStep" : "48",
+                        "paletteColors" : "#72c02c",
+                        "baseFontColor" : "#454545",
+                        "baseFont" : "Open Sans",
+                        "captionFontSize" : "20",
+                        "showBorder" : "0",
+                        "bgColor" : "#ffffff",
+                        "showShadow" : "0",
+                        "showvalues": "0",
+                        "canvasBgColor" : "#ffffff",
+                        "canvasBorderAlpha" : "0",
+                        "divlineAlpha" : "100",
+                        "drawAnchors" : "0",
+                        "divlineColor" : "#999999",
+                        "divlineThickness" : "1",
+                        "divLineIsDashed" : "1",
+                        "divLineDashLen" : "1",
+                        "divLineGapLen" : "1",
+                        "showXAxisLine" : "1",
+                        "xAxisLineThickness" : "1",
+                        "xAxisLineColor" : "#999999",
+                        "showAlternateHGridColor" : "0",
+
+                    },
+                    "data": [
+                    {% for day,value in dailyValuesYear.iteritems() %}
+                        {{ "{" }}
+                            "label": "{{ day }}",
+                            "value": "{{ value }}",
+                        {{ "}," }}
+                    {% endfor  %}
+                    ],
+                    "trendlines": [
+                        {
+                            "line": [
+                                {
+                                    "color": "#454545",
+                                    "thickness" : "1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+            visitChart.render();
+        });
+    </script>
+    <script type="text/javascript">
+        FusionCharts.ready(function () {
+            var revenueChart = new FusionCharts({
+                type: 'doughnut2d',
+                renderAt: 'chart-container2',
+                width: '100%',
+                height: '300',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "legendPosition": "RIGHT",
+                        "numberPrefix": "$",
+                        "paletteColors": "#9fcf60,#1c300b,#72c02c,#dbefca,#123456,#559021",
+                        "baseFontColor" : "#454545",
+                        "baseFont" : "Open Sans",
+                        "bgColor": "#ffffff",
+                        "showBorder": "0",
+                        "use3DLighting": "0",
+                        "showShadow": "0",
+                        "enableSmartLabels": "1",
+                        "pieRadius" : "70",
+                        "doughnutRadius" : "60",
+                        "startingAngle": "45",
+                        "showLabels": "0",
+                        "showLegend": "1",
+                        "slicingDistance": "15",
+                        "showPercentValues": "1",
+                        "useEllipsesWhenOverflow": "1",
+                        "legendShadow": "0",
+                        "legendBorderAlpha": "0",
+                        "showTooltip": "0",
+                        "decimals": "1",
+                        "captionFontSize": "14",
+                        "subcaptionFontSize": "14",
+                        "subcaptionFontBold": "0"
+                    },
+                    "data": [
+                    {% for ticker, weight in pieData.iteritems() %}
+                        {{ "{" }}
+                            "label": "{{ ticker }}",
+                            "value": "{{ weight }} ",
+                        {{ "}," }}
+                    {% endfor  %}
+                    ]
+                }
+            }).render();
+        });
+    </script>
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+<div class="wrapper">
+    <!--=== Header v7 Left ===-->
+    {% from 'macros.html' import header %}
+    {{ header("") }}
+    <!--=== End Header v7 Left ===-->
+
+    <!--=== MODALS =====-->
+    {% from 'macros.html' import modals %}
+    {{ modals() }}
+
+     <!--=== Profile ===-->
+    <div class="content-side-right">
+        <div style = "padding-top: 10px;" class="container content-sm">
+            <!--Service Block v3-->
+            <div class="row margin-bottom-10">
+                <div id="chart-containerX"></div>
+                <div class="col-md-12" style = "display: flex;">
+                    <div style = "flex-grow: 1;" id="monthChart" class="tabgraphs active">
+                        <div style = "margin-top:10px" id="chart-container1a"></div>
+                    </div>
+                    <div id="weekChart" class="tabgraphs" style = "flex-grow: 1; display:none">
+                        <div style = "margin-top:10px" id="chart-container1b"></div>
+                    </div>
+                    <div id="3MonthChart" class="tabgraphs" style = "flex-grow: 1; display:none">
+                        <div style = "margin-top:10px" id="chart-container1c"></div>
+                    </div>
+                    <div id="yearChart" class="tabgraphs" style = "flex-grow: 1; display:none">
+                        <div style = "margin-top:10px" id="chart-container1d"></div>
+                    </div>
+                    <div class="tag-box tag-box-v3" style = "height: 189px; padding: 5px; margin-top:50px;">
+                        <h5 style = "margin-bottom:0px; text-align:center"><i class="fa fa-fw fa-clock-o"></i><strong>ADJUST</strong></h5>
+                        <hr style ="margin-top:7px; margin-bottom: 2px">
+                        <div style = "margin:0px; padding:0px" class = "btn-group-vertical">
+                            <h6 id = "btnA" class = "btn" onclick="changeGraph(event, 'weekChart', 'btnA')">1 WEEK</h6>
+                            <h6 id = "btnB" style="background-color: #72c02c; color:white;" class = "btn" onclick="changeGraph(event, 'monthChart', 'btnB')">1 MONTH</h6>
+                            <h6 id = "btnC" class = "btn" onclick="changeGraph(event, '3MonthChart', 'btnC')">3 MONTH</h6>
+                            <h6 id = "btnD" class = "btn" onclick="changeGraph(event, 'yearChart', 'btnD')">1 YEAR</h6>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/end row-->
+            <div class="row">
+                <div class ="col-md-4">
+                    <div class="row tag-box tag-box-v3" style = "margin-top:10px; margin-left: 10px">
+                        <h4 style = "margin: 0px; text-align:center;">Asset Performance</h4>
+                        <div style = "margin-bottom:20px" class = "wrapper text-center">
+                            <div class="btn-group " role="group">
+                                <h6 id = "btn1" class = "btn" style="background-color: #72c02c; color: white;" onclick="openTab(event, 'Today', 'btn1')">TODAY</h6>
+                                <h6 id = "btn2" class = "btn" onclick="openTab(event, 'Week', 'btn2')">1 WEEK</h6>
+                                <h6 id = "btn3" class = "btn" onclick="openTab(event, 'Month', 'btn3')">1 MONTH</h6>
+                            </div>
+                        </div>
+                        <div id="Today" class="tabcontent active">
+                            {% for key, value in daily.iteritems() %}
+                                {% if (value|float() >= 0) %}
+                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:#72c02c" class="fa fa-fw fa-arrow-up"></i></span></h5>
+                                {% else %}
+                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:red" class="fa fa-fw fa-arrow-down"></i></span></h5>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div id="Week" class="tabcontent" style = "display:none">
+                            {% for key, value in weekly.iteritems() %}
+                                {% if (value|float() >= 0) %}
+                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:#72c02c" class="fa fa-fw fa-arrow-up"></i></span></h5>
+                                {% else %}
+                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:red" class="fa fa-fw fa-arrow-down"></i></span></h5>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div id="Month" class="tabcontent" style = "display:none">
+                            {% for key, value in monthly.iteritems() %}
+                                {% if (value|float() >= 0) %}
+                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:#72c02c" class="fa fa-fw fa-arrow-up"></i></span></h5>
+                                {% else %}
+                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:red" class="fa fa-fw fa-arrow-down"></i></span></h5>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class ="col-md-3">
+                    <div class="row tag-box tag-box-v3" style = "margin-top:10px; margin-left: 10px;">
+                        <h4 style = "margin-top: 0px; margin-bottom: 5px; text-align:center;">Fund Metrics</h4>
+                        <h5>YTD: <span style = "float:right">{{ metrics['ytd'] }}%</span></h5>
+                        <h5>ALPHA: <span style = "float:right">{{ metrics['alpha'] }}</span></h5>
+                        <h5>BETA: <span style = "float:right">{{ metrics['beta'] }}</span></h5>
+                        <h5>VARIANCE: <span style = "float:right">{{ metrics['variance'] }}</span></h5>
+                        <h5>SHARPE: <span style = "float:right">{{ metrics['sharpe'] }}</span></h5>
+                        <h5>INFORMATION: <span style = "float:right">{{ metrics['information'] }}</span></h5>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <h4 style = "position: relative; z-index: 2; text-align:center;margin-bottom:0px;margin-top:34px">Asset Allocation</h4>
+                    <div style = "position: relative; bottom: 40px; margin-bottom:0px;" id="chart-container2"></div>
+                </div>
+            </div><!--/end row-->
+            <!--End Service Block v3-->
+
+            <hr>
+
+            <div class = "row">
+                <!--Table Search v1-->
+                <div class="table-search-v1">
+                    <div style = "margin-left:20px; margin-right: 20px;" class="table-responsive">
+                        <h3 style="text-align:center;margin-bottom:20px"><strong>Recent CIB Equity Reports</strong></h3>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style = "text-align: center">Company</th>
+                                    <th style = "text-align: center" class="hidden-sm">Synopsis</th>
+                                    <th style = "text-align: center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for key, info in equityReports.iteritems() %}
+                                    <tr>
+                                        <td style = "vertical-align: middle">
+                                            <p style = "color:#72c02c; text-align:center"><strong>{{ info[0] }}</strong></p>
+                                        </td>
+                                        <td style = "vertical-align: middle"><p style = "text-align:center">{{ info[1] }}</p></td>
+                                        <td><a href = "{{ url_for('static', filename="") }}/{{ key }}" target="_blank" class="btn-u btn-brd btn-brd-hover btn-block btn-u-xs"><i class="fa fa-eye margin-right-5"></i>View</a>
+                                        <a href="{{ url_for('static', filename="") }}/{{ key }}" class="btn-u btn-brd btn-block btn-brd-hover btn-u-xs" download="{{ key }}"><i class="fa fa-level-down margin-right-5"></i>Download</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/container-->
+</div>
+    <!--=== End Profile ===-->
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/fancy-box.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/progress-bar.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js") }}"></script>
+
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            App.initScrollBar();
+            App.initSidebarMenuDropdown();
+        });
+    </script>
+</body>
+</html>
+

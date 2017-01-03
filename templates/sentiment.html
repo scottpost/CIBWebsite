@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/headers/header-v7.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/pages/shortcode_timeline1.css") }}">
+
+        <link rel="stylesheet" href="assets/css/pages/shortcode_timeline1.css">
+
+
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css") }}">
+
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/fusioncharts.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/themes/fusioncharts.theme.fint.js") }}"></script>
+    <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script>
+        function sentimentAnalysis(buttonID) {
+            var xhr = new XMLHttpRequest();
+            var url = "http://www.ciberkeley.com/sentimentModel/" + buttonID;
+            xhr.open('GET', url, true);
+            xhr.send();
+            xhr.onreadystatechange = processRequest;
+            function processRequest(e) {
+                if (xhr.readyState == 4) {
+                    var response = JSON.parse(xhr.responseText);
+                    document.getElementById('TITLESUMMARY').innerHTML = "<strong>Summary</strong>";
+                    document.getElementById('TITLEKEYWORDS').innerHTML = "<strong>Keywords</strong>";
+                    document.getElementById('articleTitle').innerHTML = "<strong>" + response['title'] + "</strong>";
+                    document.getElementById('articleSummary').innerHTML = response['summary'];
+                    document.getElementById('articleKeywords').innerHTML = "";
+                    keywords = response['keywords'];
+                    for (i = 0; i < keywords.length-1; i++) {
+                        document.getElementById('articleKeywords').innerHTML += keywords[i] + " | ";
+                    }
+                    document.getElementById('articleKeywords').innerHTML += keywords[keywords.length];
+                }
+            }
+        }
+    </script>
+    <script>
+        function displayLoading() {
+            document.getElementById('loading').setAttribute("style", "display:inline");
+        }
+    </script>
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+<div class="wrapper">
+    <!--=== Header v7 Left ===-->
+    {% from 'macros.html' import header %}
+    {{ header("Software Development") }}
+    <!--=== End Header v7 Left ===-->
+
+    <!--=== MODALS =====-->
+    {% from 'macros.html' import modals %}
+    {{ modals() }}
+
+    <!--=== Profile ===-->
+    <div class="content-side-right">
+        <div style = "padding-top: 0px;" class="container content-sm">
+            <div class ="row">
+                <div class="col-md-12">
+                    <div style = "text-align:center" class="profile-body">
+                        <div style = "margin-top: 40px" class="headline"><h2>Market News Sentiment</h2></div>
+                            <div style = "margin-top: 50px; margin-bottom: 50px" class="row tag-box tag-box-v5">
+                                <div class="col-md-8">
+                                    <h4 style ="margin-top:15px">Applying natural language processing techniques to financial news to assess market sentiment</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <form onsubmit="displayLoading();" action="{{ url_for('sentiment') }}" method="post">
+                                        <input style="text-transform:uppercase" autocomplete="off" type="text" class="form-control" placeholder="EX. AMAZON" name = "query">
+                                        <button type="submit" style = "margin-bottom:0px;margin-top:5px;height:100%" class="btn-u btn-brd btn-block btn-brd-hover btn-u-xs">
+                                            GET ARTICLES FOR COMPANY
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="loading" style="display:none">
+                                <h1>Please wait while the model runs</h1>
+                            </div>
+                            {% if dirty %}
+                                <table border="0" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style = "text-align: center">Article Title</th>
+                                            <th style = "text-align: center">Author</th>
+                                            <th style = "text-align: center">Date</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in data %}
+                                        <tr>
+                                            <td>
+                                                <h5 style = "text-align:center">{{ row[0] }}</h5>
+                                            </td>
+                                            <td>
+                                                <h5 style = "text-align:center">{{ row[1] }}</h5>
+                                            </td>
+                                            <td>
+                                                <h5 style = "text-align:center">{{ row[2] }}</h5>
+                                            </td>
+                                            <td>
+                                                <button data-toggle="modal" data-target="#SentimentModel" id ="{{ row[4] }}" onclick="sentimentAnalysis(this.id);" style = "margin-bottom:0px;margin-top:5px" class="btn-u btn-brd btn-block btn-brd-hover btn-u-xs">
+                                                    SENTIMENT ANALYSIS
+                                                </button>
+                                                <a target="_blank" href="{{ row[3] }}" style = "margin-bottom:0px;margin-top:5px" class="btn-u btn-brd btn-block btn-brd-hover btn-u-xs">
+                                                    VIEW ARTICLE
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endif %}
+                            <div class="row tag-box tag-box-v3 margin-bottom-40">
+                                <h4 style = "margin-bottom:15px"><strong>Project Specifications</strong></h4>
+                                <div class = "col-md-4">
+                                    <h5>Description</h5>
+                                </div>
+                                <div class = "col-md-4">
+                                    <h5>Libraries</h5>
+                                </div>
+                                <div class = "col-md-4">
+                                    <h5>Links</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/container-->
+</div>
+    <!--=== End Profile ===-->
+
+    <!-- JS Global Compulsory -->
+
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/fancy-box.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/progress-bar.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js") }}"></script>
+
+
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            App.initScrollBar();
+            App.initSidebarMenuDropdown();
+        });
+    </script>
+</body>
+</html>
+

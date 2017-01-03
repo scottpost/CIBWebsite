@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Capital Investments at Berkeley</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+    <style>
+        @media print
+        {
+            .no-print, .no-print *
+            {
+                display: none !important;
+            }
+        }
+    </style>
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/one.style.css") }}">
+
+    <!-- CSS Footer -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/headers/header-v7.css") }}">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/custom/custom-cubeportfolio.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/css/settings.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css") }}">
+
+    <!-- CSS Theme -->
+    <link rel="stylesheet" id="style_color" href="{{ url_for('static', filename="assets/css/theme-colors/default.css") }}">
+    <!-- CSS Customization -->
+    <script src="{{ url_for('static', filename='completely.js') }}"></script>
+	<script>
+		function load() {
+			var pv = completely(document.getElementById('container'));
+			pv.setText('Show me ');
+			pv.repaint();
+		}
+	</script>
+    <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/custom.css") }}">
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/fusioncharts.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="fusioncharts/js/themes/fusioncharts.theme.fint.js") }}"></script>
+</head>
+
+<!--
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body id="body" onload="load();" data-spy="scroll" data-target=".one-page-header" class="demo-lightbox-gallery">
+<div class="wrapper">
+    <div class = "no-print">
+        <!--=== Header v7 Left ===-->
+        {% from 'macros.html' import header %}
+        {{ header("Software Development") }}
+        <!--=== End Header v7 Left ===-->
+
+        <!--=== MODALS =====-->
+        {% from 'macros.html' import modals %}
+        {{ modals() }}
+    </div>
+
+     <!--=== Profile ===-->
+    <div class="content-side-right">
+        <div style = "padding:0px;" class="container content-sm">
+            <div style = "text-align:center; margin-top: 40px" class="headline"><h2>Financial data terminal</h2></div>
+    		</div>
+    		<div id='main' style='margin:10px 60px 0px 72px; font-family:Open Sans; font-size: 18px;'>
+    			<div id='wrap' ></div>
+    		</div>
+    		<hr style ="margin-top: 0px;margin-bottom:100px">
+    		<div id='result' style='margin:32px 60px 32px 72px; font-family:Open Sans; font-size: 18px;'>
+    			<div id='wrap' ></div>
+    		</div>
+    		<script>
+    			var pv = completely(document.getElementById('main'),{
+    				promptInnerHTML : "<i class = 'fa fa-angle-right'></i> &nbsp;",
+    				fontSize: '18px',
+    				fontFamily:'Open Sans'
+    			});
+    			var combi = [
+    				{% for id in searchData %}
+    					{
+    						id: '{{ id }}',
+    						options: [
+    						{% for option in searchData[id] %}
+    							'{{ option }}',
+    						{% endfor %} ]
+    					},
+    				{% endfor %}
+    			];
+
+    			pv.onChange = function(text) {
+    				if (text.includes('graph') && !text.includes('of')) {
+    					newText = text + " of ";
+    				    pv.setText(newText); // special case i becomes I.
+    				    pv.repaint();
+    				    return;
+    				}
+
+    				else if ((text.includes('closing price') || text.includes('options chain') ||text.includes('fundamentals')) && !text.includes('for')){
+    			   	   newText = text + " for ";
+    				   pv.setText(newText); // special case i becomes I.
+    				   pv.repaint();
+    				   return;
+    			   }
+
+    			   else if ((text.includes('graph of Trading Price') || text.includes('graph of Trading Volume') || text.includes('graph of Historical Volatility'))  && !text.includes('for')) {
+    			   	   newText = text + "for ";
+    				   pv.setText(newText); // special case i becomes I.
+    				   pv.repaint();
+    				   return;
+    			   }
+
+    			   else if (text.includes('$') && !text.includes('on') && !text.includes('graph') && !text.includes('fundamentals')){
+    			   	   newText = text + " on ";
+    				   pv.setText(newText); // special case i becomes I.
+    				   pv.repaint();
+    				   return;
+    			   }
+
+    			   else if (text.includes('$') && text.includes('graph') && !text.includes('from')){
+    			   	   newText = text + " from ";
+    				   pv.setText(newText); // special case i becomes I.
+    				   pv.repaint();
+    				   return;
+    			   }
+
+    			   else if (text.includes('/') && !text.includes('closing') && (!text.includes('to') || text.includes('Historical'))) {
+    			   	   newText = text + " to ";
+    				   pv.setText(newText); // special case i becomes I.
+    				   pv.startFrom = newText.length;
+    				   pv.options = {{ tradingDates | safe }};
+    				   pv.repaint();
+    				   return;
+    				} else if (text.includes('/')) {
+    					pv.options = {{ tradingDates | safe }};
+    				   	pv.repaint();
+    				   	return;
+    				}
+    			   // search the matching combination.
+    			   for (var i=0;i<combi.length;i++) {
+    				   if (text.indexOf(combi[i].id)===0) {
+    					   pv.startFrom = combi[i].id.length;
+    					   pv.options =  combi[i].options;
+    					   pv.repaint();
+    					   return;
+    				   }
+
+    				}
+
+    			}
+
+    			pv.onEnter = function() {
+    				if (pv.getText().includes('Clear')) {
+    					document.getElementById("result").innerHTML = "";
+    				}
+    				if (pv.getText().includes('Print')) {
+    					window.print();
+    				}
+    		    	var query = pv.getText().replace(/ /g, "_s").replace(/\//g, "_f");
+    		    	var xhr = new XMLHttpRequest();
+    		    	url = "http://www.ciberkeley.com/calculate/" + query;
+                    xhr.open('GET', url, true);
+                    xhr.send();
+                    xhr.onreadystatechange = processRequest;
+                    function processRequest(e) {
+                    if (xhr.readyState == 4) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response['type'] == 'closing') {
+                        	document.getElementById("result").innerHTML = "<i class = 'fa fa-angle-double-right'></i> Closing Price | " + response['ticker'] + " | " + response['date'] + " |<strong>$" + response['price'] + "</strong><br>" + document.getElementById("result").innerHTML;
+                        	}
+                        }
+                        if (response['type'] == 'graph') {
+                        	document.getElementById("result").innerHTML = "<i class = 'fa fa-angle-double-right'></i> " + response['graphType'] + " | " + response['ticker'] + " | " + response['dates'][0] + " to " + response['dates'][1] + "<div id='chartContainer' style='margin-top:10px'></div><br>" + document.getElementById("result").innerHTML;
+    					    var myChart = new FusionCharts({
+    					        type: 'line',
+    					        renderAt: 'chartContainer',
+    					        width: '100%',
+    					        dataFormat: 'json',
+    					        dataSource: {
+    					            chart: {
+    					            	baseFont : "Open Sans",
+    					            	baseFontSize : "13",
+    					            	baseFontColor : "#000000",
+    					                setAdaptiveYMin: "1",
+    					                numberPrefix: response['prefix'],
+    					                bgColor : "#ffffff",
+                            			showShadow : "0",
+                            			forceDecimals : "1",
+                            			showBorder : "0",
+                            			showvalues: "0",
+                            			labelDisplay : "stagger",
+                            			labelStep : response['labelStep'],
+                            			drawAnchors : "0",
+                            			canvasBgColor : "#ffffff",
+                            			canvasBorderAlpha : "0",
+                            			showAlternateHGridColor : "0",
+    					            },
+    					            data: response['data']
+    					        }
+    					    });
+    					    // Render the chart.
+    					    myChart.render();
+                        }
+                        if (response['type'] == 'fundamentals') {
+                        	document.getElementById("result").innerHTML = "<i class = 'fa fa-angle-double-right'></i> Fundamentals | " + response['ticker'] + "<br>&nbsp;&nbsp;&nbsp;EBITDA: " + response['ebitda'] + "<br>&nbsp;&nbsp;&nbsp;Market Capitalization: " + response['marketCap'] + "<br>&nbsp;&nbsp;&nbsp;Book Value: " + response['bookValue'] + "<br style = 'margin-bottom:30px'>" + document.getElementById("result").innerHTML;
+                        }
+                        if (response['type'] == 'options chain') {
+                        	dictArray = response['puts'];
+                        	for (var i = 0; i < dictArray.length; i++) {
+    						    document.getElementById("result").innerHTML = dictArray[i]['s'] + " | " + dictArray[i]['strike'] + " | " + dictArray[i]['expiry'] + "<br>" + document.getElementById("result").innerHTML;
+    						}
+                        }
+                    }
+                    pv.input.focus();
+                    pv.setText("");
+    				return;
+    		    }
+
+
+    			setTimeout(function() {
+    			    pv.input.focus(); // IE8 requires timeout-trick to focus
+    			    pv.setText('Show me '); // IE requires setting the text  after calling focus to ensure that the cursor is at the end of the text.
+    			    pv.repaint();
+    			},0)
+    		</script>
+        </div><!--/row-->
+    </div><!--/container-->
+    <!--=== End Content Part ===-->
+    </div>
+    <!--=== End Profile ===-->
+
+    <!-- JS Global Compulsory -->
+
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/bootstrap/js/bootstrap.min.js") }}"></script>
+
+    <!-- JS Implementing Plugins -->
+    <script src="{{ url_for('static', filename="assets/plugins/smoothScroll.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.easing.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/pace/pace.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery.parallax.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/waypoints.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/counter/jquery.counterup.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/js/jquery.cubeportfolio.min.js") }}"></script>
+
+    <!-- JS Page Level-->
+    <script src="{{ url_for('static', filename="assets/js/app.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/login.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/forms/contact.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/pace-loader.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/owl-carousel.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/revolution-slider.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/cube-portfolio/cube-portfolio-lightbox.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/jquery/jquery-migrate.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/fancy-box.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/js/plugins/progress-bar.js") }}"></script>
+    <script src="{{ url_for('static', filename="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js") }}"></script>
+
+
+    <script>
+        jQuery(document).ready(function() {
+            App.init();
+            App.initCounter();
+            App.initParallaxBg();
+            App.initScrollBar();
+            App.initSidebarMenuDropdown();
+        });
+    </script>
+</body>
+</html>
+
