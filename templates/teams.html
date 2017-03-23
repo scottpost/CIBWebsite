@@ -77,6 +77,9 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <a href="{{ url_for("analyst") }}">Analyst Program</a>
                         </li>
                         <li class="page-scroll">
+                            <a href="{{ url_for("farallon") }}">Case Competition</a>
+                        </li>
+                        <li class="page-scroll">
                             <a style = "padding: 6px;margin-top: 10px" class = "btn btn-u btn-brd btn-brd-hover" href="{{ url_for("login") }}">Investors</a>
                         </li>
                     </ul>
@@ -117,6 +120,7 @@ function openTab(evt, tabName) {
 <div style = "margin-bottom: 0px" class="cbp-l-filters-text">
         <div onclick="openTab(event, 'Executive')" class="cbp-filter-item"> <i class="fa fa-fw fa-institution" aria-hidden="true"></i> Executive Board</div> |
         <div onclick="openTab(event, 'Software')" class="cbp-filter-item"> <i class="fa fa-fw fa-desktop" aria-hidden="true"></i> Software Development </div> |
+        <div onclick="openTab(event, 'Investor')" class="cbp-filter-item"> <i class="fa fa-fw fa-exchange" aria-hidden="true"></i> Investor Relations </div> |
         <div onclick="openTab(event, 'Equity')" class="cbp-filter-item"><i class="fa fa-dollar" aria-hidden="true"></i> Equity Research </div> |
         <div onclick="openTab(event, 'Affairs')" class="cbp-filter-item"> <i class="fa fa-fw fa-users" aria-hidden="true"></i> Internal/External Affairs </div> |
         <div onclick="openTab(event, 'Portfolio')" class="cbp-filter-item"> <i class="fa fa-fw fa-briefcase" aria-hidden="true"></i> Portfolio Management </div>
@@ -143,7 +147,7 @@ function openTab(evt, tabName) {
                         </div>
                         <h3>Anais Addad</h3>
                         <h4>/ President</h4>
-                        <p>Anaïs Addad is a senior majoring in Economics originally from Paris, France. Anaïs has interned at Western Digital as a financial analyst and is currently working as a Team Lead Research Analyst at the Haas School of Business on a global financial data using statistical procedures to estimate the financial health of millions of private companies. She is also studying for the CFA exam and is particularly interested in quantitative analysis, strategy and risk management.</p>
+                        <p>Anaïs Addad is a senior majoring in Economics originally from Paris, France. Anaïs has been involved in CIB since her sophomore year and has fulfilled many leadership positions. She has previously interned at Western Digital as a corporate finance analyst. She will be working for Wells Fargo Securities’ Principal Investments Group as a Portfolio Analyst after she graduates, managing a portfolio of fixed-income securities and financings across various asset classes, including investment-grade and high-yield bonds, municipal bonds, convertible bonds, structured products, and leveraged loans.</p>
                     </li>
                     <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
                         <div class="team-img">
@@ -185,7 +189,11 @@ function openTab(evt, tabName) {
                 <div class = "col-sm-1"> </div>
                 <div class = "col-sm-10">
                     <h3 style ="text-align:center">Software Development</h3>
-                    <p>Latest addition to the club, the Software Development teams implement tools designed by the portfolio management group, backtest trading strategies and forecast metrics to facilitate investment decisions. The prediction process involves the exploration of various machine learning techniques while development of backtesting software requires members to investigate how computer aided trading systems function. Particularly, this semester, a team has been assigned with the implementation of a low latency, algorithmic trading platform.</p><br>
+                    <p>The Software Development Team is segmented in three main groups targeting different quantitative approach to finance. <br>
+<br>	⁃	The <strong>Portfolio Management Tools</strong> team implements tools designed for the portfolio management group and the club fund, backtest trading strategies and forecast metrics to facilitate investment decisions.
+<br>	⁃	The <strong>Senior Quantitative Research</strong> team built a multi-stage model to identify companies with correlated implied volatility time series, then predict the magnitude of future implied volatility changes. They constructed a data pipeline that used the relationship model to generate labeled examples with future implied volatility changes of either (a) significant positive change (b) minimal change or (c) significant negative change. A neural network (using TensorFlow) was trained on these examples.
+<br>	⁃	The <strong>Junior Software Engineering</strong> team is investigating relationships between public opinion and asset returns. To do so, they chose to query the Seeking Alpha website for articles of quality coming from analysts and non professionals. With a daily flux of data for most stocks, they hope to train classifiers to recognize patterns between returns and sentiment.They are first training Bayesian Classifiers on labelled IMDB data to detect positivity and subjectivity, using the TF-IDF feature generation method. Their goal is to find correlation between probabilities of class membership and market data. Eventually, they plan on training end-to-end recurrent networks using stock returns as labels and corresponding articles as inputs.
+</p><br>
                     <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
                         <div class="team-img">
                             <img class="img-responsive" src ="{{ url_for('static', filename="portraits/scott.jpg" ) }}" alt="">
@@ -195,7 +203,7 @@ function openTab(evt, tabName) {
                             </ul>
                         </div>
                         <h3>Scott Post</h3>
-                        <h4>/ Director</h4>
+                        <h4>/ Director | Portfolio Management Tools</h4>
                         <p>Scott is a third year majoring in Computer Science and Physics. He has previously interned as a Software Developer at Dixons Carphone, Europe's largest electronic retailer. He has a keen interest in the stock market and the increasing application of computing power as a tool for trading.</p>
                     </li>
                     <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
@@ -207,7 +215,7 @@ function openTab(evt, tabName) {
                             </ul>
                         </div>
                         <h3>Joshua Howland</h3>
-                        <h4>/ Director</h4>
+                        <h4>/ Director | Senior Quantitative Research</h4>
                         <p>Joshua is a Senior EECS major with a minor in Nuclear Engineering.  He has worked at UC Berkeley doing computational neutronics, spent summers at Google on the Photos iOS team and Google Shopping Express backend, and enjoys taking up personal machine learning projects.</p>
                     </li>
                     <li class="col-sm-4 col-xs-6">
@@ -219,7 +227,7 @@ function openTab(evt, tabName) {
                             </ul>
                         </div>
                         <h3>Allyson O'Malley</h3>
-                        <h4>/ Director</h4>
+                        <h4>/ Director | Junior Software Engineering</h4>
                         <p>Allyson is a third year Computer Science major primarily interested in algorithmic trading and technical analysis. She attended a short Sales & Trading program at UBS in New York over the summer and then held a production engineering internship at Salesforce.</p>
                     </li>
                 </div>
@@ -238,22 +246,19 @@ function openTab(evt, tabName) {
                 <div class = "col-sm-10">
                     <h3 style ="text-align:center">Equity Research</h3>
                     <p> The Equity Research teams will be in charge of producing an Equity Research Journal which will be presented to sponsors and investors. The reports will include thorough micro and macro market analysis. The team takes on a top-down approach starting off by extensively researching specific industries before delving into company valuation and stock pitches.</p><br>
-                </div>
-            </ul>
-            <ul class="list-unstyled row">
-                <li class="col-sm-3 col-xs-6 md-margin-bottom-30">
+                <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
                     <div class="team-img">
-                        <img class="img-responsive" src ="{{ url_for('static', filename="portraits/kevin.jpg" ) }}" alt="">
+                        <img class="img-responsive" src ="{{ url_for('static', filename="portraits/joshChandy.jpg" ) }}" alt="">
                         <ul>
-                            <li><a href="https://www.linkedin.com/in/kevinjshao"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
-                            <li><a href="mailto: kevin.shao@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/joshChandy"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                            <li><a href="mailto: joshChandy@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
                         </ul>
                     </div>
-                    <h3>Kevin Shao</h3>
-                    <h4>/ Lead Director</h4>
-                    <p>Kevin Shao is a senior at UC Berkeley majoring in business administration and economics. He recently worked as a research analyst intern at Parnassus Investments, a $17B mutual fund in San Francisco. Previously, he held a summer internship at a private equity search fund. In his free time, Kevin enjoys cooking and riding his motorcycle.</p>
+                    <h3>Josh Chandy</h3>
+                    <h4>/ Director</h4>
+                    <p>Josh is a 4th year, Applied Mathematics major, from Sunnyvale, CA.  He joined CIB in his junior and served as an equity research director in spring 2016.  Upon graduation, he will be joining the Principal Investments Group at Wells Fargo Securities. He has previously interested at boutique Investment Banks and The Riverside Company, a middle market Private Equity firm.</p>
                 </li>
-                <li class="col-sm-3 col-xs-6 md-margin-bottom-30">
+                <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
                     <div class="team-img">
                         <img class="img-responsive" src ="{{ url_for('static', filename="portraits/aaron.jpg" ) }}" alt="">
                         <ul>
@@ -265,7 +270,7 @@ function openTab(evt, tabName) {
                     <h4>/ Director</h4>
                     <p>Aaron is a senior at UC Berkeley studying Political Science. With a strong self-taught background in finance, Aaron started out at a boutique wealth management firm in San Francisco before spending the summer in Singapore working for the international investment fund Temasek Holdings as a summer financial associate. At Temasek, Aaron studied the various ways to value early, mid and late stage companies and how best to evaluate entire industries within the TMT space. Currently, Aaron is planning to work in a sales-trader role in order to merge his passion for finance with his strong experiences in sales. </p>
                 </li>
-                <li class="col-sm-3 col-xs-6">
+                <li class="col-sm-4 col-xs-6 ">
                     <div class="team-img">
                         <img class="img-responsive" src ="{{ url_for('static', filename="portraits/krishna.jpg" ) }}" alt="">
                         <ul>
@@ -277,32 +282,19 @@ function openTab(evt, tabName) {
                     <h4>/ Director</h4>
                     <p>Krishna Reddy is a second year, intended business major from Irvine, California. He joined Capital Investments at Berkeley as an Analyst in his first semester here at UC Berkeley. Krishna has mainly worked with the Equity Research teams in his tenure with CIB, and has held positions ranging from analyst to director. He is most interested in portfolio management and venture capitalism in regards to finance and entrepreneurship in regards to business as a whole.</p>
                 </li>
-                <li class="col-sm-3 col-xs-6">
-                    <div class="team-img">
-                        <img class="img-responsive" src ="{{ url_for('static', filename="portraits/max.jpg" ) }}" alt="">
-                        <ul>
-                            <li><a href="https://www.linkedin.com/in/maxrewell/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
-                            <li><a href="mailto: mrewell@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
-                        </ul>
-                    </div>
-                    <h3>Max Rewell</h3>
-                    <h4>/ Director</h4>
-                    <p>Max is a third year Business Administration major in the Haas School of Business. He is mainly interested in the hedge fund industry and wants to run his own shop in the future. This past summer he launched the trading divison of his family company together with his younger brother. He has previously held jobs in banking and real estate finance.</p>
-                </li>
             </ul>
         </div>
         <hr>
     </div>
-
-    <div id="Affairs" class="tabcontent" style = "display: none">
+    <div id="Investor" class="tabcontent"  style = "display: none">
       <!--=== Team v1 ===-->
         <div class="container team-v1">
             <ul class="list-unstyled row">
                 <div class = "col-sm-1"> </div>
                 <div class = "col-sm-10">
-                    <h3 style ="text-align:center">Internal/External Affairs</h3>
-                    <p>In charge of tasks varying from recruitment, event planning or communications, the Public Relations directors have the major responsibility of bringing the different teams of the club together. The Investor Relations director is the club link to the industry. In addition to persistently pitching the club’s fund to both private and institutional investors, he officially communicates its performance and connects teams with their respective sponsors.</p><br>
-                    <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
+                    <h3 style ="text-align:center">Investor Relations</h3>
+                    <p>The Investors Relations Team is in charge of maintaining a ledger of all limited and general positions held by the club fund. They facilitate shareholders’ meetings and investment votes and report portfolio performance to current shareholders by generating analysis (historical and forward). They are also in charge of fundraising for the club fund though alumni and corporate sponsorship.</p><br>
+                    <li class="col-sm-4 col-sm-offset-4 col-xs-6 md-margin-bottom-30">
                         <div class="team-img">
                             <img class="img-responsive" src ="{{ url_for('static', filename="portraits/ajay.JPG" ) }}" alt="">
                             <ul>
@@ -314,7 +306,25 @@ function openTab(evt, tabName) {
                         <h4>/ Director of Investor Relations</h4>
                         <p>As a double-major in business administration and bioengineering, Ajay joined the club in January 2015 and have since held positions in equity research and portfolio management divisions. In the past, he's had the opportunity to work at several investment banks, including Mergertech Advisors, Legend Merchant Group, and Deutsche Bank, all within healthcare industry focuses. Outside of finance and investing, he's passionate about competitive running, car culture, and college basketball.</p>
                     </li>
-                    <li class="col-sm-4 col-xs-6 md-margin-bottom-30">
+
+                </div>
+                <div class = "col-sm-1"> </div>
+            </ul>
+
+        </div>
+        <hr>
+
+    </div>
+
+    <div id="Affairs" class="tabcontent" style = "display: none">
+      <!--=== Team v1 ===-->
+        <div class="container team-v1">
+            <ul class="list-unstyled row">
+                <div class = "col-sm-1"> </div>
+                <div class = "col-sm-10">
+                    <h3 style ="text-align:center">Internal/External Affairs</h3>
+                    <p>In charge of tasks varying from recruitment, event planning or communications, the Public Relations directors have the major responsibility of bringing the different teams of the club together. The Investor Relations director is the club link to the industry. In addition to persistently pitching the club’s fund to both private and institutional investors, he officially communicates its performance and connects teams with their respective sponsors.</p><br>
+                    <li class="col-sm-4 col-sm-offset-2 col-xs-6 md-margin-bottom-30">
                         <div class="team-img">
                             <img class="img-responsive" src ="{{ url_for('static', filename="portraits/grace.jpg" ) }}" alt="">
                             <ul>
@@ -328,15 +338,15 @@ function openTab(evt, tabName) {
                     </li>
                     <li class="col-sm-4 col-xs-6">
                         <div class="team-img">
-                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/emily.jpg" ) }}" alt="">
+                            <img class="img-responsive" src ="{{ url_for('static', filename="portraits/Caroline.jpg" ) }}" alt="">
                             <ul>
-                                <li><a href="https://www.linkedin.com/in/emily-chang-57819a112/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
-                                <li><a href="mailto: echang7@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/carolinenewman"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                                <li><a href="mailto: carolinenewman@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
                             </ul>
                         </div>
-                        <h3>Emily Chang</h3>
+                        <h3>Caroline Newman</h3>
                         <h4>/ Director of Public Relations</h4>
-                        <p>Emily Chang is a sophomore majoring in Computer Science and Economics. She has interned as a quantitative analyst and medical imaging researcher. Emily is particularly interested in corporate finance. </p>
+                        <p>Caroline Newman is a second year studying Economics. Caroline currently interns at Bee Partners, a pre-seed Venture Capital firm in San Francisco. Her interest in finance was initiated by her role at the UC Berkeley startup accelerator, SkyDeck where she analyzed startup growth and fundraising data that contributed to the development of an inaugural SkyDeck venture fund. Outside of work and academics, Caroline enjoys reading and running.</p>
                     </li>
 
                 </div>
@@ -353,8 +363,8 @@ function openTab(evt, tabName) {
                 <div class = "col-sm-1"> </div>
                 <div class = "col-sm-10">
                     <h3 style ="text-align:center">Portfolio Management</h3>
-                    <p>The portfolio management team sets the club’s diversification strategies and makes use of the equity research to help the executive board with the trading decisions. It also sustains the investment journal and facilitate market discussions over the course of club meetings. Additional projects may also be assigned, from portfolio optimization to risk visualization and investigation of alternative investments.</p><br>
-                    <li class="col-sm-4 col-sm-offset-4 col-xs-6 md-margin-bottom-30">
+                    <p>The portfolio management team conducts research to enhance the club’s active management strategy and makes use of comprehensive equity research analysis to help advise the executive board with trading decisions. The team also facilitates market discussions during weekly meetings and oversees the construction and delivery of a weekly market newsletter that is sent to the members of the club. Additionally, this upcoming spring, the team will engage in a semester-long portfolio management project with Cambridge Associates.</p><br>
+                    <li class="col-sm-4 col-sm-offset-2 col-xs-6 md-margin-bottom-30">
                         <div class="team-img">
                             <img class="img-responsive" src ="{{ url_for('static', filename="portraits/jared.jpg" ) }}" alt="">
                             <ul>
@@ -366,6 +376,18 @@ function openTab(evt, tabName) {
                         <h4>/ Director</h4>
                         <p>Jared Arat is a third year intended Statistics major. He is particularly interested in Quantitative Trading, Hedging Strategy, and Risk Analytics as well as their respective applications in Portfolio Management. As the Director of the Portfolio Management team, he is responsible for our projects involving risk visualization, asset allocation, and optimization, as well as for the design and curriculum of the analyst education lecture series and weekly market discussions. When the markets are closed, he spends his time on the water as an oarsman with the Cal Men’s Crew Team.</p>
                     </li>
+                    <li class="col-sm-4 col-xs-6">
+                    <div class="team-img">
+                        <img class="img-responsive" src ="{{ url_for('static', filename="portraits/max.jpg" ) }}" alt="">
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/maxrewell/en"><i class="icon-custom icon-sm rounded-x fa fa-linkedin"></i></a></li>
+                            <li><a href="mailto: mrewell@berkeley.edu"><i class="icon-custom icon-sm rounded-x fa fa-envelope"></i></a></li>
+                        </ul>
+                    </div>
+                    <h3>Max Rewell</h3>
+                    <h4>/ Director</h4>
+                    <p>Max is a third year Business Administration major in the Haas School of Business. He is mainly interested in the hedge fund industry and wants to run his own shop in the future. This past summer he launched the trading divison of his family company together with his younger brother. He has previously held jobs in banking and real estate finance.</p>
+                </li>
 
                 </div>
                 <div class = "col-sm-1"> </div>

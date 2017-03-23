@@ -11,7 +11,7 @@ import os
 #number_shares = p[1] - list
 #costs = p[2] - list
 
-def start_manager_update_process(p,start_date):
+def start_manager_update_process(p, start_date):
     if os.path.isfile('/home/CIBerkeley/CIBWebsite/portfolio.txt') is False:
         # a  few requirements to set up the data pipeline
         indices  = ["^GSPC","XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLB", "XLK", "XLU"]

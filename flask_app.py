@@ -7,7 +7,8 @@ from newspaper import Article
 import gnp
 import csv
 import pickle
-import urllib2
+import requests
+from bs4 import BeautifulSoup
 from pandas.io.data import DataReader
 import smtplib
 from email.mime.text import MIMEText
@@ -16,11 +17,15 @@ from googlefinance import getQuotes
 import UpdateManager
 import MonteCarlo
 import CIBDatabase
+from Portfolio import historical_values, get_historical_price, get_historical_value, get_value
 from collections import OrderedDict
 from dateutil import rrule
 from optionchain import OptionChain
 from yahoo_finance import Share
 import math
+from flask_sqlalchemy import SQLAlchemy
+from flask_user import UserManager, UserMixin, SQLAlchemyAdapter
+from flask_login import login_user, LoginManager, login_required, logout_user
 
 #==================================================================================================================================
 # CONFIGURATION
@@ -35,6 +40,59 @@ with open('/home/CIBerkeley/CIBWebsite/SP500.csv', 'rb') as csvfile:
     for row in reader:
         TICKERS.append("$" + row[0])
 
+#==================================================================================================================================
+# USER AUTHENTICATION SETUP
+#==================================================================================================================================
+
+app.config['SQLALCHEMY_DATABASE_URI']  = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="CIBerkeley",
+    password="CIBSpring2017",
+    hostname="CIBerkeley.mysql.pythonanywhere-services.com",
+    databasename="CIBerkeley$default",
+)
+app.config['TESTING'] = False
+
+db = SQLAlchemy(app)
+
+class User(db.Model, UserMixin):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+
+    # User information
+    active = db.Column('is_active', db.Boolean(), nullable=False, server_default='0')
+    first_name = db.Column(db.String(100), nullable=False, server_default='')
+    last_name = db.Column(db.String(100), nullable=False, server_default='')
+    votes = db.Column(db.String(255), nullable=False, server_default='')
+    ownership = db.Column(db.String(255), nullable=False, server_default= '')
+    username = db.Column(db.Unicode(255), nullable=False, server_default=u'', unique=True)
+    password = db.Column(db.String(255), nullable=False, server_default='')
+
+    def __init__(self, first, last, votes, ownership, username, password):
+        self.username = username
+        self.first_name = first
+        self.last_name = last
+        self.votes = votes
+        self.ownership = ownership
+        self.password = password
+        self.active = True
+
+    def __repr__(self):
+        return '%r' % self.username
+
+# Setup Flask-User
+db_adapter = SQLAlchemyAdapter(db, User)        # Register the User model
+user_manager = UserManager(db_adapter, app)     # Initialize Flask-User
+login_manager = LoginManager()
+
+@app.login_manager.unauthorized_handler
+def unauthorized():
+    return redirect('/login')
+
+@app.route('/logout', methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect('/')
 
 #==================================================================================================================================
 # HELPER FUNCTIONS
@@ -76,29 +134,79 @@ def index():
 def about():
 	return render_template('about.html')
 
+@app.route('/marketSearch', methods = ['POST', 'GET'])
+@login_required
+def marketSearch():
+    if request.method == 'POST':
+        ticker = request.form["ticker"]
+        return redirect(url_for('market', ticker=ticker))
+    return render_template('marketSearch.html')
+
 @app.route('/analyst')
 def analyst():
 	return render_template('analyst.html')
+
+@app.route('/farallon')
+def farallon():
+	return render_template('farallon.html')
 
 @app.route('/teams')
 def teams():
 	return render_template('teams.html')
 
 @app.route('/blog')
+@login_required
 def blog():
 	return render_template('blog.html')
 
-#NOT NEEDED FOR CIB WEBSITE
-@app.route('/profile')
-def profile():
-	return render_template('profile.html')
+@app.route("/market/<ticker>")
+@login_required
+def market(ticker):
+    fundamentalsDict = getFundamental(ticker)
+    valuesYear = OrderedDict()
+    today = datetime.today()
+    yearAgo = today - timedelta(days=255)
+    reader = DataReader(ticker,  'yahoo', yearAgo, today).as_matrix()
+    for row in reader:
+        valuesYear[row[0]] = row[5]
+    ticker=ticker.upper()
+    valuesMonth = OrderedDict(valuesYear.items()[-30:])
+    valuesWeek = OrderedDict(valuesYear.items()[-7:])
+    return render_template("market.html",
+										 fundamentalsDict=fundamentalsDict,
+										 valuesWeek=valuesWeek,
+										 valuesMonth=valuesMonth,
+										 valuesYear=valuesYear,
+										 ticker=ticker)
+@app.route('/apply', methods = ['POST', 'GET'])
+def apply():
+    if request.method == 'POST':
+        first = str(request.form['first'].encode('utf-8'))
+        last = str(request.form['last'].encode('utf-8'))
+        major = str(request.form['major'].encode('utf-8'))
+        gpa = str(request.form['gpa'].encode('utf-8'))
+        email = str(request.form['email'].encode('utf-8'))
+        try:
+            exception = request.form['meetings'].encode('utf-8')
+            meetings = "Yes"
+        except:
+            meetings = "No"
+        referral = str(request.form['referral'].encode('utf-8'))
+        concept = str(request.form['concept'].encode('utf-8'))
+        contribution = str(request.form['contribution'].encode('utf-8'))
+        pickle.dump([first, last, major, gpa, email, meetings, referral, concept, contribution], open("pickleApplications.txt","a"))
+        print first, last, major, gpa, email, meetings, referral, concept, contribution
+        with open('applications.csv', 'a') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([first, last, major, gpa,
+                            email,  meetings,
+                            referral, concept, contribution])
+        return render_template('congrats.html')
 
-#NOT NEEDED FOR CIB WEBSITE
-@app.route('/entrance')
-def entrance():
-	return render_template('entrance.html')
+    return render_template('apply.html')
 
 @app.route('/terminal')
+@login_required
 def terminal():
     dateObj = datetime.today()
     start_date = dateObj - timedelta(days=500)
@@ -107,13 +215,11 @@ def terminal():
 
 #FLASK ROUTE CALCULATE FUNCTION
 @app.route('/calculate/<query>', methods = ['POST', 'GET'])
+@login_required
 def calculate(query):
-	print query
 	query = query.replace("_s", " ").replace("_f", "/")
-	print query
 	queryType = ""
 	words = query.split(" ")
-	print words
 	for word in words:
 		if word == 'graph':
 			queryType = 'graph'
@@ -177,6 +283,32 @@ def average(x):
  return sum(x)/len(x)
 
 # HELPER FUNCTIONS
+def getFundamental(ticker):
+    dates = ['2016-4','2016-3','2016-2','2016-1', '2015-4', '2015-3', '2015-2', '2015-1']
+    resultsDict = OrderedDict()
+    for date in dates:
+        url = "http://www.streetinsider.com/stock_lookup.php?q=" + ticker + "&financials=income&yq=" + date
+    	text = requests.get(url,
+                        headers = {'User-Agent': 'Mozilla/5.0'},
+                        params={'type':'upcoming'}).text
+    	soup = BeautifulSoup(text)
+    	data = soup.findAll('td')
+    	#resultsDict[date] = { 'r&d' : data[8].children.next(),
+    						  #'eps' : data[24].children.next(),
+    						  #'netIncome' : data[21].children.next(),
+    						  #'netSales' : data[1].children.next() }
+        resultsDict = {'2015-1' : {'r&d' : 0.18, 'eps' : 0.18, 'netIncome' : 0.18, 'netSales' : 0.18},
+        '2015-2' : {'r&d' : 0.18, 'eps' : 0.18, 'netIncome' : 0.18, 'netSales' : 0.18},
+        '2015-3' : {'r&d' : 0.18, 'eps' : 0.18, 'netIncome' : 0.18, 'netSales' : 0.18},
+        '2015-4' : {'r&d' : 0.18, 'eps' : 0.18, 'netIncome' : 0.18, 'netSales' : 0.18},
+        '2016-1' : {'r&d' : 0.18, 'eps' : 0.18, 'netIncome' : 0.18, 'netSales' : 0.18},
+        '2016-2' : {'r&d' : 0.18, 'eps' : 0.18, 'netIncome' : 0.18, 'netSales' : 0.18},
+        '2016-3' : {'r&d' : 0.18, 'eps' : 0.18, 'netIncome' : 0.18, 'netSales' : 0.18},
+        '2016-4' : {'r&d' : 0.18, 'eps' : 0.18, 'netIncome' : 0.18, 'netSales' : 0.18}
+
+        }
+    return resultsDict
+
 def getClosingPrice(ticker, date):
 	dateObj = datetime.strptime(date, '%m/%d/%y')
 	reader = DataReader(ticker[1:],  'yahoo', dateObj, dateObj)
@@ -294,10 +426,11 @@ SEARCH_DATA[""] = ["Show me ", "Clear", "Print"]
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        with open('/home/CIBerkeley/CIBWebsite/credentials.txt','rb') as f:
-            siteCredentials = pickle.load(f)
-        if request.form['text'] in siteCredentials.keys():
-            if request.form['password'] == siteCredentials.get(request.form['text']):
+        user = User.query.filter(User.username == request.form['text']).first()
+        if user:
+            password = user.password
+            if request.form['password'] == password:
+                login_user(user)
                 return redirect(url_for('portal'))
         return render_template('login.html', clean = False)
     return render_template('login.html', clean = True)
@@ -307,25 +440,17 @@ def login():
 @app.route('/live', methods=['POST', 'GET'])
 def live():
     #PULLING PORTFOLIO DATA
-    CIBPortfolio = UpdateManager.pull_old_portfolios()[0].uncompile()
-    assetShares = CIBPortfolio.get_shares()
-
-    total = 0
-    for ticker, amount in assetShares.iteritems():
-        print ticker, "TICKER"
-        print amount, "AMOUNT"
-        if ticker != "Cash":
-            price = float(getQuotes(ticker)[0]['LastTradePrice'])
-            total += price * amount
-        else:
-            total += amount
-    total = round(total, 2)
-    print(total, "Total")
-    return jsonify(total)
+    #assetDict = {'ACM' : 55, 'ADBE' : 13, 'AMD': 87, 'DSKE': 119, 'FCG' : 82}
+    #cash = 1082
+    #todayValue = cash
+    #for asset, quantity in assetDict.iteritems():
+    #    todayValue += float(getQuotes(asset)[0]['LastTradePrice']) * quantity
+    return jsonify(109.09)
 
 
 
 @app.route('/portal', methods=['POST', 'GET'])
+@login_required
 def portal():
     #CHECK IF SIGNING INTO THE SETTINGS PAGE
     if request.method == 'POST':
@@ -336,33 +461,22 @@ def portal():
     CIBPortfolio = UpdateManager.pull_old_portfolios()[0].uncompile()
     tickers = CIBPortfolio.get_tickers()
     assetAllocation = CIBPortfolio.get_asset_allocation()
-    today = datetime.today() - timedelta(days=3) # REMEMBER THAT YOU CHANGED THIS ONE INTO A THREE
+    today = datetime.today()
     yesterday = today - timedelta(days=1)
     weekAgo = today - timedelta(days=7)
     monthAgo = today - timedelta(days=28)
+    threeMonthAgo = today - timedelta(days=86)
+    yearAgo = today - timedelta(days=365)
 
-    #PREPARE THE MAIN PERFORMANCE GRAPH (MOCKING THE DATA FOR NOW)
-    dailyValuesWeek, dailyValuesMonth, dailyValues3Month, dailyValuesYear = OrderedDict(), OrderedDict(), OrderedDict(), OrderedDict()
-    dailyValues = CIBPortfolio.get_values()
+    #PREPARE THE MAIN PERFORMANCE GRAPH
+    dailyValuesWeek = historical_values(weekAgo)
+    dailyValuesMonth = historical_values(monthAgo)
+    dailyValues3Month = historical_values(threeMonthAgo)
+    dailyValuesYear = historical_values(yearAgo)
 
-    i = 0
-    totalDays = len(dailyValues)
-    print(totalDays, "totalDays")
-    for day, value in dailyValues.iteritems():
-        print day, value
-        if i >= totalDays - 7:
-            print(day, "week")
-            dailyValuesWeek[day.strftime("%m-%d-%Y")] = value + CIBPortfolio.get_cash()
-        if i >= totalDays - 28:
-            print(day, "month")
-            dailyValuesMonth[day.strftime("%m-%d-%Y")] = value + CIBPortfolio.get_cash()
-        if i >= totalDays - 84:
-            print(day, "3month")
-            dailyValues3Month[day.strftime("%m-%d-%Y")] = value + CIBPortfolio.get_cash()
-        if i >= totalDays - 250:
-            print(day, "year")
-            dailyValuesYear[day.strftime("%m-%d-%Y")] = value + CIBPortfolio.get_cash()
-        i+=1
+    #PREPARE TODAY'S RETURNS AND VALUE
+    todayReturn = get_value() - get_historical_value(yesterday) / get_historical_value(yesterday)
+    todayValue = get_value()
 
     #PREPARE THE ASSET ALLOCATION PIE CHART
     pieChartData = OrderedDict()
@@ -374,23 +488,22 @@ def portal():
     for ticker in tickers:
         if ticker != "Cash":
             priceNow = float(getQuotes(ticker)[0]['LastTradePrice'])
-            priceYesterday = float(DataReader(ticker,'yahoo', yesterday)['Close'][0])
-            priceWeekAgo = float(DataReader(ticker,'yahoo', weekAgo)['Close'][0])
-            priceMonthAgo = float(DataReader(ticker,'yahoo', monthAgo)['Close'][0])
+            priceYesterday = get_historical_price(ticker, yesterday)
+            priceWeekAgo = get_historical_price(ticker, weekAgo)
+            priceMonthAgo = get_historical_price(ticker, monthAgo)
             dailyReturns[ticker] = getReturns(priceYesterday, priceNow)
             weeklyReturns[ticker] = getReturns(priceWeekAgo, priceNow)
             monthlyReturns[ticker] = getReturns(priceMonthAgo, priceNow)
 
     #PREPARE THE FUND METRICS TAB
-    ytd, mtd = CIBPortfolio.find_YTD_and_monthly_performances()
-    ytd = round(ytd, 2)
-    mtd = round(mtd, 2)
+    #ytd, mtd = CIBPortfolio.find_YTD_and_monthly_performances()
+    ytd = getReturns(get_historical_value(yearAgo), 9000)
     alpha = round(CIBPortfolio.get_alpha(), 2)
     beta = round(CIBPortfolio.get_beta(), 2)
     variance = round(CIBPortfolio.get_variance(), 2)
     sharpe = round(CIBPortfolio.get_sharpe_ratio(), 2)
     information = round(CIBPortfolio.get_information_ratio(), 2)
-    fundMetrics = {"ytd" : ytd, "alpha" : alpha, "beta" : beta, "variance" : variance, "sharpe" : sharpe, "information" : information}
+    fundMetrics = {"todayValue" : todayValue, "todayReturn" : todayReturn,"ytd" : ytd, "alpha" : alpha, "beta" : beta, "variance" : variance, "sharpe" : sharpe, "information" : information}
 
     #SHOW MOST RECENT EQUITY REPORTS
     equityReports = {'chipotle.pdf' : ["CHIPOTLE MEXICAN GRILL, INC.", "Chipotle Mexican Grill, Inc. is an American fast-food chain of restaurants specializing in Mexican food."],
@@ -404,6 +517,7 @@ def portal():
 
 
 @app.route('/risk', methods=['POST', 'GET'])
+@login_required
 def risk():
     #PULLING PORTFOLIO DATA
     CIBPortfolio = UpdateManager.pull_old_portfolios()[0].uncompile()
@@ -469,6 +583,7 @@ def risk():
 
 
 @app.route('/simulations', methods=['POST', 'GET'])
+@login_required
 def simulations():
     #PULLING PORTFOLIO DATA AND CALCULATING STATISTICS
     CIBPortfolio = UpdateManager.pull_old_portfolios()[0].uncompile()
@@ -511,6 +626,7 @@ def simulations():
 
 
 @app.route('/research')
+@login_required
 def research():
     equityReports = {'chipotle.pdf' : ["Chipotle Mexican Grill, Inc.", "Chipotle Mexican Grill, Inc. is an American fast-food chain of restaurants specializing in Mexican food."],
                     'gilead.pdf' : ["Gilead Sciences", "Gilead Sciences is a research based biopharmaceutical company that discovers, develops, and commercializes medicines primarily in the areas known as 'breakthrough therapies'."],
@@ -526,6 +642,7 @@ def research():
 
 
 @app.route('/IV', methods=['POST', 'GET'])
+@login_required
 def IV():
     labels = []
     if request.method == 'POST':
@@ -542,11 +659,6 @@ def IV():
         chartData = getVolData(['AAPL', 'AMZN'], ['iv30d', 'iv30d'])
 
     return render_template('IV.html', chartData = chartData, labels=labels)
-
-
-
-
-
 
 @app.route('/sentiment', methods=['POST', 'GET'])
 def sentiment():
@@ -578,14 +690,15 @@ def sentiment():
 
 
 @app.route('/performance')
+@login_required
 def performance():
-    CIBPortfolio = UpdateManager.pull_old_portfolios()[0].uncompile()
-    assetShares = CIBPortfolio.get_shares()
-    print(assetShares, "assetShares")
-    val = str(urllib2.urlopen("http://www.ciberkeley.com/live").read()).rstrip()
+    assetDict = {'ACM' : 55, 'ADBE' : 13, 'AMD': 87, 'DSKE': 119, 'FCG' : 82}
+    cash = 1082
+    todayValue = cash
+    for asset, quantity in assetDict.iteritems():
+        todayValue += float(getQuotes(asset)[0]['LastTradePrice']) * quantity
     start = datetime.now() - timedelta(hours=8)
-    print val, start
-    return render_template('performance.html', initialValue=val, startDate=start.strftime("%H:%M:%S"))
+    return render_template('performance.html', initialValue=todayValue, startDate=start.strftime("%H:%M:%S"))
 
 
 
@@ -593,6 +706,7 @@ def performance():
 
 
 @app.route('/sponsorship', methods=['POST', 'GET'])
+@login_required
 def sponsorship():
     if request.method == 'POST':
         FROM = "cibinvestorcontact@gmail.com"
@@ -618,16 +732,16 @@ def sponsorship():
 
 
 @app.route('/settings', methods=['POST', 'GET'])
+@login_required
 def settings():
     #PULLING PORTFOLIO DATA
     portfolioInfo = {}
     CIBPortfolio = UpdateManager.pull_old_portfolios()[0].uncompile()
-    inPrices = CIBPortfolio.get_in_prices()
-    shares = CIBPortfolio.get_shares()
-    cash = CIBPortfolio.get_cash()
-    del shares["Cash"]
-    for ticker in shares:
-        portfolioInfo[ticker] = [inPrices[ticker], shares[ticker], inPrices[ticker] * shares[ticker]]
+    inPrices = []
+    shares = []
+    cash = []
+    #for ticker in shares:
+        #portfolioInfo[ticker] = [inPrices[ticker], shares[ticker], inPrices[ticker] * shares[ticker]]
 
     tickers = CIBPortfolio.get_tickers()
     #assetAllocation = CIBPortfolio.get_current_asset_allocation()
@@ -671,5 +785,4 @@ def sentimentModel(articleID):
     article.download()
     article.parse()
     article.nlp()
-    print(article.keywords, "keywords")
     return jsonify(summary=article.summary, keywords=article.keywords, title=article.title)

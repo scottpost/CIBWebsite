@@ -73,7 +73,7 @@
                     "usePlotGradientColor": "1",
                     "legendBorderAlpha": "0",
                     "legendShadow": "0",
-                    "legendPosition":"RIGHT",
+                    "legendPosition":"DOWN",
                     "showAxisLines": "1",
                     "showAlternateHGridColor": "0",
                     "showAlternateVGridColor": "0",
@@ -224,71 +224,73 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 
 
      <!--=== Profile ===-->
-    <div class="container">
-        <div class = "row">
-            <div class = "col-md-9 col-md-offset-3">
-                <div style = "text-align:center;margin-top: 40px; margin-bottom:0px" class="headline"><h2>CIB Fund Risk Management</h2></div>
-                <div class = "row">
+    <div class="content-side-right">
+        <div style = "padding-top: 10px;" class="container content-sm">
+            <div style = "text-align:center;margin-top: 40px; margin-bottom:0px" class="headline"><h2>CIB Fund Risk Management</h2></div>
+            <div class = "row">
+                <div class = "col-md-6">
                     <h4 style = "margin-top:20px; margin-bottom: 0px; text-align:center">Efficiency Frontier</h4>
                     <div style = "margin-bottom: 20px" id="chart-container2"></div>
                 </div>
-                <div class = "row">
-                    <div class = "col-md-6">
-                        <h4 style = "text-align:center">Asset Correlation</h4>
-                        <div id="chart-container"></div>
-                        <h4 style = "margin-top: 25px; text-align:center">Multiple Factor Model</h4>
-                        <div class="row tag-box tag-box-v3 margin-bottom-40" style="margin-top:23px; margin-left:5px;text-align:center">
-                            <h5><strong>EXPOSURES</strong></h5>
-                            <div class = "row" style = "text-align: center">
-                                <div class = "col-md-4">
-                                    <div style = "margin-left:10px">
-                                        <button style = "margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Financial">XLF : {{ multifactorData['Financials'] }}</button>
-                                        <button style = "margin-top: 15px; margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Industrial">XLI : {{ multifactorData['Industrials'] }}</button>
-                                        <button style = "margin-top: 15px;" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Materials">XLB : {{ multifactorData['Materials'] }}</button>
-                                    </div>
+                <div class = "col-md-6">
+                    <h4 style = "text-align:center">Asset Correlation</h4>
+                    <div id="chart-container"></div>
+                </div>
+            </div>
+            <div class ="row">
+                <div class = "col-md-6">
+                    <h4 style = "margin-top: 25px; text-align:center">Multiple Factor Model</h4>
+                    <div class="row tag-box tag-box-v3 margin-bottom-40" style="margin-top:23px; margin-left:5px;text-align:center">
+                        <h5><strong>EXPOSURES</strong></h5>
+                        <div class = "row" style = "text-align: center">
+                            <div class = "col-md-4">
+                                <div style = "margin-left:10px">
+                                    <button style = "margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Financial">XLF : {{ multifactorData['Financials'] }}</button>
+                                    <button style = "margin-top: 15px; margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Industrial">XLI : {{ multifactorData['Industrials'] }}</button>
+                                    <button style = "margin-top: 15px;" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Materials">XLB : {{ multifactorData['Materials'] }}</button>
                                 </div>
-                                <div class = "col-md-4">
-                                    <div style = "margin-left:10px">
-                                        <button style = "margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Consumer Discretionary">XLY : {{ multifactorData['Consumer Discretionary'] }}</button>
-                                        <button style = "margin-top: 15px; margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Health Care">XLV : {{ multifactorData['Healthcare'] }}</button>
-                                        <button style = "margin-top: 15px;" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Utilities">XLU : {{ multifactorData['Utilities'] }}</button>
-                                    </div>
+                            </div>
+                            <div class = "col-md-4">
+                                <div style = "margin-left:10px">
+                                    <button style = "margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Consumer Discretionary">XLY : {{ multifactorData['Consumer Discretionary'] }}</button>
+                                    <button style = "margin-top: 15px; margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Health Care">XLV : {{ multifactorData['Healthcare'] }}</button>
+                                    <button style = "margin-top: 15px;" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="right" title="Utilities">XLU : {{ multifactorData['Utilities'] }}</button>
                                 </div>
-                                <div class = "col-md-4">
-                                    <div style = "margin-left:10px">
-                                        <button style = "margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="left" title="Consumer Staples">XLP : {{ multifactorData['Consumer Staples'] }}</button>
-                                        <button style = "margin-top: 15px; margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="left" title="Technology">XLK : {{ multifactorData['Technology'] }}</button>
-                                        <button style = "margin-top: 15px;" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="left" title="Energy">XLE : {{ multifactorData['Energy'] }}</button>
-                                    </div>
+                            </div>
+                            <div class = "col-md-4">
+                                <div style = "margin-left:10px">
+                                    <button style = "margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="left" title="Consumer Staples">XLP : {{ multifactorData['Consumer Staples'] }}</button>
+                                    <button style = "margin-top: 15px; margin-bottom: 5px" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="left" title="Technology">XLK : {{ multifactorData['Technology'] }}</button>
+                                    <button style = "margin-top: 15px;" type="button" class="tooltips btn-u btn-brd rounded btn-u-xs btn-u-default" data-toggle="tooltip" data-placement="left" title="Energy">XLE : {{ multifactorData['Energy'] }}</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class = "col-md-6">
-                        <h4 style = "text-align:center">Adjust Portfolio Weights</h4>
-                        <div class="row tag-box tag-box-v3 margin-bottom-40" style="margin-top:23px; margin-left:5px;text-align:center">
-                            <div class = "col-md-4">
-                                <h5><strong>ASSET</strong></h5>
-                                {% for ticker in weightDict %}
-                                    <h5 style = "margin-top:17px">{{ ticker }}</h5>
-                                {% endfor %}
-                            </div>
-                            <div class = "col-md-4">
-                                <h5><strong>WEIGHT</strong></h5>
-                                {% for ticker, value in weightDict.iteritems() %}
-                                    <h5 style = "margin-top:17px">{{ value }}</h5>
-                                {% endfor %}
-                            </div>
-                            <form action="{{ url_for('risk') }}" method="post">
-                                <div class = "col-md-4">
-                                    <h5><strong>NEW WEIGHT</strong></h5>
-                                    {% for ticker, weight in sampleWeights.iteritems() %}
-                                        <input style = "margin-bottom: 3px; margin-right:15%;margin-left:15%;width:70%" class="form-control" name="{{ ticker }}" placeholder = "{{ weight }}">
-                                    {% endfor %}
-                                </div>
-                                <button type="submit" style = "margin-top:15px"class="btn-u btn-brd btn-brd-hover btn-block btn-u-xs">ADJUST MODEL</button>
-                            </form>
+                </div>
+                <div class = "col-md-6">
+                    <h4 style = "text-align:center">Adjust Portfolio Weights</h4>
+                    <div class="row tag-box tag-box-v3 margin-bottom-40" style="margin-top:23px; margin-left:5px;text-align:center">
+                        <div class = "col-md-4">
+                            <h5><strong>ASSET</strong></h5>
+                            {% for ticker in weightDict %}
+                                <h5 style = "margin-top:17px">{{ ticker }}</h5>
+                            {% endfor %}
                         </div>
+                        <div class = "col-md-4">
+                            <h5><strong>WEIGHT</strong></h5>
+                            {% for ticker, value in weightDict.iteritems() %}
+                                <h5 style = "margin-top:17px">{{ value }}</h5>
+                            {% endfor %}
+                        </div>
+                        <form action="{{ url_for('risk') }}" method="post">
+                            <div class = "col-md-4">
+                                <h5><strong>NEW WEIGHT</strong></h5>
+                                {% for ticker, weight in sampleWeights.iteritems() %}
+                                    <input style = "margin-bottom: 3px; margin-right:15%;margin-left:15%;width:70%" class="form-control" name="{{ ticker }}" placeholder = "{{ weight }}">
+                                {% endfor %}
+                            </div>
+                            <button type="submit" style = "margin-top:15px"class="btn-u btn-brd btn-brd-hover btn-block btn-u-xs">ADJUST MODEL</button>
+                        </form>
                     </div>
                 </div>
             </div>

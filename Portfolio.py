@@ -1,14 +1,16 @@
 import pandas.io.data as web
 import pandas as pd
-import datetime
+from datetime import timedelta, datetime
 import numpy as np
 import math
-import pickle
+import csv
 import portfolioopt as pfopt
-import collections
+from collections import OrderedDict
+from googlefinance import getQuotes
+import json
+from yahoo_finance import Share
 
 #Supports long only for now.
-
 class Position:
     def __init__(self,symbol,returns,direction,in_price,n_shares,returns_sp):
         #format for dates: "YYYY-MM-dd"
@@ -45,24 +47,19 @@ class Portfolio:
         self.daily_values, self.values_dict = calculate_values(assets,start_date,total_amount)
 
     def get_asset_allocation(self):
-        weekno = datetime.datetime.today().weekday()
-        if weekno == 6:
-            date = datetime.datetime.today()-datetime.timedelta(2)
-        elif weekno == 5:
-            date = datetime.datetime.today() - datetime.timedelta(1)
-        else:
-            date = datetime.datetime.today() - datetime.timedelta(1)
-        current_prices = web.DataReader([asset.symbol for asset in self.positions], 'yahoo',date )['Open']
-        total_amount = self.cash
-        for asset in self.positions:
-            total_amount = total_amount + current_prices.iloc[0][asset.symbol] * asset.n_shares
+        total_amount = 1082 #FIX THIS
         symbols = self.symbols
-        symbols.append("Cash")
         weights = []
+        symbols.append("Cash")
         for asset in self.positions:
-            weights.append((current_prices.iloc[0][asset.symbol] * asset.n_shares)/total_amount)
-        weights.append(self.cash/total_amount)
-        return collections.OrderedDict(zip(symbols, weights))
+            print asset.symbol
+            total_amount += float(json.loads(json.dumps(getQuotes(asset.symbol)))[0]['LastTradePrice']) * asset.n_shares
+            print total_amount
+        for asset in self.positions:
+            weights.append((float(json.loads(json.dumps(getQuotes(asset.symbol)))[0]['LastTradePrice']) * asset.n_shares)/total_amount)
+        weights.append(1082/total_amount)
+        print OrderedDict(zip(symbols, weights))
+        return OrderedDict(zip(symbols, weights))
 
     def get_shares(self):
         shares = []
@@ -71,7 +68,7 @@ class Portfolio:
         sym = self.symbols
         sym.append("Cash")
         shares.append(self.cash)
-        return collections.OrderedDict(zip(sym, shares))
+        return OrderedDict(zip(sym, shares))
     def get_values(self):
         return self.values_dict
     def get_beta(self):
@@ -91,7 +88,6 @@ class Portfolio:
         return self.symbols
     def get_cash(self):
         return self.cash
-
     def yearly_expected_ret(self, array):
         roll = 1
         for el in array:
@@ -139,28 +135,6 @@ class Portfolio:
             shares.append(self.positions[i].n_shares)
         compilation = Portfolio_Compiled(self.symbols,shares,self.start_date,in_prices,directions,self.historical_dates,self.cash)
         return compilation
-    def find_YTD_and_monthly_performances(self):
-        with open('/home/CIBerkeley/CIBWebsite/portfolio.txt', 'rb') as f:
-            all_portfolios = pickle.load(f)
-        values = []
-        i = len(all_portfolios)-1
-        while len(values) < 252:
-            port = all_portfolios[i].uncompile()
-            values.extend(port.daily_values)
-            i = i - 1
-            if i < 0:
-                val_year_ago = self.initial_cash
-                val_today = values[0]
-                val_month_ago = values[-25]
-                mnth_perf = (val_today - val_month_ago) / val_month_ago
-                ytd_perf = (val_today - val_year_ago) / val_year_ago
-                return ytd_perf, mnth_perf
-        val_year_ago = values[-253]
-        val_month_ago = values[-25]
-        val_today = values[-1]
-        ytd_perf = (val_today - val_year_ago) / val_year_ago
-        mnth_perf = (val_today - val_month_ago) / val_month_ago
-        return ytd_perf, mnth_perf
 
     def get_alpha(self):
         df = pd.DataFrame.from_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
@@ -170,10 +144,12 @@ class Portfolio:
             Rm = Rm * (1 + rm)
         Rm = Rm - 1
         risk_free_rate = .007
-        returns_cib = self.find_YTD_and_monthly_performances()[0]
+        yearAgo = datetime.today() - timedelta(days=365)
+        returns_cib = (9000 - get_historical_value(yearAgo)) / get_historical_value(yearAgo)
         beta = self.get_beta()
         alpha = returns_cib - risk_free_rate - (Rm - risk_free_rate) * beta
         return alpha
+
     #backtested for now. will link to actual account history after a while of trading.
     def get_information_ratio(self):
         df = pd.DataFrame.from_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
@@ -184,6 +160,7 @@ class Portfolio:
         sd_diff = np.std(returns_port-returns_market)
         exp_diff = np.mean(returns_port)-np.mean(returns_market)
         return exp_diff/sd_diff
+
     def get_exposures(self,weights):
         returns_factors = pd.DataFrame.from_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
         returns_factors = 100 * returns_factors.loc[:,["XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLB", "XLK", "XLU"]]
@@ -200,8 +177,66 @@ class Portfolio:
         beta = list(beta[0:-1])
         factors = ["Consumer Discretionary","Consumer Staples","Energy","Financials","Healthcare","Industrials","Materials",\
                    "Technology","Utilities"]
-        return collections.OrderedDict(zip(factors, beta))
+        return OrderedDict(zip(factors, beta))
 
+def get_historical_price(ticker, date):
+    prev = date - timedelta(days=1)
+    prevStr = prev.strftime("%Y-%m-%d")
+    dateStr = date.strftime("%Y-%m-%d")
+    return float(Share(ticker).get_historical(prevStr, dateStr)[0]['Adj_Close'])
+
+def get_historical_value(query_date):
+    assetValDict = OrderedDict()
+    queryStr = query_date.strftime("%m/%d/%y")
+    with open('/home/CIBerkeley/CIBWebsite/PortfolioValue.csv') as csvfile:
+        reader = csv.reader(csvfile)
+        reader.next()
+        for row in reader:
+            if row:
+                date = row[0]
+                day_value = float(row[1]) + float(row[2])
+                assetValDict[date] = day_value
+    if queryStr in assetValDict:
+        return assetValDict[queryStr]
+    else:
+        return assetValDict.values()[0]
+
+def get_value():
+    assetValDict = OrderedDict()
+    with open('/home/CIBerkeley/CIBWebsite/PortfolioValue.csv') as csvfile:
+        reader = csv.reader(csvfile)
+        reader.next()
+        for row in reader:
+            if row:
+                date = row[0]
+                day_value = float(row[1]) + float(row[2])
+                assetValDict[date] = day_value
+    return assetValDict.values()[-1]
+
+def historical_values(query_start_date):
+    assetValDict = OrderedDict()
+    with open('/home/CIBerkeley/CIBWebsite/PortfolioValue.csv') as csvfile:
+        reader = csv.reader(csvfile)
+        reader.next()
+        for row in reader:
+            if row:
+                print row
+                date = row[0]
+                day_value = float(row[1]) + float(row[2])
+                assetValDict[date] = day_value
+
+	portfolio_start_date = datetime.strptime(assetValDict.keys()[0], "%m/%d/%y")
+	portfolio_start_value = assetValDict.values()[0]
+	portfolioValDict = OrderedDict()
+	d = query_start_date
+	today = datetime.today() - timedelta(hours=7) #COULD BE SOURCE OF ERROR AROUND DAYLIGHT SAVINGS
+	while d <= today:
+		if d < portfolio_start_date:
+			portfolioValDict[d.strftime("%m/%d/%y")] = portfolio_start_value
+		else:
+			portfolioValDict[d.strftime("%m/%d/%y")] = assetValDict[d.strftime("%m/%d/%y")]
+		d += timedelta(days=1)
+	return portfolioValDict
 
 def calculate_values(assets,start_date,first_amount):
     tickers = [asset.symbol for asset in assets]
@@ -213,7 +248,7 @@ def calculate_values(assets,start_date,first_amount):
     for i in range(len(prices)):
         if i != 0:
            values.append(np.dot(prices.iloc[[i]], n_shares)[0])
-    return values, collections.OrderedDict(zip(dates, values))
+    return values, OrderedDict(zip(dates, values))
 
 class Portfolio_Compiled:
     def __init__(self,tickers,shares,start_date,in_prices,directions,all_dates,money):
