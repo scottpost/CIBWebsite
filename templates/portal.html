@@ -442,25 +442,27 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
     {{ modals() }}
 
      <!--=== Profile ===-->
-    <div class="content-side-right">
-        <div style = "padding-top: 10px;" class="container content-sm">
+     <div class="content-side-right" style="padding:0px;">
+        <div class="row tag-box tag-box-v3" style="padding-bottom:0px;margin:0px;border-left:0px">
             <!--Service Block v3-->
-            <div class="row margin-bottom-10">
-                <div id="chart-containerX"></div>
-                <div class="col-md-12" style = "display: flex;">
-                    <div style = "flex-grow: 1;" id="monthChart" class="tabgraphs active">
-                        <div style = "margin-top:10px" id="chart-container1a"></div>
-                    </div>
-                    <div id="weekChart" class="tabgraphs" style = "flex-grow: 1; display:none">
-                        <div style = "margin-top:10px" id="chart-container1b"></div>
-                    </div>
-                    <div id="3MonthChart" class="tabgraphs" style = "flex-grow: 1; display:none">
-                        <div style = "margin-top:10px" id="chart-container1c"></div>
-                    </div>
-                    <div id="yearChart" class="tabgraphs" style = "flex-grow: 1; display:none">
-                        <div style = "margin-top:10px" id="chart-container1d"></div>
-                    </div>
-                    <div class="tag-box tag-box-v3" style = "height: 189px; padding: 5px; margin-top:50px;">
+            <div id="chart-containerX"></div>
+            <div class="col-md-12" style = "display: flex;">
+                <div style = "flex-grow: 1;" id="monthChart" class="tabgraphs active">
+                    <div style = "margin-top:10px" id="chart-container1a"></div>
+                </div>
+                <div id="weekChart" class="tabgraphs" style = "flex-grow: 1; display:none">
+                    <div style = "margin-top:10px" id="chart-container1b"></div>
+                </div>
+                <div id="3MonthChart" class="tabgraphs" style = "flex-grow: 1; display:none">
+                    <div style = "margin-top:10px" id="chart-container1c"></div>
+                </div>
+                <div id="yearChart" class="tabgraphs" style = "flex-grow: 1; display:none">
+                    <div style = "margin-top:10px" id="chart-container1d"></div>
+                </div>
+                <div>
+                    <h2><strong>$9021.21</strong></h2>
+                    <h2><strong>1.32%&nbsp;</strong><i style = "text-align:right;color:#72c02c" class="fa fa-fw fa-arrow-up"></i></h2>
+                    <div class="tag-box tag-box-v3" style = "height: 189px; padding: 5px; margin-top:25px;">
                         <h5 style = "margin-bottom:0px; text-align:center"><i class="fa fa-fw fa-clock-o"></i><strong>ADJUST</strong></h5>
                         <hr style ="margin-top:7px; margin-bottom: 2px">
                         <div style = "margin:0px; padding:0px" class = "btn-group-vertical">
@@ -471,96 +473,62 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                         </div>
                     </div>
                 </div>
-            </div><!--/end row-->
-            <div class="row">
-                <div class ="col-md-4">
-                    <div class="row tag-box tag-box-v3" style = "margin-top:10px; margin-left: 10px">
-                        <h4 style = "margin: 0px; text-align:center;">Asset Performance</h4>
-                        <div style = "margin-bottom:20px" class = "wrapper text-center">
-                            <div class="btn-group " role="group">
-                                <h6 id = "btn1" class = "btn" style="background-color: #72c02c; color: white;" onclick="openTab(event, 'Today', 'btn1')">TODAY</h6>
-                                <h6 id = "btn2" class = "btn" onclick="openTab(event, 'Week', 'btn2')">1 WEEK</h6>
-                                <h6 id = "btn3" class = "btn" onclick="openTab(event, 'Month', 'btn3')">1 MONTH</h6>
-                            </div>
-                        </div>
-                        <div id="Today" class="tabcontent active">
-                            {% for key, value in daily.iteritems() %}
-                                {% if (value|float() >= 0) %}
-                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:#72c02c" class="fa fa-fw fa-arrow-up"></i></span></h5>
-                                {% else %}
-                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:red" class="fa fa-fw fa-arrow-down"></i></span></h5>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                        <div id="Week" class="tabcontent" style = "display:none">
-                            {% for key, value in weekly.iteritems() %}
-                                {% if (value|float() >= 0) %}
-                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:#72c02c" class="fa fa-fw fa-arrow-up"></i></span></h5>
-                                {% else %}
-                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:red" class="fa fa-fw fa-arrow-down"></i></span></h5>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                        <div id="Month" class="tabcontent" style = "display:none">
-                            {% for key, value in monthly.iteritems() %}
-                                {% if (value|float() >= 0) %}
-                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:#72c02c" class="fa fa-fw fa-arrow-up"></i></span></h5>
-                                {% else %}
-                                    <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:red" class="fa fa-fw fa-arrow-down"></i></span></h5>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-md-4 tag-box tag-box-v3" style="border-left:0px;margin:0px;border-bottom:0px;padding-bottom:0px">
+                <h4 style = "margin: 0px; text-align:center;">Asset Performance</h4>
+                <div style = "margin-bottom:20px" class = "wrapper text-center">
+                    <div class="btn-group " role="group">
+                        <h6 id = "btn1" class = "btn" style="background-color: #72c02c; color: white;" onclick="openTab(event, 'Today', 'btn1')">TODAY</h6>
+                        <h6 id = "btn2" class = "btn" onclick="openTab(event, 'Week', 'btn2')">WEEK</h6>
+                        <h6 id = "btn3" class = "btn" onclick="openTab(event, 'Month', 'btn3')">MONTH</h6>
                     </div>
                 </div>
-                <div class ="col-md-3">
-                    <div class="row tag-box tag-box-v3" style = "margin-top:10px; margin-left: 10px;">
-                        <h4 style = "margin-top: 0px; margin-bottom: 5px; text-align:center;">Fund Metrics</h4>
-                        <h5>YTD: <span style = "float:right">{{ metrics['ytd'] }}%</span></h5>
-                        <h5>ALPHA: <span style = "float:right">{{ metrics['alpha'] }}</span></h5>
-                        <h5>BETA: <span style = "float:right">{{ metrics['beta'] }}</span></h5>
-                        <h5>VARIANCE: <span style = "float:right">{{ metrics['variance'] }}</span></h5>
-                        <h5>SHARPE: <span style = "float:right">{{ metrics['sharpe'] }}</span></h5>
-                        <h5>INFORMATION: <span style = "float:right">{{ metrics['information'] }}</span></h5>
-                    </div>
+                <div id="Today" class="tabcontent active">
+                    {% for key, value in daily.iteritems() %}
+                        {% if (value|float() >= 0) %}
+                            <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:#72c02c" class="fa fa-fw fa-arrow-up"></i></span></h5>
+                        {% else %}
+                            <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:red" class="fa fa-fw fa-arrow-down"></i></span></h5>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                <div class="col-md-5">
-                    <h4 style = "position: relative; z-index: 2; text-align:center;margin-bottom:0px;margin-top:34px">Asset Allocation</h4>
-                    <div style = "position: relative; bottom: 40px; margin-bottom:0px;" id="chart-container2"></div>
+                <div id="Week" class="tabcontent" style = "display:none">
+                    {% for key, value in weekly.iteritems() %}
+                        {% if (value|float() >= 0) %}
+                            <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:#72c02c" class="fa fa-fw fa-arrow-up"></i></span></h5>
+                        {% else %}
+                            <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:red" class="fa fa-fw fa-arrow-down"></i></span></h5>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            </div><!--/end row-->
-            <!--End Service Block v3-->
-
-            <hr>
-
-            <div class = "row">
-                <!--Table Search v1-->
-                <div class="table-search-v1">
-                    <div style = "margin-left:20px; margin-right: 20px;" class="table-responsive">
-                        <h3 style="text-align:center;margin-bottom:20px"><strong>Recent CIB Equity Reports</strong></h3>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th style = "text-align: center">Company</th>
-                                    <th style = "text-align: center" class="hidden-sm">Synopsis</th>
-                                    <th style = "text-align: center">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for key, info in equityReports.iteritems() %}
-                                    <tr>
-                                        <td style = "vertical-align: middle">
-                                            <p style = "color:#72c02c; text-align:center"><strong>{{ info[0] }}</strong></p>
-                                        </td>
-                                        <td style = "vertical-align: middle"><p style = "text-align:center">{{ info[1] }}</p></td>
-                                        <td><a href = "{{ url_for('static', filename="") }}/{{ key }}" target="_blank" class="btn-u btn-brd btn-brd-hover btn-block btn-u-xs"><i class="fa fa-eye margin-right-5"></i>View</a>
-                                        <a href="{{ url_for('static', filename="") }}/{{ key }}" class="btn-u btn-brd btn-block btn-brd-hover btn-u-xs" download="{{ key }}"><i class="fa fa-level-down margin-right-5"></i>Download</a></td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                <div id="Month" class="tabcontent" style = "display:none">
+                    {% for key, value in monthly.iteritems() %}
+                        {% if (value|float() >= 0) %}
+                            <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:#72c02c" class="fa fa-fw fa-arrow-up"></i></span></h5>
+                        {% else %}
+                            <h5>{{ key }}: <span style = "float:right">{{ value }}%<i style = "color:red" class="fa fa-fw fa-arrow-down"></i></span></h5>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
+            <div class="col-md-3 tag-box tag-box-v3" style="margin:0px;border-bottom:0px">
+                <div style = "margin-left: 10px;">
+                    <h4 style = "margin-top: 0px; margin-bottom: 5px; text-align:center;">Fund Metrics</h4>
+                    <h5>YTD: <span style = "float:right">{{ metrics['ytd'] }}%</span></h5>
+                    <h5>ALPHA: <span style = "float:right">{{ metrics['alpha'] }}</span></h5>
+                    <h5>BETA: <span style = "float:right">{{ metrics['beta'] }}</span></h5>
+                    <h5>VARIANCE: <span style = "float:right">{{ metrics['variance'] }}</span></h5>
+                    <h5>SHARPE: <span style = "float:right">{{ metrics['sharpe'] }}</span></h5>
+                    <h5>INFORMATION: <span style = "float:right">{{ metrics['information'] }}</span></h5>
+                </div>
+            </div>
+            <div class="col-md-5 tag-box tag-box-v3" style="padding-bottom:0px; margin:0px;border-bottom:0px">
+                <h4 style = "margin-top: 0px; position: relative; z-index: 2; text-align:center;margin-bottom:0px;">Asset Allocation</h4>
+                <div style = "position: relative; bottom: 40px; margin-bottom:0px;" id="chart-container2"></div>
+            </div>
+            <!--End Service Block v3-->
         </div>
     </div><!--/container-->
 </div>

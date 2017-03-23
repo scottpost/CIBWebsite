@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/animate.css") }}">
     <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/line-icons/line-icons.css") }}">
     <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/font-awesome/css/font-awesome.min.css") }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename="assets/css/pages/shortcode_timeline2.css") }}">
+
+
     <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/pace/pace-flash.css") }}">
     <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/owl-carousel/owl.carousel.css") }}">
     <link rel="stylesheet" href="{{ url_for('static', filename="assets/plugins/cube-portfolio/cubeportfolio/css/cubeportfolio.min.css") }}">
@@ -80,6 +83,9 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <a href="{{ url_for("analyst") }}">Analyst Program</a>
                         </li>
                         <li class="page-scroll">
+                            <a href="{{ url_for("farallon") }}">Case Competition</a>
+                        </li>
+                        <li class="page-scroll">
                             <a style = "padding: 6px;margin-top: 10px" class = "btn btn-u btn-brd btn-brd-hover" href="{{ url_for("login") }}">Investors</a>
                         </li>
                     </ul>
@@ -99,6 +105,59 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
               <br>
               <h1 style = "margin-top: 50px; text-align:center">ANALYST PROGRAM</h1>
               <p> At CIB, we aim to explore all dimensions of the financial world. We have chosen Portfolio Management, Equity Research and Software Development to be the three pillars of our organization, and naturally assigned teams with research projects falling into one of these three divisions. </p>
+              <!-- <a href="{{ url_for('apply') }}" style = "margin-top:12px;margin-bottom:50px; height:100%" class="btn-u btn-brd btn-block btn-brd-hover btn-u-xs"><h2>
+                    <strong>APPLY SPRING 2017</strong>
+                </h2></a>
+                <div class="col-md-8 col-md-offset-2">
+                    <ul class="timeline-v2" style="margin-bottom:30px">
+                        <li class="equal-height-columns">
+                            <i class="rounded-x hidden-xs"></i>
+                            <div style="margin-bottom:30px" class=" equal-height-column">
+                                <h3>RECRUITMENT PROCESS</h3>
+                            </div>
+                        </li>
+                        <li class="equal-height-columns">
+                            <div class="cbp_tmtime equal-height-column"><span>January 24th</span> <span>Tuesday</span></div>
+                            <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                            <div class="cbp_tmlabel equal-height-column">
+                                <h2>Datathon Infosession</h2>
+                                <h4>Location: <strong>Soda 405</strong></h4>
+                                <h4>Time: <strong>6-7pm</strong></h4>
+                            </div>
+                        </li>
+                        <li class="equal-height-columns">
+                            <div class="cbp_tmtime equal-height-column"><span>January 26th</span> <span>Thursday</span></div>
+                            <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                            <div class="cbp_tmlabel equal-height-column">
+                                <h2>CIB Infosession</h2>
+                                <h4>Location: <strong>Barrows 126</strong></h4>
+                                <h4>Time: <strong>9-10pm</strong></h4>
+                            </div>
+                        </li>
+                        <li class="equal-height-columns">
+                            <div class="cbp_tmtime equal-height-column"><span>January 28th</span> <span>Saturday</span></div>
+                            <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                            <div class="cbp_tmlabel equal-height-column">
+                                <h2>Meet and Greet</h2>
+                                <h4>Location: <strong>TBD</strong></h4>
+                                <h4>Time: <strong>TBD</strong></h4>
+                            </div>
+                        </li>
+                        <li class="equal-height-columns">
+                            <div class="cbp_tmtime equal-height-column"><span>January 29th</span> <span>Sunday</span></div>
+                            <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                            <div class="cbp_tmlabel equal-height-column">
+                                <h2>Interviews</h2>
+                                <h4>Location: <strong>Kresge Engineering Library</strong></h4>
+                                <h4>Time: <strong>TBD</strong></h4>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Content
+            </div>
+        </div><!--/container-->
+        <!--=== End Content Part ===-->
                 <div class="col-md-4 service-inner equal-height-column">
                     <i class="fa fa-2x fa-desktop" aria-hidden="true"></i>
                     <span>Software Development</span>
@@ -133,7 +192,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
       <hr>
             <h2 style = "text-align:center">Meetings</h2>
             <p style = "text-align:center">
-                Club members will meet weekly for one and a half hour on Thursday evenings (6:30-8:00PM) to discuss up-to-date market events and learn about different finance related topics including but not limited to: equity, fixed income, derivatives, portfolio theory, FinTech, etc. We will also be hosting multiple guest speakers throughout the course of the semester.
+                Club members will meet weekly for one and a half hour on Tuesday evenings (7:00-8:30PM) to discuss up-to-date market events and learn about different finance related topics including but not limited to: equity, fixed income, derivatives, portfolio theory, FinTech, etc. We will also be hosting multiple guest speakers throughout the course of the semester.
 
                 We will also be hosting educational workshops on weekends to educate analysts on complementary subjects and career workshops to ensure all members are ready for the upcoming recruitment season.
 

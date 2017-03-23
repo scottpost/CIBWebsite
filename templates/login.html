@@ -76,6 +76,9 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <a href="{{ url_for("analyst") }}">Analyst Program</a>
                         </li>
                         <li class="page-scroll">
+                            <a href="{{ url_for("farallon") }}">Case Competition</a>
+                        </li>
+                        <li class="page-scroll">
                             <a style = "padding: 6px;margin-top: 10px" class = "btn btn-u btn-brd btn-brd-hover" href="{{ url_for("login") }}">Investors</a>
                         </li>
                     </ul>
@@ -88,8 +91,10 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
     <!--=== End Header ===-->
     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
         <form action="{{ url_for('login') }}" method="post" style = "margin-top: 33%">
-              <h1 style = "text-align:center">CIB INVESTOR PORTAL</h1>
-              <hr>
+              <div style="margin-bottom:50px" class="headline-center-v2 headline-center-v2-dark margin-bottom-10">
+                        <h1 style="margin-top:20px"><strong>CIB</strong> Investor Portal</h1>
+                        <span style="margin-bottom:0px" class="bordered-icon"><i class="fa fa-th-large"></i></span>
+                    </div>
               {% if clean %}
                 <h3 style = "text-align:center">Please enter your credentials:</h3>
               {% else %}
@@ -111,6 +116,44 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 </div>
             </div>
         </form>
+    </div>
+        <!--Service Block v3-->
+        <div style = "margin-bottom:0px;" class="row">
+            <div style = "margin-bottom:0px; margin-top:75px; margin-left:50px; margin-right:150px" class = "col-md-11">
+                <div style = "text-align:center; margin-top: 40px" class="headline"><h2>CIB Fund Sponsorship</h2></div>
+                <h5>As one of UC Berkeley's most selective finance clubs (w/ an acceptance rate of 11%), we have been able to harbor some of the best talent that our university has to offer. We've collaborated on portfolio management and software projects with funds such as Blackrock, Farallon Capital, and Snow Ventures and our alumni are working at many top bulge bracket banks and asset management firms.</h5>
+                <h5>Currently, we are seeking to raise a fund to begin making investments as a part of our analyst education program. We are flexible to any capacity and all contributions will make a big difference. Through a potential collaboration with your fund, we can offer our talented analysts for pro-bono projects and also our regularly-generated equity research, market analysis papers, and software tools.<br> <strong>Please contact us below to discuss further.</strong></h5>
+                <hr>
+    			<form style = "margin-bottom:0px" action="{{ url_for('sponsorship') }}" method="post" id="sky-form3" class="sky-form contact-style">
+                    <fieldset style = "margin-bottom:0px"  class="no-padding">
+                        <label>Email <span class="color-red">*</span></label>
+                        <div class="row sky-space-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <div>
+                                    <input type="text" name="email" id="email" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <label>Message <span class="color-red">*</span></label>
+                        <div class="row sky-space-20">
+                            <div class="col-md-11 col-md-offset-0">
+                                <div>
+                                    <textarea rows="5" name="message" id="message" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <p><button type="submit" class="btn-u">Send Message</button></p>
+                    </fieldset>
+
+                    <div class="message">
+                        <i class="rounded-x fa fa-check"></i>
+                        <p>Your message was successfully sent!</p>
+                    </div>
+                </form>
+            </div><!--/col-md-9-->
+        </div>
     </div>
 
     <!-- JS Global Compulsory -->

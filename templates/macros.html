@@ -171,13 +171,17 @@
 
                     <!-- Research -->
                     <li class="">
-                        <a href="{{ url_for("research") }}">
+                        <a href="javascript:void(0);" class="dropdown-toggle">
                             {% if highlighted == "Research" %}
                                 <strong>Research</strong>
                             {% else %}
                                 Research
                             {% endif %}
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for("marketSearch") }}">Market data</a></li>
+                            <li><a href="{{ url_for("research") }}">Equity reports</a></li>
+                        </ul>
                     </li>
                     <!-- End Research -->
 
@@ -218,7 +222,7 @@
                     <!-- End Sponsorship -->
 
                 </ul>
-                <a style = "margin-bottom:20px" href="{{ url_for("about") }}" class = "btn btn-u btn-brd btn-block btn-brd-hover">SIGN OUT</a>
+                <a style = "margin-bottom:20px" href="{{ url_for("logout") }}" class = "btn btn-u btn-brd btn-block btn-brd-hover">SIGN OUT</a>
 
                 <div style="position: static">
                     </ul><ul class="list-inline header-socials">
