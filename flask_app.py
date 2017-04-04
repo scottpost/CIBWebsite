@@ -452,7 +452,7 @@ def live():
 
 
 @app.route('/portal', methods=['POST', 'GET'])
-@login_required
+#@login_required
 def portal():
     #CHECK IF SIGNING INTO THE SETTINGS PAGE
     if request.method == 'POST':

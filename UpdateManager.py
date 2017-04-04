@@ -78,6 +78,11 @@ def direction(w):
 
 #use this to plot the historical performance of the fund, for whatever asset allocation
 def pull_old_portfolios():
-    with open('./portfolio.txt','rb') as f:
-        var = pickle.load(f)
-    return var
+    var = None
+    try:
+        with open('./portfolio.txt','r') as f:
+            var = pickle.load(f)
+        return var
+    except IOError as e:
+        msg = str(e)
+        print(msg)
