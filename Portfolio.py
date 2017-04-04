@@ -1,10 +1,10 @@
-import pandas.io.data as web
+import pandas_datareader as web
 import pandas as pd
 from datetime import timedelta, datetime
 import numpy as np
 import math
 import csv
-import portfolioopt as pfopt
+#import portfolioopt as pfopt #Missing file!!!
 from collections import OrderedDict
 from googlefinance import getQuotes
 import json
@@ -95,35 +95,37 @@ class Portfolio:
         return (roll - 1)*100
     #ordered dictionary of forecast for expected returns: key = ticker, value = weight (out of 1)
     def get_markowitz_analysis(self,forecasts=0):
-        start_index = len(self.historical_returns) - 253
-        end_index = len(self.historical_returns) - 1
-        return_grid = 100 * self.returns_grid[:, start_index:end_index].T
-        returns = pd.DataFrame(return_grid)
-        avgs = [self.yearly_expected_ret(returns[col]) for col in returns.columns]
-        cov_mat = pd.DataFrame(np.cov(return_grid.T))
-        if forecasts == 0:
-            avg_rets = pd.Series(avgs, index=returns.columns)
-        else:
-            avg_rets = pd.Series(forecasts.values(), index=returns.columns)
-        w_opt = pfopt.tangency_portfolio(cov_mat, avg_rets, allow_short=False)
-        ret_opt = (w_opt * avg_rets).sum()
-        std_opt = (w_opt * returns).sum(1).std()
+        # start_index = len(self.historical_returns) - 253
+        # end_index = len(self.historical_returns) - 1
+        # return_grid = 100 * self.returns_grid[:, start_index:end_index].T
+        # returns = pd.DataFrame(return_grid)
+        # avgs = [self.yearly_expected_ret(returns[col]) for col in returns.columns]
+        # cov_mat = pd.DataFrame(np.cov(return_grid.T))
+        # if forecasts == 0:
+        #     avg_rets = pd.Series(avgs, index=returns.columns)
+        # else:
+        #     avg_rets = pd.Series(forecasts.values(), index=returns.columns)
+        # w_opt = pfopt.tangency_portfolio(cov_mat, avg_rets, allow_short=False)
+        # ret_opt = (w_opt * avg_rets).sum()
+        # std_opt = (w_opt * returns).sum(1).std()
 
-        smallest_target = max(min(avg_rets), 0)
-        biggest_target = max(avg_rets)
-        target_returns = np.arange(smallest_target, biggest_target, .0005)
-        X = []
-        Y = []
-        for yi in target_returns:
-            w = pfopt.markowitz_portfolio(cov_mat, avg_rets, yi)
-            ret = (w * avg_rets).sum()
-            std = (w * returns).sum(1).std()
-            Y.append(ret)
-            X.append(std)
-        #coefs = np.polyfit(Y,X,2) #highest power first
-        curve = {"risks":X,"returns":Y,"min_return":smallest_target,"max_return":biggest_target}
-        tangency_port = {'weights': dict(w_opt),'X':std_opt,'Y':ret_opt}
-        return {"tangency_port":tangency_port,"curve":curve}
+        # smallest_target = max(min(avg_rets), 0)
+        # biggest_target = max(avg_rets)
+        # target_returns = np.arange(smallest_target, biggest_target, .0005)
+        # X = []
+        # Y = []
+        # for yi in target_returns:
+        #     w = pfopt.markowitz_portfolio(cov_mat, avg_rets, yi)
+        #     ret = (w * avg_rets).sum()
+        #     std = (w * returns).sum(1).std()
+        #     Y.append(ret)
+        #     X.append(std)
+        # #coefs = np.polyfit(Y,X,2) #highest power first
+        # curve = {"risks":X,"returns":Y,"min_return":smallest_target,"max_return":biggest_target}
+        # tangency_port = {'weights': dict(w_opt),'X':std_opt,'Y':ret_opt}
+        # return {"tangency_port":tangency_port,"curve":curve}
+        print("get_markowitz_analysis(..) is not working because portfolioopt could not be found")
+        return None
 
     def compile_portfolio(self):
         in_prices = []
@@ -137,7 +139,7 @@ class Portfolio:
         return compilation
 
     def get_alpha(self):
-        df = pd.DataFrame.from_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
+        df = pd.DataFrame.from_csv("./returns_data.csv")
         prices_market = list(df['^GSPC'])[len(df)-252:len(df)]
         Rm = 1
         for rm in prices_market:
@@ -152,7 +154,7 @@ class Portfolio:
 
     #backtested for now. will link to actual account history after a while of trading.
     def get_information_ratio(self):
-        df = pd.DataFrame.from_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
+        df = pd.DataFrame.from_csv("./returns_data.csv")
         returns_market = np.array(df.iloc[-254:-1]["^GSPC"]*100)
         returns_port = self.historical_returns[-254:-1]*100
         print(np.mean(returns_port))
@@ -162,7 +164,7 @@ class Portfolio:
         return exp_diff/sd_diff
 
     def get_exposures(self,weights):
-        returns_factors = pd.DataFrame.from_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
+        returns_factors = pd.DataFrame.from_csv("./returns_data.csv")
         returns_factors = 100 * returns_factors.loc[:,["XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLB", "XLK", "XLU"]]
         returns_factors["Intercept"] = np.ones(len(returns_factors))
         A = np.array(returns_factors)
@@ -188,7 +190,7 @@ def get_historical_price(ticker, date):
 def get_historical_value(query_date):
     assetValDict = OrderedDict()
     queryStr = query_date.strftime("%m/%d/%y")
-    with open('/home/CIBerkeley/CIBWebsite/PortfolioValue.csv') as csvfile:
+    with open('./PortfolioValue.csv') as csvfile:
         reader = csv.reader(csvfile)
         reader.next()
         for row in reader:
@@ -203,7 +205,7 @@ def get_historical_value(query_date):
 
 def get_value():
     assetValDict = OrderedDict()
-    with open('/home/CIBerkeley/CIBWebsite/PortfolioValue.csv') as csvfile:
+    with open('./PortfolioValue.csv') as csvfile:
         reader = csv.reader(csvfile)
         reader.next()
         for row in reader:
@@ -215,7 +217,7 @@ def get_value():
 
 def historical_values(query_start_date):
     assetValDict = OrderedDict()
-    with open('/home/CIBerkeley/CIBWebsite/PortfolioValue.csv') as csvfile:
+    with open('./PortfolioValue.csv') as csvfile:
         reader = csv.reader(csvfile)
         reader.next()
         for row in reader:
@@ -269,7 +271,7 @@ class Portfolio_Compiled:
         return portfolio
 
     def uncompile(self):
-        df = pd.DataFrame.from_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
+        df = pd.DataFrame.from_csv("./returns_data.csv")
         positions = []
         for i in range(len(self.tickers)):
                 pos = Position(self.tickers[i],df[self.tickers[i]],self.directions[i],self.in_prices[i],self.shares[i],df['^GSPC'])

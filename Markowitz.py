@@ -1,6 +1,6 @@
 import numpy as np
 import sys
-sys.path.append('/usr/local/lib/python2.7/dist-packages')
+sys.path.append('/usr/local/lib/python2.7/dist-packages') #???
 
 import cvxopt as opt
 from cvxopt import blas, solvers

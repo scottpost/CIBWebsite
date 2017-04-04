@@ -9,7 +9,7 @@ import csv
 import pickle
 import requests
 from bs4 import BeautifulSoup
-from pandas.io.data import DataReader
+from pandas_datareader.data import DataReader
 import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime, timedelta
@@ -20,7 +20,7 @@ import CIBDatabase
 from Portfolio import historical_values, get_historical_price, get_historical_value, get_value
 from collections import OrderedDict
 from dateutil import rrule
-from optionchain import OptionChain
+#from optionchain import OptionChain
 from yahoo_finance import Share
 import math
 from flask_sqlalchemy import SQLAlchemy
@@ -35,7 +35,7 @@ from flask_login import login_user, LoginManager, login_required, logout_user
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 TICKERS = []
-with open('/home/CIBerkeley/CIBWebsite/SP500.csv', 'rb') as csvfile:
+with open('./SP500.csv', 'rb') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='|')
     for row in reader:
         TICKERS.append("$" + row[0])
@@ -351,9 +351,11 @@ def getGraphData(graphType, ticker, dateOne, dateTwo):
 		return OrderedDict(zip(trading_days, volatilities))
 
 def getOptionsChain(ticker):
-	query = "NASDAQ:" + ticker[1:]
-	oc = OptionChain(query)
-	return oc.puts, oc.calls
+	# query = "NASDAQ:" + ticker[1:]
+	# oc = OptionChain(query)
+	# return oc.puts, oc.calls
+    print("getOptionsChain() is currently broken because it's missing the optionchain module")
+    return None #No optionchain module found!!!
 
 def getFundamentals(ticker):
 	share = Share(ticker[1:])
@@ -747,20 +749,20 @@ def settings():
     #assetAllocation = CIBPortfolio.get_current_asset_allocation()
 
     if request.method == 'POST':
-        with open('/home/CIBerkeley/CIBWebsite/credentials.txt','rb') as f:
+        with open('./credentials.txt','rb') as f:
             siteCredentials = pickle.load(f)
         try:
             username = request.form['text']
             password = request.form['password']
             siteCredentials[username] = password
-            with open('/home/CIBerkeley/CIBWebsite/credentials.txt','wb') as f:
+            with open('./credentials.txt','wb') as f:
                 pickle.dump(siteCredentials, f)
             return render_template('settings.html', cash=cash, portfolioInfo=portfolioInfo,  credentials=siteCredentials, positions = tickers)
         except:
             try:
                 removed = request.form['remove']
                 del siteCredentials[removed]
-                with open('/home/CIBerkeley/CIBWebsite/credentials.txt','wb') as f:
+                with open('./credentials.txt','wb') as f:
                     pickle.dump(siteCredentials, f)
                 return render_template('settings.html', cash=cash, portfolioInfo=portfolioInfo,  credentials=siteCredentials, positions = tickers)
             except:
@@ -770,7 +772,7 @@ def settings():
 
         return render_template('settings.html', cash=cash, portfolioInfo=portfolioInfo,  credentials=siteCredentials, positions = tickers)
 
-    with open('/home/CIBerkeley/CIBWebsite/credentials.txt','rb') as f:
+    with open('./credentials.txt','rb') as f:
         siteCredentials = pickle.load(f)
     return render_template('settings.html', cash=cash, portfolioInfo=portfolioInfo, credentials=siteCredentials, positions = tickers)
 

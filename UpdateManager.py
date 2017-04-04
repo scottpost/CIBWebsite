@@ -1,6 +1,6 @@
 import pickle
 import datetime
-import pandas.io.data as web
+import pandas_datareader.data as web
 import pandas as pd
 from Portfolio import Portfolio, Position
 import os
@@ -12,14 +12,14 @@ import os
 #costs = p[2] - list
 
 def start_manager_update_process(p, start_date):
-    if os.path.isfile('/home/CIBerkeley/CIBWebsite/portfolio.txt') is False:
+    if os.path.isfile('./portfolio.txt') is False:
         # a  few requirements to set up the data pipeline
         indices  = ["^GSPC","XLY", "XLP", "XLE", "XLF", "XLV", "XLI", "XLB", "XLK", "XLU"]
         df = web.DataReader(indices,'yahoo',datetime.datetime(2010, 1, 1))['Close']
         df = df.pct_change()[1:len(df)]
         df.columns = indices
-        df.to_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
-        with open('/home/CIBerkeley/CIBWebsite/portfolio.txt','wb') as f:
+        df.to_csv("./returns_data.csv")
+        with open('./portfolio.txt','wb') as f:
             pickle.dump([],f)
 
     latest_portfolio = manager_portfolio_update(p,start_date)
@@ -54,20 +54,20 @@ def manager_portfolio_update(p,start_date=datetime.date.today()):
 
 #initially load csv with one series going back at least to 2010
 def manager_data_update(tickers):
-    df = pd.DataFrame.from_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
+    df = pd.DataFrame.from_csv("./returns_data.csv")
     tickers = set(tickers)
     new_tickers = list(tickers - set(df.columns))
     if len(new_tickers) > 0:
         new_columns = web.DataReader(new_tickers,'yahoo',datetime.datetime(2010, 1, 1))['Close']
         new_columns = new_columns.pct_change()[1:len(new_columns)]
         df = df.join(new_columns,how='outer')
-        df.to_csv("/home/CIBerkeley/CIBWebsite/returns_data.csv")
+        df.to_csv("./returns_data.csv")
     return df
 
 def save_new_portfolio(latest_portfolio):
     all_portfolios = pull_old_portfolios()
     all_portfolios.append(latest_portfolio.compile_portfolio())
-    with open('/home/CIBerkeley/CIBWebsite/portfolio.txt', 'wb') as f:
+    with open('./portfolio.txt', 'wb') as f:
         pickle.dump(all_portfolios, f)
 
 def direction(w):
@@ -78,6 +78,6 @@ def direction(w):
 
 #use this to plot the historical performance of the fund, for whatever asset allocation
 def pull_old_portfolios():
-    with open('/home/CIBerkeley/CIBWebsite/portfolio.txt','rb') as f:
+    with open('./portfolio.txt','rb') as f:
         var = pickle.load(f)
     return var

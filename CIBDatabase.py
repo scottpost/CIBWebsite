@@ -10,7 +10,7 @@ volatility_table_structure = '(Time TEXT PRIMARY KEY, Hv10 TEXT, Hv20 TEXT, \
                               IvMean180 TEXT, IvMean270 TEXT, IvMean360 TEXT, \
                                IvMean720 TEXT, IvMean1080 TEXT)'
 
-con = lite.connect('/home/CIBerkeley/CIBWebsite/cib_data_v2.db')
+con = lite.connect('./cib_data_v2.db')
 
 def vol_table_name(ticker):
     return ticker + '_VOLATILITY'
