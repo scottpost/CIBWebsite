@@ -20,7 +20,7 @@ def scroll_to_element(driver, element):
     except Exception as e:
         print 'error scrolling down web element', e
 
-def inputPortfolio(port, driver):
+def inputPortfolio(port, removals, driver):
 	needsNormalize = False
 	for i in range(len(port)):
 		if (i % 10 == 1 and i != 1):
@@ -29,6 +29,7 @@ def inputPortfolio(port, driver):
 			link.click()
 		if (port[i][0] == 'CASH' or port[i][0] == 'CASH-X'):
 			needsNormalize = True
+			removals[i] = True
 			continue
 		sym = driver.find_element_by_id('symbol' + str(i+1))
 		sym.clear()
@@ -36,6 +37,7 @@ def inputPortfolio(port, driver):
 		alloc = driver.find_element_by_id('allocation' + str(i+1) + '_1')
 		alloc.clear()
 		alloc.send_keys(str(port[i][1]))
+	return removals
 
 def normalize(driver):
 	gear = driver.find_element_by_id('allocationOptionsButton1')
@@ -52,7 +54,7 @@ def strFindAll(s, substr):
 		results.append(found)
 		found = s.find(substr, found+1)
 
-def searchAndDropItem(symbol, port, driver):
+def searchAndDropItem(symbol, port, removals, driver):
 	#find position in list
 	pos = -1
 	for i in range(len(port)):
@@ -63,6 +65,10 @@ def searchAndDropItem(symbol, port, driver):
 		print(err_msg + 'is not in portfolio list. Something is wrong.')
 		return None
 	#drop item from portfolio assets in site
+	if (removals[pos]):
+		return False #item already removed(?)
+
+	removals[pos] = True
 	sym = driver.find_element_by_id('symbol' + str(pos+1))
 	sym.clear()
 	alloc = driver.find_element_by_id('allocation' + str(pos+1) + '_1')
@@ -70,13 +76,16 @@ def searchAndDropItem(symbol, port, driver):
 	#clean up mess
 	normalize(driver)
 
-def handleError(err_msg, port, driver):
+	return True
+	
+
+def handleError(err_msg, port, removals, driver):
 	isUnknown = (err_msg.find('Unknown symbol') != -1)
 	isRiskFreeNA = (err_msg.find('Risk free') != -1)
 	if (isUnknown):
 		#get unknown symbol
 		unknown = err_msg[16:]
-		searchAndDropItem(unknown, port, driver)
+		removed = searchAndDropItem(unknown, port, removals, driver)
 
 	if (isRiskFreeNA):
 		naStart = err_msg.find('(') + 1
@@ -84,16 +93,53 @@ def handleError(err_msg, port, driver):
 		na = err_msg[naStart:naEnd]
 		if (na == 'CASHX'):
 			na = 'CASH'
+		removed = searchAndDropItem(na, port, removals, driver)
 
-		searchAndDropItem(na, port, driver)
+	if (isUnknown == False and isValidRange == False):
+		#Unhandled error
+		print("Unhandled error: " +  err_msg)
+		return False
+
+	return removed
+
+def inputTime(start, end, driver):
+	if (start < 1985 or start > 2016 or end < 1985 or end > 2017):
+		return False
+	#Set start year
+	start_year_box = driver.find_element_by_id('startYear_chosen')
+	b_box = start_year_box.find_elements_by_tag_name('b')[0]
+	b_box.click()
+	start_year_box = driver.find_element_by_id('startYear_chosen')
+	ul = start_year_box.find_elements_by_tag_name('ul')[0]
+	li_items = ul.find_elements_by_tag_name('li')
+	li_index = start - 1985
+	li_items[li_index].click()
+
+	#Set end year
+	end_year_box = driver.find_element_by_id('endYear_chosen')
+	b_box = end_year_box.find_elements_by_tag_name('b')[0]
+	b_box.click()
+	end_year_box = driver.find_element_by_id('endYear_chosen')
+	ul = end_year_box.find_elements_by_tag_name('ul')[0]
+	li_items = ul.find_elements_by_tag_name('li')
+	li_index = end - 1985
+	#scroll to top of dropdown because selection is kinda buggy
+	for i in range(32):
+		b_box.send_keys(u'\ue013')
+	li_items[li_index].click()
+	
+	return True
 
 def main(portfolio, startYear=1985, endYear=2017):
+
 	driver = webdriver.Firefox()
 	driver.get("https://www.portfoliovisualizer.com/optimize-portfolio")
 	sleep(2)
 	
 	#Input Info
-	inputPortfolio(portfolio, driver)
+	removals = [False for i in range(len(portfolio))]
+	inputPortfolio(portfolio, removals, driver)
+	isValidRange = inputTime(startYear, endYear, driver)
 	
 	submit = driver.find_element_by_id("submitButton")
 	submit.click()
@@ -101,12 +147,6 @@ def main(portfolio, startYear=1985, endYear=2017):
 
 	#Get errors and info
 	err_boxes = driver.find_elements_by_css_selector(".alert-danger")
-	info_boxes = driver.find_elements_by_css_selector(".alert-info")
-
-	#Print out any notes, such as invalid time ranges that get automatically adjusted by the site
-	if (len(info_boxes) != 0):
-		s = info_boxes[0].text
-		print(s[8:]) #first 8 letters contain non-unicode/irrelevant text
 
 	#Print out any errors, such as not having ABDE's information
 	if (len(err_boxes) != 0):
@@ -117,7 +157,7 @@ def main(portfolio, startYear=1985, endYear=2017):
 		err_text = err_boxes[0].text
 		errs = err_text.split('\n')
 		for e in errs:
-			handleError(e, portfolio, driver)
+			handleError(e, portfolio, removals, driver)
 		
 		submit = driver.find_element_by_id("submitButton")
 		submit.click()
@@ -128,7 +168,7 @@ def main(portfolio, startYear=1985, endYear=2017):
 		if (len(err_boxes) != 0):
 			print(err_boxes[0].text)
 			for e in errs:
-				handleError(e, portfolio, driver)
+				handleError(e, portfolio, removals, driver)
 		
 				submit = driver.find_element_by_id("submitButton")
 				submit.click()
@@ -140,6 +180,34 @@ def main(portfolio, startYear=1985, endYear=2017):
 					print(err_boxes[0].text)
 					print("Not all errors were handled!!!")
 					return None
+
+	#Print out any notes, such as invalid time ranges that get automatically adjusted by the site
+	#Update: invalid time ranges now cause offending symbol to get dropped
+	remaining =  [i for i in range(len(removals)) if removals[i] == False]
+	for index in remaining:
+		info_boxes = driver.find_elements_by_css_selector(".alert-info")
+		if (len(info_boxes) != 0):
+			msg = info_boxes[0].text
+			print(msg[8:]) #first 8 letters contain non-unicode/irrelevant text
+			split_list = msg.split('(')
+			if (len(split_list) >= 2):
+				bad_symbol = split_list[2][:-1]
+				searchAndDropItem(bad_symbol, portfolio, removals, driver)
+				submit = driver.find_element_by_id("submitButton")
+				submit.click()
+				sleep(2)
+
+	#Check no errors occurred in removal (e.g. less than two assets left)
+	err_boxes = driver.find_elements_by_css_selector(".alert-danger")
+	if (len(err_boxes) != 0):
+		print(err_boxes[0].text)
+		for e in errs:
+			isHandled = handleError(e, portfolio, removals, driver)
+			submit = driver.find_element_by_id("submitButton")
+			submit.click()
+			sleep(2)
+			if (isHandled == False):
+				return None
 
 	#Get Max. Sharpe Ratio Allocations
 	port_allocs = driver.find_element_by_id('growthChart')
@@ -220,10 +288,10 @@ def main(portfolio, startYear=1985, endYear=2017):
 
 	#Use mc_df (monthly correlations data frame/matrix) here!!!
 	print(mc_df)
-	driver.quit()
+	#driver.quit()
 
 	#Chart Scraping Note - the thing I did for the efficient frontier chart vs the other chart comparing 
 	#portfolio allocations did not work for EF, because chartDiv5 (the one for EF) doesn't have the same
 	#neat data for  it's graph  (probably because it's all below where it's intended to be copied from)
 
-main(cib_portfolio)
+main(cib_portfolio, 2007, 2016)
