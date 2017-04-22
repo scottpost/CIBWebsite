@@ -1,0 +1,16 @@
+1492824705907	geckodriver	INFO	Listening on 127.0.0.1:62892
+1492824707937	mozprofile::profile	INFO	Using profile path C:\Users\ncatr\AppData\Local\Temp\rust_mozprofile.6fWlRlfa7InE
+1492824707946	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe with args []
+1492824707954	geckodriver::marionette	INFO	Connecting to Marionette on localhost:62898
+1492824708750	Marionette	INFO	Listening on port 62898
+1492824709098	Marionette	WARN	TLS certificate errors will be ignored for this session
+1492824719819	Marionette	INFO	New connections will no longer be accepted
+[Child 1208] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+
+ actor we didn't know about: server1.conn0.child1/domnode570
+console.error: 
+  Got an addition of an actor we didn't know about: server1.conn0.child1/domnode643
+console.error: 
+  Got a removal of an actor we didn't know about: server1.conn0.child1/domnode504
+console.error: 
+  Got an addition of an actor we didn't know about: server1.conn0.child1/domnode644
